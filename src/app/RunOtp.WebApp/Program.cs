@@ -15,6 +15,7 @@ await WithSeriLog(async () =>
         .AddPersistence(builder.Configuration)
         .AddIdentityFramework()
         .AddCustomCors()
+        .AddAuthenticationCustom()
         .AddHttpContextAccessor()
         .AddHttpClient(builder.Configuration)
         .AddCustomMediatR(new[] { typeof(Anchor) })
@@ -22,7 +23,9 @@ await WithSeriLog(async () =>
         .AddRepository()
         .AddAuditEventLogging<MainDbContext, AuditLog>(builder.Configuration)
         .AddInitializationStages()
-        .AddControllers();
+        .AddControllersWithViews()
+        .AddRazorRuntimeCompilation();
+    ;
     var app = builder.Build();
 
     // https://github.com/npgsql/efcore.pg/issues/2158
@@ -32,7 +35,7 @@ await WithSeriLog(async () =>
     if (!app.Environment.IsDevelopment()) app.UseExceptionHandler("/Error");
     app.MapGet("/error", () => Results.Problem("An error occurred.", statusCode: 500))
         .ExcludeFromDescription();
-
+    app.UseStaticFiles();
     app.UseMiddleware<ExceptionMiddleware>();
     app.UseCustomCors();
     app.UseRouting();
