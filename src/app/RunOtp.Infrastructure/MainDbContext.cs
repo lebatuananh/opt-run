@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using AuditLogging.EntityFramework.DbContexts;
+using AuditLogging.EntityFramework.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -6,38 +8,46 @@ using RunOtp.Domain.RoleAggregate;
 using RunOtp.Domain.UserAggregate;
 using Shared.Constants;
 using Shared.Extensions;
+using Shared.Logging.LogError;
 using Shared.SeedWork;
 
 namespace RunOtp.Infrastructure;
 
-public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfWork
+public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfWork, IAuditLoggingDbContext<AuditLog>
 {
     public static string SchemaName => "data";
 
-    protected readonly IMediator Mediator;
-    protected readonly IScopeContext ScopeContext;
+    private readonly IMediator _mediator;
+    private readonly IScopeContext _scopeContext;
 
     public MainDbContext()
     {
     }
 
-    protected MainDbContext(DbContextOptions options) : base(options)
+    public MainDbContext(DbContextOptions options) : base(options)
     {
     }
 
-    protected MainDbContext(
+    public MainDbContext(
         DbContextOptions options,
         IMediator mediator,
         IScopeContext scopeContext) : base(options)
     {
-        Mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        ScopeContext = scopeContext ?? throw new ArgumentNullException(nameof(scopeContext));
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        _scopeContext = scopeContext ?? throw new ArgumentNullException(nameof(scopeContext));
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.HasDefaultSchema(SchemaName);
         builder.HasPostgresExtension(PostgresDefaultAlgorithm.UuidGenerator);
+        builder.Entity<Log>(log =>
+        {
+            log.ToTable("log", SchemaName);
+            log.HasKey(x => x.Id);
+            log.Property(x => x.LogEvent).HasColumnType("jsonb");
+            log.Property(x => x.Properties).HasColumnType("jsonb");
+        });
         base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
@@ -46,7 +56,7 @@ public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfW
     {
         AddTrack();
         var result = await base.SaveChangesAsync(cancellationToken);
-        await Mediator.DispatchDomainEventsAsync(this);
+        await _mediator.DispatchDomainEventsAsync(this);
         return result;
     }
 
@@ -59,7 +69,7 @@ public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfW
             {
                 case EntityState.Added:
                     if (entry.Entity is ModifierTrackingEntity modifier)
-                        modifier.MarkCreated(ScopeContext.CurrentAccountId, ScopeContext.CurrentAccountName);
+                        modifier.MarkCreated(_scopeContext.CurrentAccountId, _scopeContext.CurrentAccountName);
                     if (entry.Entity is IDateTracking ent) ent.MarkCreated();
 
                     if (entry.Entity.GetType().GetCustomAttribute<PredefinedObjectAttribute>() != null)
@@ -67,7 +77,7 @@ public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfW
                     break;
                 case EntityState.Modified:
                     if (entry.Entity is ModifierTrackingEntity modifier2)
-                        modifier2.MarkModified(ScopeContext.CurrentAccountId, ScopeContext.CurrentAccountName);
+                        modifier2.MarkModified(_scopeContext.CurrentAccountId, _scopeContext.CurrentAccountName);
                     if (entry.Entity is IDateTracking ent2)
                     {
                         ent2.MarkModified();
@@ -85,5 +95,14 @@ public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfW
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+    }
+
+    public DbSet<AuditLog> AuditLog { get; set; }
+    public DbSet<Log> Logs { get; set; }
+
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await base.SaveChangesAsync();
     }
 }

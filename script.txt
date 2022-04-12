@@ -1,0 +1,10 @@
+dotnet ef migrations add InitialErrorLog -c LogDbContext -o Data/Migrations/ErrorLog
+dotnet ef dbcontext optimize -c LogDbContext -o Data/CompiledModels/ErrorLog -n RunOtp.Api --verbose
+
+
+dotnet ef migrations add InitialRunOtp -c MainDbContext -o Data/Migrations/RunOtp
+dotnet ef dbcontext optimize -c MainDbContext -o Data/CompiledModels/RunOtp -n RunOtp.Api --verbose
+
+
+dotnet ef migrations add InitialAuditLog -c AuditLogDbContext -o Data/Migrations/AuditLog
+dotnet ef dbcontext optimize -c AuditLogDbContext -o Data/CompiledModels/AuditLog -n RunOtp.Api --verbose

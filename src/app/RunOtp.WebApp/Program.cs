@@ -1,4 +1,5 @@
 using AuditLogging.EntityFramework.Entities;
+using RunOtp.Infrastructure;
 using RunOtp.WebApp;
 
 await WithSeriLog(async () =>
@@ -8,17 +9,18 @@ await WithSeriLog(async () =>
     configuration.AddJsonFile("serilog.json", optional: true, reloadOnChange: true);
     configuration.AddEnvironmentVariables();
     configuration.AddCommandLine(args);
-    builder.Host.AddSerilog("GithubTrending");
+    builder.Host.AddSerilog("RunOtp");
     // Add services to the container.
     builder.Services
+        .AddPersistence(builder.Configuration)
+        .AddIdentityFramework()
         .AddCustomCors()
         .AddHttpContextAccessor()
         .AddHttpClient(builder.Configuration)
         .AddCustomMediatR(new[] { typeof(Anchor) })
         .AddCustomValidators(new[] { typeof(Anchor) })
-        .AddPersistence(builder.Configuration)
         .AddRepository()
-        .AddAuditEventLogging<AuditLogDbContext, AuditLog>(builder.Configuration)
+        .AddAuditEventLogging<MainDbContext, AuditLog>(builder.Configuration)
         .AddInitializationStages()
         .AddControllers();
     var app = builder.Build();

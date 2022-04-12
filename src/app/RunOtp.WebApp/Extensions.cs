@@ -25,30 +25,6 @@ public static class Extensions
             // options.UseModel(MainDbContextModel.Instance);
         });
 
-        // TODO: AuditLogDbContext
-        services.AddDbContext<AuditLogDbContext>(options =>
-        {
-            options.UseNpgsql(configuration.GetConnectionString(ConfigurationKeys.DefaultConnectionString), b =>
-            {
-                b.MigrationsAssembly(AssemblyName);
-                b.MigrationsHistoryTable("__EFMigrationsHistory", AuditLogDbContext.SchemaName);
-                b.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-            }).UseSnakeCaseNamingConvention();
-            // options.UseModel(AuditLogDbContextModel.Instance);
-        });
-
-        // TODO: LogDbContext
-        services.AddDbContext<LogDbContext>(options =>
-        {
-            options.UseNpgsql(configuration.GetConnectionString(ConfigurationKeys.DefaultConnectionString), b =>
-            {
-                b.MigrationsAssembly(AssemblyName);
-                b.MigrationsHistoryTable("__EFMigrationsHistory", LogDbContext.SchemaName);
-                b.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-            }).UseSnakeCaseNamingConvention();
-            // options.UseModel(LogDbContextModel.Instance);
-        });
-
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<MainDbContext>());
         services.AddScoped<IScopeContext, ScopeContext>();
         return services;
@@ -84,7 +60,7 @@ public static class Extensions
     {
         services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
         services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
-        services.AddScoped<ILogRepository, LogRepository>();
+        // services.AddScoped<ILogRepository, LogRepository>();
         return services;
     }
 }
