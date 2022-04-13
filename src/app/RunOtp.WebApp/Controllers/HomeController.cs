@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using RunOtp.WebApp.Models;
+using Shared.Extensions;
 
 namespace RunOtp.WebApp.Controllers;
 
-public class HomeController : Controller
+public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;
 
@@ -15,6 +16,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var email = User.GetSpecificClaim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
         return View();
     }
 

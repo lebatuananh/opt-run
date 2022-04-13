@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using RunOtp.Domain.RoleAggregate;
 using RunOtp.Domain.UserAggregate;
@@ -22,7 +23,7 @@ public static class Extensions
                 b.MigrationsHistoryTable("__EFMigrationsHistory", MainDbContext.SchemaName);
                 b.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
             }).UseSnakeCaseNamingConvention();
-            // options.UseModel(MainDbContextModel.Instance);
+            options.UseModel(MainDbContextModel.Instance);
         });
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<MainDbContext>());
@@ -56,11 +57,24 @@ public static class Extensions
         return services;
     }
 
+    public static IServiceCollection AddAuthenticationCustom(this IServiceCollection services)
+    {
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.LoginPath = "/login.html";
+            options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/Account/AccessDenied";
+            options.SlidingExpiration = true;
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        });
+        return services;
+    }
+
     public static IServiceCollection AddRepository(this IServiceCollection services)
     {
         services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
         services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
-        // services.AddScoped<ILogRepository, LogRepository>();
         return services;
     }
 }
