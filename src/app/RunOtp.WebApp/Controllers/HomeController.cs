@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+using RunOtp.WebApp.Helpers;
 using RunOtp.WebApp.Models;
 using Shared.Extensions;
 
@@ -13,10 +13,9 @@ public class HomeController : BaseController
     {
         _logger = logger;
     }
-
+    
     public IActionResult Index()
     {
-        var email = User.GetSpecificClaim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
         return View();
     }
 

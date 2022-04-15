@@ -9,14 +9,20 @@ namespace RunOtp.WebApp.Controllers;
 
 public class LoginController : Controller
 {
-    private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
 
-    public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+    public LoginController( SignInManager<AppUser> signInManager)
     {
-        _userManager = userManager;
         _signInManager = signInManager;
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> SignOut()
+    {
+        await _signInManager.SignOutAsync();
+        return Redirect("/login.html");
+    }
+    
     [HttpGet]
     [AllowAnonymous]
     [Route("login.html", Name = "Login")]
