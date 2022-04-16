@@ -4,7 +4,7 @@ using Shared.SeedWork;
 
 namespace RunOtp.Domain.UserAggregate;
 
-public class AppUser : IdentityUser<Guid>, IAggregateRoot
+public class AppUser : IdentityUser<Guid> ,IAggregateRoot
 {
     public AppUser()
     {
@@ -65,6 +65,7 @@ public class AppUser : IdentityUser<Guid>, IAggregateRoot
     public int Discount { get; set; }
     public string ClientSecret { get; set; }
     public virtual IList<Transaction> Transactions { get; private set; }
+    public virtual IList<OrderHistory.OrderHistory> OrderHistories { get; set; }
 
 
     public UserStatus Status { get; set; }

@@ -19,8 +19,11 @@ namespace RunOtp.WebApi
             var identityUserLoginGuid = IdentityUserLoginGuidEntityType.Create(this);
             var identityUserRoleGuid = IdentityUserRoleGuidEntityType.Create(this);
             var identityUserTokenGuid = IdentityUserTokenGuidEntityType.Create(this);
+            var orderHistory = OrderHistoryEntityType.Create(this);
             var appRole = AppRoleEntityType.Create(this);
+            var transaction = TransactionEntityType.Create(this);
             var appUser = AppUserEntityType.Create(this);
+            var webConfiguration = WebConfigurationEntityType.Create(this);
             var log = LogEntityType.Create(this);
 
             IdentityRoleClaimGuidEntityType.CreateForeignKey1(identityRoleClaimGuid, appRole);
@@ -29,6 +32,8 @@ namespace RunOtp.WebApi
             IdentityUserRoleGuidEntityType.CreateForeignKey1(identityUserRoleGuid, appRole);
             IdentityUserRoleGuidEntityType.CreateForeignKey2(identityUserRoleGuid, appUser);
             IdentityUserTokenGuidEntityType.CreateForeignKey1(identityUserTokenGuid, appUser);
+            OrderHistoryEntityType.CreateForeignKey1(orderHistory, appUser);
+            TransactionEntityType.CreateForeignKey1(transaction, appUser);
 
             AuditLogEntityType.CreateAnnotations(auditLog);
             IdentityRoleClaimGuidEntityType.CreateAnnotations(identityRoleClaimGuid);
@@ -36,8 +41,11 @@ namespace RunOtp.WebApi
             IdentityUserLoginGuidEntityType.CreateAnnotations(identityUserLoginGuid);
             IdentityUserRoleGuidEntityType.CreateAnnotations(identityUserRoleGuid);
             IdentityUserTokenGuidEntityType.CreateAnnotations(identityUserTokenGuid);
+            OrderHistoryEntityType.CreateAnnotations(orderHistory);
             AppRoleEntityType.CreateAnnotations(appRole);
+            TransactionEntityType.CreateAnnotations(transaction);
             AppUserEntityType.CreateAnnotations(appUser);
+            WebConfigurationEntityType.CreateAnnotations(webConfiguration);
             LogEntityType.CreateAnnotations(log);
 
             AddAnnotation("Npgsql:PostgresExtension:uuid-ossp", ",,");

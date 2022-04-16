@@ -1,0 +1,24 @@
+name: Build Mobi Message
+
+on:
+  push:
+    branches: 
+      - master
+      - develop
+
+jobs:
+
+  build-mobi-message:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: login to registry
+      run: echo "$DOCKER_PASSWORD" | docker login "$DOCKER_REGISTRY_URL" -u "$DOCKER_USERNAME" --password-stdin
+      env: 
+        DOCKER_REGISTRY_URL: docker.sanslab.vn
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    - name: build
+      run: docker build . --file scripts/Dockerfile --tag  docker.sanslab.vn/mobihome/mobi-message
+    - name: publish
+      run: docker push docker.sanslab.vn/mobihome/mobi-message

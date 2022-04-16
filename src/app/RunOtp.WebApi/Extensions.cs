@@ -1,13 +1,20 @@
 ﻿using System.Reflection;
 using System.Text;
+using Hangfire;
+using Hangfire.Common;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.RoleAggregate;
 using RunOtp.Domain.UserAggregate;
+using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Infrastructure;
 using RunOtp.Infrastructure.Configurations;
+using RunOtp.Infrastructure.Repositories;
+using RunOtp.WebApi.Tasks;
 
 namespace RunOtp.WebApi;
 
@@ -88,6 +95,31 @@ public static class Extensions
     {
         services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
         services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+        services.AddTransient<IWebConfigurationRepository, WebConfigurationRepository>();
+        services.AddTransient<IOrderHistoryRepository, OrderHistoryRepository>();
+        services.AddTransient<IOtpTextNowTask, OtpTextNowTask>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddHangFireCustom(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddHangfire(config =>
+        {
+            var jobStorageConnectionString =
+                configuration.GetConnectionString(ConfigurationKeys.ScheduledTasksDbConnectionString);
+            config.UsePostgreSqlStorage(jobStorageConnectionString, new PostgreSqlStorageOptions()
+            {
+                SchemaName = "scheduled_tasks",
+                PrepareSchemaIfNecessary = true
+            });
+        });
+
+        services.AddSingleton<IBackgroundJobClient>((x =>
+            new BackgroundJobClient(x.GetRequiredService<JobStorage>(),
+                x.GetRequiredService<IJobFilterProvider>())));
+        // Add the processing server as IHostedService
+        services.AddHangfireServer();
         return services;
     }
 

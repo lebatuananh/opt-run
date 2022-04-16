@@ -58,6 +58,14 @@ namespace RunOtp.WebApi
                 nullable: true);
             birthDay.AddAnnotation("Relational:ColumnName", "birth_day");
 
+            var clientSecret = runtimeEntityType.AddProperty(
+                "ClientSecret",
+                typeof(string),
+                propertyInfo: typeof(AppUser).GetProperty("ClientSecret", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(AppUser).GetField("<ClientSecret>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                nullable: true);
+            clientSecret.AddAnnotation("Relational:ColumnName", "client_secret");
+
             var concurrencyStamp = runtimeEntityType.AddProperty(
                 "ConcurrencyStamp",
                 typeof(string),
@@ -66,6 +74,13 @@ namespace RunOtp.WebApi
                 nullable: true,
                 concurrencyToken: true);
             concurrencyStamp.AddAnnotation("Relational:ColumnName", "concurrency_stamp");
+
+            var deposit = runtimeEntityType.AddProperty(
+                "Deposit",
+                typeof(decimal),
+                propertyInfo: typeof(AppUser).GetProperty("Deposit", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(AppUser).GetField("<Deposit>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+            deposit.AddAnnotation("Relational:ColumnName", "deposit");
 
             var discount = runtimeEntityType.AddProperty(
                 "Discount",
@@ -168,6 +183,13 @@ namespace RunOtp.WebApi
                 propertyInfo: typeof(AppUser).GetProperty("Status", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(AppUser).GetField("<Status>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
             status.AddAnnotation("Relational:ColumnName", "status");
+
+            var totalAmountUsed = runtimeEntityType.AddProperty(
+                "TotalAmountUsed",
+                typeof(decimal),
+                propertyInfo: typeof(AppUser).GetProperty("TotalAmountUsed", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(AppUser).GetField("<TotalAmountUsed>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+            totalAmountUsed.AddAnnotation("Relational:ColumnName", "total_amount_used");
 
             var twoFactorEnabled = runtimeEntityType.AddProperty(
                 "TwoFactorEnabled",

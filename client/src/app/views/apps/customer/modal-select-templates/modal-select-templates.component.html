@@ -1,0 +1,65 @@
+<ng-template #modalTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title">Chọn mẫu</h4>
+  </div>
+  <div class="modal-body">
+    <div class="table-responsive">
+      <ngx-datatable #table columnMode="force" class="bootstrap" [headerHeight]="50" [footerHeight]="50"
+        rowHeight="auto" [externalSorting]="true" [messages]="messages" [loadingIndicator]="isLoading"
+        [externalPaging]="true" [limit]="take" [rows]="items" [count]="count" (page)="onPage($event)"
+        [selected]="selected" [selectionType]="SelectionType.checkbox" (select)="onSelect($event)">
+        <ngx-datatable-column [width]="40" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+          [resizeable]="false">
+          <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+            let-selectFn="selectFn">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [checked]="allRowsSelected"
+                (change)="selectFn(!allRowsSelected)" />
+            </div>
+          </ng-template>
+          <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected"
+            let-onCheckboxChangeFn="onCheckboxChangeFn">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [checked]="isSelected"
+                (change)="onCheckboxChangeFn($event)" />
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Tên" prop="name" [width]="200" [sortable]="false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Loại" prop="templateTypeId" [width]="100" [sortable]="false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <span class="badge rounded-pill bg-info">{{TemplateType.fromId(value)?.name?.toUpperCase()}}</span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Trạng thái" prop="status" [width]="100" [sortable]="false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <ng-container [ngSwitch]="value">
+              <span *ngSwitchCase="TemplateStatus.Draft" class="badge bg-secondary rounded-pill">Nháp</span>
+              <span *ngSwitchCase="TemplateStatus.Publish" class="badge bg-success rounded-pill">Lưu hành</span>
+              <span *ngSwitchCase="TemplateStatus.Archive" class="badge bg-danger rounded-pill">Thu hồi</span>
+            </ng-container>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Ngày tạo" prop="createdDate" [sortable]="false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | date:'dd/MM/yyyy HH:mm' }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Cập nhật cuối" prop="lastUpdatedDate" [sortable]="false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value | date:'dd/MM/yyyy HH:mm' }}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+  <div class="modal-footer text-right">
+    <button class="btn btn-secondary btn-uppercase" type="button" (click)="modal.hide();">Hủy</button>
+    <button type="button" class="btn btn-primary btn-uppercase" (click)="submit()"
+      [disabled]="selected.length <= 0" [ladda]="isSubmitting">Lưu</button>
+  </div>
+</ng-template>

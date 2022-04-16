@@ -1,0 +1,80 @@
+<div class="conversation">
+  <div class="conversation-header">
+    <div class="d-flex align-items-center">
+      <div class="d-block d-lg-none cursor-pointer me-2 font-size-lg">
+        <i class="feather icon-menu"></i>
+      </div>
+      <h5 class="mb-0"><span>{{customer.name}}</span></h5>
+    </div>
+    <switch class="ml-auto pointer" [ngModel]="status" (ngModelChange)="onChangeStatus()">{{status ? 'Khóa tài khoản' :
+      'Kích hoạt tài khoản' }}</switch>
+  </div>
+  <div class="p-4">
+    <div class="customer-view-header">
+      <div class="banner-block">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="label">Tài khoản đăng nhập</span>
+            <span class="value">{{customer.userName}}</span>
+          </div>
+          <div class="col-md-6 mt-1">
+            <span class="label">Số dư tài khoản</span>
+            <span class="value">
+              {{customer?.walletDto?.totalAmount | currency: 'VND'}}
+            </span>
+          </div>
+          <div class="col-md-6 mt-1" *ngIf="subscriptionExpiredDate">
+            <span class="label">Gói truy cập hết hạn vào {{subscriptionExpiredDate | date:'dd/MM/yyyy HH:mm'}} </span>
+          </div>
+          <div class="col-md-6 mt-1">
+            <span class="label"> Tạo bởi ngày {{customer.createdDate | date:'dd/MM/yyyy HH:mm'}}</span>
+          </div>
+          <div class="col-md-6 mt-1">
+            <span class="label"> Cập nhật lần cuối ngày {{customer.lastUpdatedDate | date:'dd/MM/yyyy HH:mm'}} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <tabset class="tab-container my-3">
+      <tab [heading]="'Hành động'">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="action-list one-col mb-0">
+              <li>
+                <i class="feather icon-chevron-right text-primary"></i>
+                <a translate [routerLink]="['edit']">Chỉnh sửa thông tin</a>
+              </li>
+              <li class="mt-1">
+                <i class="feather icon-chevron-right text-primary"></i>
+                <a translate [routerLink]="['deposit']">Nạp tiền</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="action-list one-col mb-0">
+              <li class="mt-1">
+                <i class="feather icon-chevron-right text-primary"></i>
+                <a translate (click)="showExtendModal()">Gia hạn gói cước</a>
+              </li>
+              <li *ngIf="subscriptionExpiredDate">
+                <i class="feather icon-chevron-right text-primary"></i>
+                <a translate href="javascript:void(0)"
+                   [confirm-dialog]="'Bạn có xác nhận muốn hủy gói cước?'" (confirmed)="cancelSubscrition()">Hủy gói
+                  cước</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="action-list one-col mb-0">
+              <li class="mt-1">
+                <i class="feather icon-chevron-right text-primary"></i>
+                <a translate [routerLink]="['messages']">Lịch sử gửi tin</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+    <app-customer-deposit [customerId]="customer.id"></app-customer-deposit>
+  </div>
+</div>

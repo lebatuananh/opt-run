@@ -1,0 +1,33 @@
+<div class="alert alert-danger" *ngIf="showResult">
+  {{backendError}}
+</div>
+<form [formGroup]="formGroup" (validSubmit)="login()">
+    <div class="form-group mb-3">
+        <label class="form-label">Tên đăng nhập</label>
+        <input
+            type="text"
+            class="form-control no-validation-icon no-success-validation"
+            formControlName="username"
+        >
+    </div>
+    <div class="mb-3 ">
+        <label class="form-label d-flex justify-content-between">
+            <span>Mật khẩu</span>
+        </label>
+        <div class="form-group input-affix flex-column">
+            <label class="d-none">Mật khẩu</label>
+            <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control no-validation-icon no-success-validation"
+                formControlName="password"
+            >
+            <i
+                class="suffix-icon feather cursor-pointer text-dark"
+                [ngClass]="showPassword ? 'icon-eye-off' : 'icon-eye'"
+                (click)="onShowPasswordClick()"
+            >
+            </i>
+        </div>
+    </div>
+    <button class="btn btn-primary w-100" type="submit" [ladda]="isSubmit">Đăng nhập</button>
+</form>

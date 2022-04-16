@@ -1,0 +1,18 @@
+<ng-select
+(open)="onOpen()"
+[multiple]="false"
+[clearable]="true"
+[items]="plans$ | async"
+bindLabel="description"
+[virtualScroll]="true"
+[loading]="isLoading"
+bindValue="id"
+[ngModel]="selectedPlanId"
+(ngModelChange)="onKeyChange($event)"
+  [typeahead]="plansInput$"
+  [placeholder]="'Chọn plan...' | translate"
+  (scrollToEnd)="fetchMore($event)" #select>
+  <ng-template ng-option-tmp let-item="item">
+    <span>{{ item.description }}</span>
+  </ng-template>
+</ng-select>

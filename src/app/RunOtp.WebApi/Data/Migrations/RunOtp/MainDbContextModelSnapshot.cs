@@ -206,6 +206,74 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                     b.ToTable("app_user_tokens", "data");
                 });
 
+            modelBuilder.Entity("RunOtp.Domain.OrderHistory.OrderHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text")
+                        .HasColumnName("created_by");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uuid")
+                        .HasColumnName("created_by_id");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<string>("LastUpdatedBy")
+                        .HasColumnType("text")
+                        .HasColumnName("last_updated_by");
+
+                    b.Property<Guid>("LastUpdatedById")
+                        .HasColumnType("uuid")
+                        .HasColumnName("last_updated_by_id");
+
+                    b.Property<DateTimeOffset>("LastUpdatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("last_updated_date");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text")
+                        .HasColumnName("message");
+
+                    b.Property<string>("NumberPhone")
+                        .HasColumnType("text")
+                        .HasColumnName("number_phone");
+
+                    b.Property<string>("OtpCode")
+                        .HasColumnType("text")
+                        .HasColumnName("otp_code");
+
+                    b.Property<string>("RequestId")
+                        .HasColumnType("text")
+                        .HasColumnName("request_id");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("WebType")
+                        .HasColumnType("integer")
+                        .HasColumnName("web_type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_order_history");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_order_history_user_id");
+
+                    b.ToTable("order_history", "data");
+                });
+
             modelBuilder.Entity("RunOtp.Domain.RoleAggregate.AppRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -242,6 +310,82 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                     b.ToTable("app_role", "data");
                 });
 
+            modelBuilder.Entity("RunOtp.Domain.TransactionAggregate.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("BankAccount")
+                        .HasColumnType("text")
+                        .HasColumnName("bank_account");
+
+                    b.Property<DateTimeOffset>("CompletedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("completed_date");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text")
+                        .HasColumnName("created_by");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uuid")
+                        .HasColumnName("created_by_id");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("text")
+                        .HasColumnName("error_message");
+
+                    b.Property<string>("LastUpdatedBy")
+                        .HasColumnType("text")
+                        .HasColumnName("last_updated_by");
+
+                    b.Property<Guid>("LastUpdatedById")
+                        .HasColumnType("uuid")
+                        .HasColumnName("last_updated_by_id");
+
+                    b.Property<DateTimeOffset>("LastUpdatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("last_updated_date");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text")
+                        .HasColumnName("note");
+
+                    b.Property<int>("PaymentGateway")
+                        .HasColumnType("integer")
+                        .HasColumnName("payment_gateway");
+
+                    b.Property<string>("Response")
+                        .HasColumnType("text")
+                        .HasColumnName("response");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_amount");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_transaction");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_transaction_user_id");
+
+                    b.ToTable("transaction", "data");
+                });
+
             modelBuilder.Entity("RunOtp.Domain.UserAggregate.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
@@ -265,10 +409,18 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("birth_day");
 
+                    b.Property<string>("ClientSecret")
+                        .HasColumnType("text")
+                        .HasColumnName("client_secret");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text")
                         .HasColumnName("concurrency_stamp");
+
+                    b.Property<decimal>("Deposit")
+                        .HasColumnType("numeric")
+                        .HasColumnName("deposit");
 
                     b.Property<int>("Discount")
                         .HasColumnType("integer")
@@ -325,6 +477,10 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                         .HasColumnType("integer")
                         .HasColumnName("status");
 
+                    b.Property<decimal>("TotalAmountUsed")
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_amount_used");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean")
                         .HasColumnName("two_factor_enabled");
@@ -345,6 +501,70 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("app_user", "data");
+                });
+
+            modelBuilder.Entity("RunOtp.Domain.WebConfigurationAggregate.WebConfiguration", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("uuid_generate_v4()");
+
+                    b.Property<string>("ApiSecret")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("api_secret");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text")
+                        .HasColumnName("created_by");
+
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("uuid")
+                        .HasColumnName("created_by_id");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<string>("Endpoint")
+                        .HasColumnType("text")
+                        .HasColumnName("endpoint");
+
+                    b.Property<string>("LastUpdatedBy")
+                        .HasColumnType("text")
+                        .HasColumnName("last_updated_by");
+
+                    b.Property<Guid>("LastUpdatedById")
+                        .HasColumnType("uuid")
+                        .HasColumnName("last_updated_by_id");
+
+                    b.Property<DateTimeOffset>("LastUpdatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("last_updated_date");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("text")
+                        .HasColumnName("url");
+
+                    b.Property<string>("WebName")
+                        .HasColumnType("text")
+                        .HasColumnName("web_name");
+
+                    b.Property<int>("WebType")
+                        .HasColumnType("integer")
+                        .HasColumnName("web_type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_web_configuration");
+
+                    b.ToTable("web_configuration", "data");
                 });
 
             modelBuilder.Entity("Shared.Logging.LogError.Log", b =>
@@ -445,6 +665,37 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_app_user_tokens_app_user_user_id");
+                });
+
+            modelBuilder.Entity("RunOtp.Domain.OrderHistory.OrderHistory", b =>
+                {
+                    b.HasOne("RunOtp.Domain.UserAggregate.AppUser", "AppUser")
+                        .WithMany("OrderHistories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_order_history_users_app_user_id");
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("RunOtp.Domain.TransactionAggregate.Transaction", b =>
+                {
+                    b.HasOne("RunOtp.Domain.UserAggregate.AppUser", "AppUser")
+                        .WithMany("Transactions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_transaction_app_user_app_user_id");
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("RunOtp.Domain.UserAggregate.AppUser", b =>
+                {
+                    b.Navigation("OrderHistories");
+
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }
