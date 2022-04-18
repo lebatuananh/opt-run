@@ -3,17 +3,20 @@ using System.Text;
 using Hangfire;
 using Hangfire.Common;
 using Hangfire.PostgreSql;
+using IdentityModel;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.RoleAggregate;
+using RunOtp.Domain.TransactionAggregate;
 using RunOtp.Domain.UserAggregate;
 using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Infrastructure;
 using RunOtp.Infrastructure.Configurations;
 using RunOtp.Infrastructure.Repositories;
+using RunOtp.WebApi.Services;
 using RunOtp.WebApi.Tasks;
 
 namespace RunOtp.WebApi;
@@ -91,14 +94,40 @@ public static class Extensions
         return services;
     }
 
+
+    public static IServiceCollection AddAuthorizationPolicies(this IServiceCollection services)
+    {
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(AuthorizationConsts.AdministrationPolicy,
+                policy =>
+                    policy.RequireAssertion(context => context.User.HasClaim(c =>
+                            c.Type == $"http://schemas.microsoft.com/ws/2008/06/identity/claims/{JwtClaimTypes.Role}" &&
+                            c.Value == AuthorizationConsts.AdminRole ||
+                            c.Type == JwtClaimTypes.Role && c.Value == AuthorizationConsts.AdminRole ||
+                            c.Type == $"client_{JwtClaimTypes.Role}" &&
+                            c.Value == AuthorizationConsts.AdminRole
+                        )
+                    ));
+        });
+        return services;
+    }
+
     public static IServiceCollection AddRepository(this IServiceCollection services)
     {
         services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
         services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
         services.AddTransient<IWebConfigurationRepository, WebConfigurationRepository>();
         services.AddTransient<IOrderHistoryRepository, OrderHistoryRepository>();
+        services.AddTransient<ITransactionRepository, TransactionRepository>();
         services.AddTransient<IOtpTextNowTask, OtpTextNowTask>();
 
+        return services;
+    }
+
+    public static IServiceCollection AddServices(this IServiceCollection services)
+    {
+        services.AddTransient<IOtpExternalService, OtpExternalService>();
         return services;
     }
 

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using RunOtp.Domain.TransactionAggregate;
 using RunOtp.Domain.UserAggregate;
 using Shared.SeedWork;
+using Action = RunOtp.Domain.TransactionAggregate.Action;
 
 #pragma warning disable 219, 612, 618
 #nullable disable
@@ -30,6 +31,13 @@ namespace RunOtp.WebApi
                 valueGenerated: ValueGenerated.OnAdd,
                 afterSaveBehavior: PropertySaveBehavior.Throw);
             id.AddAnnotation("Relational:ColumnName", "id");
+
+            var action = runtimeEntityType.AddProperty(
+                "Action",
+                typeof(Action),
+                propertyInfo: typeof(Transaction).GetProperty("Action", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Transaction).GetField("<Action>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+            action.AddAnnotation("Relational:ColumnName", "action");
 
             var bankAccount = runtimeEntityType.AddProperty(
                 "BankAccount",
@@ -112,6 +120,14 @@ namespace RunOtp.WebApi
                 propertyInfo: typeof(Transaction).GetProperty("PaymentGateway", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(Transaction).GetField("<PaymentGateway>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
             paymentGateway.AddAnnotation("Relational:ColumnName", "payment_gateway");
+
+            var @ref = runtimeEntityType.AddProperty(
+                "Ref",
+                typeof(string),
+                propertyInfo: typeof(Transaction).GetProperty("Ref", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Transaction).GetField("<Ref>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                nullable: true);
+            @ref.AddAnnotation("Relational:ColumnName", "ref");
 
             var response = runtimeEntityType.AddProperty(
                 "Response",

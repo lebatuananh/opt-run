@@ -67,7 +67,8 @@ public struct MutateUser
         }
     }
 
-    internal class Handler : IRequestHandler<RegisterUserCommand, IResult>, IRequestHandler<GetUserQuery, IResult>
+    internal class Handler : IRequestHandler<RegisterUserCommand, IResult>,
+        IRequestHandler<GetUserQuery, IResult>
     {
         private readonly RoleManager<AppRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
@@ -97,9 +98,21 @@ public struct MutateUser
             return Results.Ok();
         }
 
-        public Task<IResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        public async Task<IResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await _userManager
+                .Users
+                .Include(x => x.Transactions)
+                .Include(x => x.OrderHistories)
+                .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken: cancellationToken);
+            if (user is null)
+            {
+                throw new Exception("Người dùng không tồn tại");
+            }
+
+            var userDto = new UserDto(user.Id, user.Email, user.UserName, user.Balance, user.TotalAmountUsed,
+                user.Deposit, user.Discount, user.ClientSecret);
+            return Results.Ok(ResultModel<UserDto>.Create(userDto));
         }
     }
 }

@@ -13,6 +13,8 @@ public class OrderHistory : ModifierTrackingEntity, IAggregateRoot
     public OrderStatus Status { get; set; }
     public string OtpCode { get; set; }
     public Guid UserId { get; set; }
+    public DateTimeOffset CreatedTimeResponse { get; set; }
+    public DateTimeOffset FinishTimeResponse { get; set; }
     public virtual AppUser AppUser { get; set; }
 
     public OrderHistory(string requestId, string numberPhone, string message, WebType webType,
@@ -24,6 +26,25 @@ public class OrderHistory : ModifierTrackingEntity, IAggregateRoot
         WebType = webType;
         Status = status;
         UserId = userId;
+    }
+
+
+    public OrderHistory(string requestId, string numberPhone, string message, WebType webType,
+        OrderStatus status, Guid userId, DateTimeOffset createdTimeResponse, string otpCode)
+    {
+        RequestId = requestId;
+        NumberPhone = numberPhone;
+        Message = message;
+        WebType = webType;
+        Status = status;
+        UserId = userId;
+        OtpCode = otpCode;
+        CreatedTimeResponse = createdTimeResponse;
+    }
+
+    public void UpdateFinishTime(DateTimeOffset value)
+    {
+        FinishTimeResponse = value;
     }
 
     public void Error(string otpCode)

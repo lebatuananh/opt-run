@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RunOtp.Infrastructure;
@@ -11,9 +12,10 @@ using RunOtp.Infrastructure;
 namespace RunOtp.WebApi.Data.Migrations.RunOtp
 {
     [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220417040048_AddOtherColumnOrderHistory")]
+    partial class AddOtherColumnOrderHistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,10 +327,6 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<int>("Action")
-                        .HasColumnType("integer")
-                        .HasColumnName("action");
-
                     b.Property<string>("BankAccount")
                         .HasColumnType("text")
                         .HasColumnName("bank_account");
@@ -372,10 +370,6 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                     b.Property<int>("PaymentGateway")
                         .HasColumnType("integer")
                         .HasColumnName("payment_gateway");
-
-                    b.Property<string>("Ref")
-                        .HasColumnType("text")
-                        .HasColumnName("ref");
 
                     b.Property<string>("Response")
                         .HasColumnType("text")

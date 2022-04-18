@@ -3,6 +3,8 @@
 public class SystemConstants
 {
     public const string ConnectionString = "DefaultConnection";
+    public const string Admin = "Admin";
+
 
     public class TokenProvider
     {

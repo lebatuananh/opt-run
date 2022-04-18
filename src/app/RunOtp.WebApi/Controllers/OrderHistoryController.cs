@@ -5,9 +5,9 @@ namespace RunOtp.WebApi.Controllers;
 public class OrderHistoryController : BaseController
 {
     [HttpPost]
-    public async Task<IResult> Create()
+    public async Task<IResult> Create(MutateOrderHistory.CreateOrderHistoryCommand command)
     {
-        return await Mediator.Send(new MutateOrderHistory.CreateOrderHistoryCommand());
+        return await Mediator.Send(command);
     }
 
     [HttpGet]

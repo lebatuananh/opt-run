@@ -54,6 +54,20 @@ namespace RunOtp.WebApi
                 fieldInfo: typeof(DateTrackingEntity).GetField("<CreatedDate>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
             createdDate.AddAnnotation("Relational:ColumnName", "created_date");
 
+            var createdTimeResponse = runtimeEntityType.AddProperty(
+                "CreatedTimeResponse",
+                typeof(DateTimeOffset),
+                propertyInfo: typeof(OrderHistory).GetProperty("CreatedTimeResponse", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(OrderHistory).GetField("<CreatedTimeResponse>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+            createdTimeResponse.AddAnnotation("Relational:ColumnName", "created_time_response");
+
+            var finishTimeResponse = runtimeEntityType.AddProperty(
+                "FinishTimeResponse",
+                typeof(DateTimeOffset),
+                propertyInfo: typeof(OrderHistory).GetProperty("FinishTimeResponse", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(OrderHistory).GetField("<FinishTimeResponse>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+            finishTimeResponse.AddAnnotation("Relational:ColumnName", "finish_time_response");
+
             var lastUpdatedBy = runtimeEntityType.AddProperty(
                 "LastUpdatedBy",
                 typeof(string),

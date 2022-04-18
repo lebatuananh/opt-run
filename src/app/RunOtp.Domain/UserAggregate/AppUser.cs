@@ -4,8 +4,10 @@ using Shared.SeedWork;
 
 namespace RunOtp.Domain.UserAggregate;
 
-public class AppUser : IdentityUser<Guid> ,IAggregateRoot
+public class AppUser : IdentityUser<Guid>, IAggregateRoot
 {
+    public const decimal OtpPrice = 300;
+
     public AppUser()
     {
     }
@@ -17,6 +19,7 @@ public class AppUser : IdentityUser<Guid> ,IAggregateRoot
         Balance = 0;
         Avatar = avatar;
         Status = status;
+        ClientSecret = Guid.NewGuid().ToString("N");
         Discount = 0;
     }
 
@@ -27,9 +30,20 @@ public class AppUser : IdentityUser<Guid> ,IAggregateRoot
         BirthDay = birthDay;
         Avatar = avatar;
         Status = status;
+        ClientSecret = Guid.NewGuid().ToString("N");
         Email = email;
         Balance = 0;
         Discount = 0;
+    }
+
+    public void UpdateClientSecret()
+    {
+        ClientSecret = Guid.NewGuid().ToString("N");
+    }
+
+    public void UpdateDiscount(int discount)
+    {
+        Discount = discount;
     }
 
     public void Recharge(decimal amount)
@@ -42,6 +56,16 @@ public class AppUser : IdentityUser<Guid> ,IAggregateRoot
     {
         Balance -= amount;
         TotalAmountUsed += amount;
+    }
+
+    public void SubtractMoneyOtp()
+    {
+        if (Discount > 0)
+        {
+            SubtractMoney(Discount);
+        }
+
+        SubtractMoney(OtpPrice);
     }
 
     public void Enable()

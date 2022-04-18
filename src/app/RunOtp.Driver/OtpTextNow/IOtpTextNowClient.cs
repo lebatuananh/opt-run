@@ -3,6 +3,6 @@
 public interface IOtpTextNowClient
 {
     Task<List<ServicesResponse>> GetAllServices();
-    Task<NumberResponse> CreateRequest();
+    Task<CreateOrderResponseClient> CreateRequest(Guid userId);
     Task<OtpCodeResponse> CheckOtpRequest(string requestId);
 }

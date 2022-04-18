@@ -1,7 +1,14 @@
 ﻿using System.Linq.Expressions;
+using Microsoft.AspNetCore.Identity;
 using RunOtp.Domain.OrderHistory;
+using RunOtp.Domain.TransactionAggregate;
+using RunOtp.Domain.UserAggregate;
+using RunOtp.Domain.WebConfigurationAggregate;
+using RunOtp.Driver;
 using RunOtp.Driver.OtpTextNow;
+using RunOtp.Driver.RunOtp;
 using RunOtp.WebApi.UseCase.WebConfigurations;
+using Action = RunOtp.Domain.TransactionAggregate.Action;
 
 namespace RunOtp.WebApi.UseCase.OrderHistories;
 
@@ -36,18 +43,31 @@ public struct MutateOrderHistory
         }
     }
 
-    public record CreateOrderHistoryCommand : ICreateCommand;
+    public record CreateOrderHistoryCommand : ICreateCommand
+    {
+        public WebType WebType { get; set; }
+    }
 
     internal class Handler : IRequestHandler<GetListOrderHistoryQueries, IResult>,
         IRequestHandler<GetOrderHistoryQuery, IResult>, IRequestHandler<CreateOrderHistoryCommand, IResult>
     {
         private readonly IOrderHistoryRepository _orderHistoryRepository;
+        private readonly ITransactionRepository _transactionRepository;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IScopeContext _scopeContext;
         private readonly IOtpTextNowClient _otpTextNowClient;
+        private readonly IRunOtpClient _runOtpClient;
 
-        public Handler(IOrderHistoryRepository orderHistoryRepository, IOtpTextNowClient otpTextNowClient)
+        public Handler(IOrderHistoryRepository orderHistoryRepository, IOtpTextNowClient otpTextNowClient,
+            IRunOtpClient runOtpClient, ITransactionRepository transactionRepository, IScopeContext scopeContext,
+            UserManager<AppUser> userManager)
         {
             _orderHistoryRepository = orderHistoryRepository;
             _otpTextNowClient = otpTextNowClient;
+            _runOtpClient = runOtpClient;
+            _transactionRepository = transactionRepository;
+            _scopeContext = scopeContext;
+            _userManager = userManager;
         }
 
         public async Task<IResult> Handle(GetListOrderHistoryQueries request, CancellationToken cancellationToken)
@@ -94,8 +114,28 @@ public struct MutateOrderHistory
         public async Task<IResult> Handle(CreateOrderHistoryCommand request,
             CancellationToken cancellationToken)
         {
-            var result = await _otpTextNowClient.CreateRequest();
-            return Results.Ok(ResultModel<NumberResponse>.Create(result));
+            var user = await _userManager.FindByIdAsync(_scopeContext.CurrentAccountId.ToString());
+            if (user is null)
+            {
+                throw new Exception("Người dùng không tồn tại, nhập lại thử apiKey");
+            }
+
+            if (user.Balance < 0)
+            {
+                throw new Exception("Tài khoản của bạn không đủ để sử dụng dịch vụ, xin vui lòng nạp thêm tiền");
+            }
+
+            switch (request.WebType)
+            {
+                case WebType.RunOtp:
+                    var resultRunOtpResponse = await _runOtpClient.CreateRequest(_scopeContext.CurrentAccountId);
+                    return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultRunOtpResponse));
+                case WebType.OtpTextNow:
+                    var resultNumberResponse = await _otpTextNowClient.CreateRequest(_scopeContext.CurrentAccountId);
+                    return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultNumberResponse));
+            }
+
+            return Results.Ok();
         }
     }
 }
