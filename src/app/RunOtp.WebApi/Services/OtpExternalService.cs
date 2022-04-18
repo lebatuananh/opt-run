@@ -52,8 +52,34 @@ public class OtpExternalService : IOtpExternalService
         }
     }
 
-    public Task<OtpExternalResponse> CheckOtpRequest(string apiKey, WebType webType, Guid requestId)
+    public async Task<OtpExternalResponse> CheckOtpRequest(string apiKey, WebType webType, Guid requestId)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            throw new Exception("Apikey không tồn tại");
+        }
+
+        var user = await _userManager.Users.SingleOrDefaultAsync(x => x.ClientSecret == apiKey);
+        if (user is null)
+        {
+            throw new Exception("Người dùng không tồn tại, nhập lại thử apiKey");
+        }
+
+        switch (webType)
+        {
+            case WebType.RunOtp:
+                var resultRunOtpResponse = await _runOtpClient.CheckRequest(user.Id, requestId.ToString());
+                return null;
+            case WebType.OtpTextNow:
+                var resultNumberResponse = await _otpTextNowClient.CheckOtpRequest(requestId.ToString());
+                return new OtpExternalResponse()
+                {
+                    Message = resultNumberResponse.Message,
+                    OtpCode = resultNumberResponse.OtpCode,
+                    Status = resultNumberResponse.Status
+                };
+            default:
+                throw new Exception("Xịn mới bạn nhập đúng site lấy lấy mã code");
+        }
     }
 }

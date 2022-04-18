@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RunOtp.Domain.OrderHistory;
 
 namespace RunOtp.Driver.OtpTextNow;
 
@@ -12,4 +13,5 @@ public class OtpCodeResponse
 {
     [JsonProperty("otp_code")] public string OtpCode { get; set; }
     [JsonProperty("message")] public string Message { get; set; }
+    public OrderStatus Status { get; set; }
 }

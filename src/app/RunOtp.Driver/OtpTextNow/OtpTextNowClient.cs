@@ -89,6 +89,7 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
             {
                 if (response.Message == "Please send request slow down!" && string.IsNullOrEmpty(response.OtpCode))
                 {
+                    response.Status = OrderStatus.Processing;
                     item.Processing(string.Empty);
                     await UpdateAndSaveDataAsync(item);
                 }
@@ -96,10 +97,12 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                     switch (response.OtpCode)
                     {
                         case "is_comming":
+                            response.Status = OrderStatus.Processing;
                             item.Processing(response.OtpCode);
                             await UpdateAndSaveDataAsync(item);
                             break;
                         case "timeout":
+                            response.Status = OrderStatus.Error;
                             item.Error(response.OtpCode);
                             await UpdateAndSaveDataAsync(item);
                             transaction.MarkError();
@@ -109,6 +112,7 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                         {
                             if (response.OtpCode.IsNumeric())
                             {
+                                response.Status = OrderStatus.Success;
                                 item.Success(response.OtpCode);
                                 await UpdateAndSaveDataAsync(item);
                                 var user = await _userManager
@@ -130,6 +134,7 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                             }
                             else
                             {
+                                response.Status = OrderStatus.Error;
                                 item.Error(response.OtpCode);
                                 await UpdateAndSaveDataAsync(item);
                                 transaction.MarkError();
