@@ -21,10 +21,10 @@ public class OtpTextNowTask : IOtpTextNowTask
                     x.Status != OrderStatus.Error && x.Status != OrderStatus.Success).Take(1000)
                 .OrderBy(x => x.CreatedDate)
                 .ToListAsync();
-        var orderRequestIds = orderHistories.Select(x => x.RequestId);
+        var orderRequestIds = orderHistories.Select(x => x.Id);
         foreach (var item in orderRequestIds)
         {
-            await _otpTextNowClient.CheckOtpRequest(item);
+            await _otpTextNowClient.CheckOtpRequest(item.ToString());
         }
     }
 }

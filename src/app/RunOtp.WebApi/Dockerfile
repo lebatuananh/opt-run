@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/app/RunOtp.WebApi/RunOtp.WebApi.csproj", "RunOtp.WebApi/"]
+COPY ["src/app/RunOtp.WebApi/RunOtp.WebApi.csproj", "src/app/RunOtp.WebApi/"]
 RUN dotnet restore "src/app/RunOtp.WebApi/RunOtp.WebApi.csproj"
 COPY . .
-WORKDIR "/src/RunOtp.WebApi"
+WORKDIR "/src/src/app/RunOtp.WebApi"
 RUN dotnet build "RunOtp.WebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
