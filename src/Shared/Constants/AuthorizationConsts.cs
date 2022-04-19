@@ -4,5 +4,5 @@ public class AuthorizationConsts
 {
     public const string AdministrationPolicy = "RequireAdministratorRole";
 
-    public const string AdminRole = "Administrator";
+    public const string AdminRole = "Admin";
 }

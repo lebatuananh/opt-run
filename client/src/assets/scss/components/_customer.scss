@@ -1,0 +1,47 @@
+.customer-view-header {
+  display: flex;
+  .banner-block {
+    background-image: url("/assets/images/customer-view-bg.jpg");
+    background-size: cover;
+    background-position: 50%;
+    color: #fff;
+    padding: 15px 30px;
+    flex: 1;
+    .label {
+      font-weight: 400;
+    }
+    .value {
+      font-weight: 300;
+      margin-left: 10px;
+    }
+  }
+}
+.tab-container {
+  background: #fff;
+  border: 1px solid #d2d3d5;
+  display: block;
+  ul.nav.nav-tabs {
+    border-bottom-color: #e0e0e0;
+  }
+  .tab-content {
+    padding: 20px;
+    & > .active {
+      display: block;
+    }
+  }
+  ul.action-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    &.one-col li {
+      flex-basis: 100%;
+      padding: 0 10px;
+    }
+    li a {
+      color: #4a90e2;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}

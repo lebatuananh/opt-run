@@ -10,9 +10,10 @@ public class ScopeContext : IScopeContext
     public ScopeContext(IHttpContextAccessor contextAccessor)
     {
         var claims = contextAccessor.HttpContext?.User;
-        var sub = claims?.Claims.FirstOrDefault(x => x.Type.Equals("sub"))?.Value;
-        var name = claims?.Claims.FirstOrDefault(x => x.Type.Equals("name"))?.Value;
-        var role = claims?.Claims.FirstOrDefault(x => x.Type.Equals("role"))?.Value;
+        var sub = claims?.Claims.FirstOrDefault(x => x.Type.Equals("id"))?.Value;
+        var name = claims?.Claims.FirstOrDefault(x => x.Type.Equals("username"))?.Value;
+        var role = claims?.Claims
+            .FirstOrDefault(x => x.Type.Equals("http://schemas.microsoft.com/ws/2008/06/identity/claims/role"))?.Value;
         if (sub != null || name != null || role != null)
         {
             Role = role;

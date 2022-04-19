@@ -1,0 +1,60 @@
+<div class="alert alert-danger" *ngIf="showResult">
+  {{backendError}}
+</div>
+<form [formGroup]="formGroup" (validSubmit)="register()">
+  <div class="form-group mb-3">
+    <label class="form-label">Tên đăng nhập</label>
+    <input
+      type="text"
+      class="form-control no-validation-icon no-success-validation"
+      formControlName="userName"
+    >
+  </div>
+  <div class="form-group mb-3">
+    <label class="form-label">Tên đầy đủ</label>
+    <input
+      type="text"
+      class="form-control no-validation-icon no-success-validation"
+      formControlName="fullName"
+    >
+  </div>
+  <div class="form-group mb-3">
+    <label class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control no-validation-icon no-success-validation"
+      formControlName="email"
+    >
+  </div>
+  <div class="mb-3 ">
+    <label class="form-label d-flex justify-content-between">
+      <span>Mật khẩu</span>
+    </label>
+    <div class="form-group input-affix flex-column">
+      <label class="d-none">Mật khẩu</label>
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        class="form-control no-validation-icon no-success-validation"
+        formControlName="password"
+      >
+      <i
+        class="suffix-icon feather cursor-pointer text-dark"
+        [ngClass]="showPassword ? 'icon-eye-off' : 'icon-eye'"
+        (click)="onShowPasswordClick()"
+      >
+      </i>
+    </div>
+  </div>
+  <div class="form-group mb-3">
+    <label class="form-label">Nhập lại mật khẩu</label>
+    <input
+      type="password"
+      class="form-control no-validation-icon no-success-validation"
+      formControlName="confirmPassword"
+    >
+    <ng-container *ngIf="formGroup.get('confirmPassword').hasError('confirm')">
+      <span class="invalid-feedback">Mật khẩu không khớp</span>
+    </ng-container>
+  </div>
+  <button class="btn btn-primary d-block w-100" type="submit" [ladda]="isSubmit">Đăng ký</button>
+</form>

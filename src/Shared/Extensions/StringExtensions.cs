@@ -9,4 +9,9 @@ public static class StringExtensions
         const int MaxAnsiCode = 127;
         return str.Any(c => c > MaxAnsiCode);
     }
+    
+    public static bool IsNumeric(this string input)
+    {
+        return !string.IsNullOrEmpty(input) && int.TryParse(input, out _);
+    }
 }

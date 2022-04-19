@@ -1,0 +1,49 @@
+<div class="my-5 d-flex align-items-center justify-content-between">
+  <h5 class="mb-2 fw-bolder">Danh sách giao dịch chuyển tiền</h5>
+  <div class="mb-2 d-flex">
+    <search-input [placeholder]="'Tìm kiếm theo tên...'" (changed)="search($event)"></search-input>
+    <a class="btn btn-primary w-50 ms-2" (click)="showDepositModal()">Nạp tiền</a>
+  </div>
+</div>
+<div class="table-responsive">
+  <ngx-datatable appTableResizer #table columnMode="force" class="bootstrap" [headerHeight]="50" [footerHeight]="50"
+                 rowHeight="auto" [externalSorting]="true" [messages]="messages" [loadingIndicator]="isLoading"
+                 [externalPaging]="true" [limit]="take" [rows]="items" [count]="count"
+                 (page)="onPage($event)">
+    <ngx-datatable-column [width]="10" name="Số tài khoản nhận" prop="bankAccount" [sortable]="false">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="Tổng thanh toán" prop="totalAmount" [sortable]="false">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <span class="badge rounded-pill bg-info">{{value | currency: "VND"}}</span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="Trạng thái" prop="status" [sortable]="false">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <ng-container [ngSwitch]="value">
+                <span *ngSwitchCase="TransactionStatus.Pending" class="badge bg-secondary rounded-pill">Chờ thanh
+                  toán</span>
+          <span *ngSwitchCase="TransactionStatus.Completed"
+                class="badge bg-warning rounded-pill">Đã chuyển tiền</span>
+          <span *ngSwitchCase="TransactionStatus.Error" class="badge bg-danger rounded-pill">Lỗi</span>
+          <span *ngSwitchCase="TransactionStatus.Accept"
+                class="badge bg-success rounded-pill">Đã nạp tiền vào ví</span>
+        </ng-container>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="Phương thức thanh toán" prop="paymentGateway" [sortable]="false">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <ng-container [ngSwitch]="value">
+          <span *ngSwitchCase="PaymentGateway.BankTransfer" class="badge bg-info rounded-pill">Chuyển khoản</span>
+        </ng-container>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="Ngày giao dịch" prop="completedDate" [sortable]="false">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{ value | date:'dd/MM/yyyy HH:mm' }}
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>

@@ -4,12 +4,16 @@ using AuditLogging.EntityFramework.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.RoleAggregate;
+using RunOtp.Domain.TransactionAggregate;
 using RunOtp.Domain.UserAggregate;
+using RunOtp.Domain.WebConfigurationAggregate;
 using Shared.Constants;
 using Shared.Extensions;
 using Shared.Logging.LogError;
 using Shared.SeedWork;
+using StackExchange.Redis;
 
 namespace RunOtp.Infrastructure;
 
@@ -99,6 +103,9 @@ public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfW
 
     public DbSet<AuditLog> AuditLog { get; set; }
     public DbSet<Log> Logs { get; set; }
+    public DbSet<WebConfiguration> WebConfigurations { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<OrderHistory> OrderHistory { get; set; }
 
 
     public async Task<int> SaveChangesAsync()

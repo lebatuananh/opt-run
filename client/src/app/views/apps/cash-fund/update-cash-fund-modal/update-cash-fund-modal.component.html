@@ -1,0 +1,20 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 *ngIf="isCreatingNew" class="modal-title">Tạo mới quỹ</h5>
+    <h5 *ngIf="!isCreatingNew" class="modal-title">Cập nhật quỹ</h5>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" *ngIf="form" (validSubmit)="onSubmit()">
+      <div class="form-group my-2">
+        <label class="control-label">Tên quỹ</label>
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+      <div class="d-flex align-items-center mt-4">
+        <div class="ms-auto">
+          <button type="button" class="btn btn-sm btn-secondary me-2" (click)="hide()">Hủy</button>
+          <button type="submit" class="btn btn-sm btn-primary" [ladda]="isLoading">Lưu</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
