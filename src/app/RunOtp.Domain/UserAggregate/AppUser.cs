@@ -88,7 +88,7 @@ public class AppUser : IdentityUser<Guid>, IAggregateRoot
     public string Avatar { get; set; }
     public int Discount { get; set; }
     public string ClientSecret { get; set; }
-    public virtual IList<Transaction> Transactions { get; private set; }
+    public virtual IList<Transaction> Transactions { get; set; }
     public virtual IList<OrderHistory.OrderHistory> OrderHistories { get; set; }
 
 

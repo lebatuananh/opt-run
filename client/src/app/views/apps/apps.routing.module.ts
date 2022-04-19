@@ -4,14 +4,30 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cash-fund'
+    redirectTo: 'dashboard'
   },
   {
-    path: 'cash-fund',
+    path: 'request',
     loadChildren: () => import('./cash-fund/cash-fund.module').then(m => m.CashFundModule),
     data: {
-      title: 'Quỹ',
+      title: 'Yêu cầu',
       hidePageHeader: false
+    }
+  },
+  {
+    path: 'transaction',
+    loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+    data: {
+      title: 'Giao dịch',
+      hidePageHeader: false
+    }
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+    data: {
+      title: 'Trang chủ',
+      hidePageHeader: true
     }
   },
   // {

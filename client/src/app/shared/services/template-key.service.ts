@@ -13,27 +13,27 @@ export class TemplateKeyService extends BaseApi {
     httpClient: HttpClient,
     @Inject(baseUrl) protected hostUrl: string
   ) {
-    super(httpClient)
-    this.setEndpoint(hostUrl, 'api/v1/message/admin/templatekey')
+    super(httpClient);
+    this.setEndpoint(hostUrl, 'api/v1/message/admin/templatekey');
   }
 
   query(params: { skip: number, take: number, query: string }) {
-    return this.httpClient.get<QueryResult<TemplateKey>>(this.createUrl(''), { params: this.createParams(params) })
+    return this.httpClient.get<QueryResult<TemplateKey>>(this.createUrl(''), { params: this.createParams(params) });
   }
 
   get(id: string) {
-    return this.httpClient.get<TemplateKey>(this.createUrl(`${id}`))
+    return this.httpClient.get<TemplateKey>(this.createUrl(`${id}`));
   }
 
   create(command) {
-    return this.httpClient.post(this.createUrl(''), command)
+    return this.httpClient.post(this.createUrl(''), command);
   }
 
   update(id: string, command) {
-    return this.httpClient.put(this.createUrl(`${id}`), command)
+    return this.httpClient.put(this.createUrl(`${id}`), command);
   }
 
   delete(id: string) {
-    return this.httpClient.delete(this.createUrl(`${id}`),)
+    return this.httpClient.delete(this.createUrl(`${id}`), );
   }
 }

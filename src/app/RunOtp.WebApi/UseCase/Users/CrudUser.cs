@@ -102,8 +102,6 @@ public struct MutateUser
         {
             var user = await _userManager
                 .Users
-                .Include(x => x.Transactions)
-                .Include(x => x.OrderHistories)
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken: cancellationToken);
             if (user is null)
             {

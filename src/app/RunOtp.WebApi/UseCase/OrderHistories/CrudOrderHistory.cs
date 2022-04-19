@@ -7,8 +7,10 @@ using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Driver;
 using RunOtp.Driver.OtpTextNow;
 using RunOtp.Driver.RunOtp;
+using RunOtp.Infrastructure;
 using RunOtp.WebApi.UseCase.WebConfigurations;
-using Action = RunOtp.Domain.TransactionAggregate.Action;
+using Serilog;
+using Log = Serilog.Log;
 
 namespace RunOtp.WebApi.UseCase.OrderHistories;
 
@@ -72,21 +74,30 @@ public struct MutateOrderHistory
 
         public async Task<IResult> Handle(GetListOrderHistoryQueries request, CancellationToken cancellationToken)
         {
-            var queryable = await _orderHistoryRepository
-                .FindAll()
-                .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+            QueryResult<OrderHistory> queryable;
+            if (_scopeContext.Role.Equals(SystemConstants.Admin))
+            {
+                queryable = await _orderHistoryRepository
+                    .FindAll()
+                    .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+            }
+            else
+            {
+                queryable = await _orderHistoryRepository.FindAll(x => x.UserId == _scopeContext.CurrentAccountId)
+                    .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+            }
+
             var result = new QueryResult<OrderHistoryDto>
             {
                 Count = queryable.Count,
                 Items = queryable.Items
                     .Select(x => new OrderHistoryDto(
                         x.Id,
-                        x.RequestId,
                         x.NumberPhone,
                         x.Message,
-                        x.OtpCode,
                         x.WebType,
                         x.Status,
+                        x.OtpCode,
                         x.CreatedDate,
                         x.LastUpdatedDate))
                     .ToList()
@@ -100,12 +111,11 @@ public struct MutateOrderHistory
             if (item is null) throw new Exception($"Không tìm thấy bản ghi item={request.Id}");
             var result = new OrderHistoryDto(
                 item.Id,
-                item.RequestId,
                 item.NumberPhone,
                 item.Message,
-                item.OtpCode,
                 item.WebType,
                 item.Status,
+                item.OtpCode,
                 item.CreatedDate,
                 item.LastUpdatedDate);
             return Results.Ok(ResultModel<OrderHistoryDto>.Create(result));

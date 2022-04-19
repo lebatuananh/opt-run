@@ -1,4 +1,4 @@
-import { MessageStatus, PaymentGateway, TemplateLevelType, TemplateStatus, TransactionStatus } from './enum';
+import {Action, MessageStatus, PaymentGateway, TemplateLevelType, TemplateStatus, TransactionStatus} from './enum';
 
 export interface Entity {
   id: string;
@@ -88,6 +88,36 @@ export interface OrderHistory extends Entity{
   otpCode: string;
 }
 
+export interface Transaction extends Entity{
+  totalAmount: number;
+  note: string;
+  errorMessage: string;
+  action: Action;
+  bankAccount: string;
+  completedDate: Date;
+  response: string;
+  paymentGateway: PaymentGateway;
+  status: TransactionStatus;
+}
+
+export interface CurrentUser{
+  id: string;
+  Email: string;
+  Balance: number;
+  TotalAmountUsed: number;
+  Deposit: number;
+  Discount: number;
+  ClientSecret: string;
+}
+
+export interface Report{
+  totalBalance: number;
+  totalRechargeToday: number;
+  totalRequest: number;
+  totalRequestSuccess: number;
+  totalRequestError: number;
+}
+
 export enum WebType {
   RunOtp,
   OtpTextNow
@@ -100,18 +130,18 @@ export enum OrderStatus {
   Error,
 }
 
-export interface Transaction extends Entity {
-  totalAmount: number;
-  note: string;
-  errorMessage: string;
-  bankAccount: string;
-  completedDate: Date;
-  response: string;
-  customerId: string;
-  customer: Customer;
-  status: TransactionStatus;
-  paymentGateway: PaymentGateway;
-}
+// export interface Transaction extends Entity {
+//   totalAmount: number;
+//   note: string;
+//   errorMessage: string;
+//   bankAccount: string;
+//   completedDate: Date;
+//   response: string;
+//   customerId: string;
+//   customer: Customer;
+//   status: TransactionStatus;
+//   paymentGateway: PaymentGateway;
+// }
 
 export interface SubscriptionPlan extends Entity {
   name: string;

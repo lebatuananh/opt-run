@@ -1,12 +1,13 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {DataTableContainer} from '@app/shared/types/data-table-container';
-import {CashFund, OrderHistory, QueryResult, Result, ResultModel} from '@app/shared/types/entity.interface';
+import {OrderHistory, QueryResult, Result} from '@app/shared/types/entity.interface';
 import {CashFundService} from '@app/shared/services/cash-fund.service';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs';
-import {UpdateCashFundModalComponent} from '@app/views/apps/cash-fund/update-cash-fund-modal/update-cash-fund-modal.component';
-import {tap} from 'rxjs/operators';
+import {
+  UpdateCashFundModalComponent
+} from '@app/views/apps/cash-fund/update-cash-fund-modal/update-cash-fund-modal.component';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -31,7 +32,7 @@ export class CashFundComponent extends DataTableContainer<OrderHistory> {
     return this.cashFundService.query({ skip: this.skip, take: this.take, query: this.query });
   }
 
-  protected handleError(reason: any) {
+  protected handleError(reason: any): void {
     this.toast.error('Đã xảy ra lỗi');
   }
 
@@ -52,7 +53,7 @@ export class CashFundComponent extends DataTableContainer<OrderHistory> {
     this.cashFundService.create().subscribe(next, error).add(() => this.isLoading = false);
   }
 
-  edit(id: string){
+  edit(id: string): void{
     const cashFund = this.items.find(item => item.id === id);
     const ref = this.modalService.show(UpdateCashFundModalComponent, {
       backdrop: true,

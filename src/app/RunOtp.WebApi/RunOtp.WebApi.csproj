@@ -13,6 +13,7 @@
       <ProjectReference Include="..\RunOtp.Domain\RunOtp.Domain.csproj" />
       <ProjectReference Include="..\RunOtp.Driver\RunOtp.Driver.csproj" />
       <ProjectReference Include="..\RunOtp.Infrastructure\RunOtp.Infrastructure.csproj" />
+      <ProjectReference Include="..\Serilog.Sinks.Telegram\Serilog.Sinks.Telegram.csproj" />
     </ItemGroup>
 
     <ItemGroup>

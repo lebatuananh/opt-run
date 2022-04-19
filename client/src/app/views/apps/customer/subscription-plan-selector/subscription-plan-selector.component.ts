@@ -17,61 +17,61 @@ import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } f
 })
 export class SubscriptionPlanSelectorComponent implements OnInit, ControlValueAccessor {
 
-  @Input() quantity = 10
-  @Input() isDisabled
-  @Input() hasNull = false
-  isLoading: boolean
-  selectedPlanId: string
-  plans$ = new BehaviorSubject([])
-  plansInput$ = new Subject<string>()
-  private query: string
-  private onChange: Function
+  @Input() quantity = 10;
+  @Input() isDisabled;
+  @Input() hasNull = false;
+  isLoading: boolean;
+  selectedPlanId: string;
+  plans$ = new BehaviorSubject([]);
+  plansInput$ = new Subject<string>();
+  private query: string;
+  private onChange: Function;
 
   constructor(private subscriptionPlanService: SubscriptionPlanService) { }
 
   ngOnInit() {
-    this.isLoading = true
-    this.initialize()
+    this.isLoading = true;
+    this.initialize();
   }
 
   onOpen() {
     this.fetch(0, this.quantity).subscribe(items => {
-      this.plans$.next(items)
-      this.isLoading = false
-    })
+      this.plans$.next(items);
+      this.isLoading = false;
+    });
   }
 
   writeValue(keyId) {
-    this.selectedPlanId = keyId
+    this.selectedPlanId = keyId;
   }
 
   registerOnChange(fn) {
-    this.onChange = fn
+    this.onChange = fn;
   }
 
   registerOnTouched(fn) {
   }
 
   remove() {
-    this.selectedPlanId = undefined
+    this.selectedPlanId = undefined;
     if (typeof this.onChange === 'function') {
-      this.onChange(this.selectedPlanId)
+      this.onChange(this.selectedPlanId);
     }
   }
 
   onKeyChange(key) {
-    this.selectedPlanId = key
-    this.onChange(this.selectedPlanId)
+    this.selectedPlanId = key;
+    this.onChange(this.selectedPlanId);
   }
 
   fetchMore($event) {
-    this.isLoading = true
-    const skip = this.plans$.value.length
-    const take = this.quantity
+    this.isLoading = true;
+    const skip = this.plans$.value.length;
+    const take = this.quantity;
     this.fetch(skip, take, this.query).subscribe(items => {
-      const previousItems = this.plans$.value
-      this.plans$.next(previousItems.concat(items || []))
-    })
+      const previousItems = this.plans$.value;
+      this.plans$.next(previousItems.concat(items || []));
+    });
   }
 
   private initialize() {
@@ -79,28 +79,28 @@ export class SubscriptionPlanSelectorComponent implements OnInit, ControlValueAc
       debounceTime(300),
       distinctUntilChanged(),
       tap(query => {
-        this.isLoading = true
-        this.query = query
+        this.isLoading = true;
+        this.query = query;
       }),
       switchMap(query => this.fetch(0, this.quantity, query))
     ).subscribe(items => {
-      this.plans$.next(items)
-    })
+      this.plans$.next(items);
+    });
     this.fetch(0, this.quantity).subscribe(items => {
-      this.plans$.next(items)
-      this.isLoading = false
-    })
+      this.plans$.next(items);
+      this.isLoading = false;
+    });
   }
 
   private fetch = (skip: number, take: number, query?: string): Observable<SubscriptionPlan[]> => {
     return this.subscriptionPlanService.query({ skip, take, query}).pipe(
       catchError(() => of(null)),
       tap(() => {
-        this.isLoading = false
-        this.query = query
+        this.isLoading = false;
+        this.query = query;
       }),
       map((result: QueryResult<SubscriptionPlan>) => result.items)
-    )
+    );
   }
 
 }

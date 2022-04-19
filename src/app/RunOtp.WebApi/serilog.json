@@ -3,7 +3,8 @@
     "Using": [
       "Serilog.Sinks.Console",
       "Serilog.Sinks.File",
-      "Serilog.Sinks.Postgresql.Alternative"
+      "Serilog.Sinks.Postgresql.Alternative",
+      "Serilog.Sinks.Telegram"
     ],
     "MinimumLevel": {
       "Default": "Error",
@@ -13,6 +14,17 @@
       }
     },
     "WriteTo": [
+      {
+        "Name": "Telegram",
+        "Args": {
+          "botToken": "5142255196:AAFuIZLYaj-m9rce0Z8TiykPckxoLpDhEy8",
+          "chatId": "736578147",
+          "restrictedToMinimumLevel": "Error",
+          "applicationName": "RunOtp",
+          "includeStackTrace": true,
+          "dateFormat": "yyyy-MM-dd HH:mm:sszzz"
+        }
+      },
       {
         "Name": "Console"
       },

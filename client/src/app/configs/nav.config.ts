@@ -24,13 +24,23 @@ const apps: NavMenu[] = [
     key: 'apps',
     submenu: [
       {
-        path: '',
-        title: 'Quản lý quỹ',
+        path: '/request',
+        title: 'Yêu cầu số điện thoại',
         translateKey: 'NAV.CASH_FUND_MANAGEMENT',
         type: 'item',
         iconType: 'feather',
-        icon: 'icon-file-text',
+        icon: 'icon-message-square',
         key: 'apps.cashdfund',
+        submenu: []
+      },
+      {
+        path: '/transaction',
+        title: 'Lịch sử giao dịch',
+        translateKey: 'NAV.TRANSACTION_HISTORY_MANAGEMENT',
+        type: 'item',
+        iconType: 'feather',
+        icon: 'icon-shopping-cart',
+        key: 'apps.transaction',
         submenu: []
       },
       {

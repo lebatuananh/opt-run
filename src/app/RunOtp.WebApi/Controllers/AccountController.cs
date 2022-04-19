@@ -46,4 +46,10 @@ public class AccountController : BaseController
     {
         return await Mediator.Send(deductionCommand);
     }
+
+    [HttpGet]
+    public async Task<IResult> Report()
+    {
+        return await Mediator.Send(new Report.GetReportQuery());
+    }
 }

@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using RunOtp.Domain.OrderHistory;
+using RunOtp.Domain.TransactionAggregate;
 using RunOtp.Domain.UserAggregate;
 using RunOtp.Domain.WebConfigurationAggregate;
-using RunOtp.Domain.TransactionAggregate;
+using Serilog;
 using Shared.Extensions;
 using Shared.HttpClient;
-using Shared.SeedWork;
 using Action = RunOtp.Domain.TransactionAggregate.Action;
 
 namespace RunOtp.Driver.OtpTextNow;
@@ -117,15 +118,22 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                                 await UpdateAndSaveDataAsync(item);
                                 var user = await _userManager
                                     .FindByIdAsync(item.UserId.ToString());
+                                Log.Error("Log Data After: ${OtpCode} ${PhoneNumber} ${UserId} ${Balance} ${Status} ",
+                                    $"{response.OtpCode}",
+                                    $"{item.NumberPhone}", user.Id, user.Balance, item.Status);
                                 if (user is null)
                                 {
                                     throw new Exception("Người dùng không tồn tại");
                                 }
 
                                 user.SubtractMoneyOtp();
+                                Log.Error("Log Data: ${OtpCode} ${PhoneNumber} ${UserId} ${Balance} ",
+                                    $"{response.OtpCode}",
+                                    $"{item.NumberPhone}", user.Id, user.Balance);
                                 var result = await _userManager.UpdateAsync(user);
                                 if (!result.Succeeded)
                                 {
+                                    Log.Error("Lỗi lưu người dùng");
                                     throw new Exception("Đã có lỗi xảy ra, xin vui lòng thử lại sau");
                                 }
 

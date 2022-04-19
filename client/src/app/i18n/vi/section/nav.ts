@@ -10,7 +10,8 @@ export const nav = {
     PAGES_AUTH_LOGIN: 'Đăng nhập',
     PAGES_AUTH_REGISTER: 'Đăng kí',
     PAGES_ERRORS: 'Lỗi',
-    CASH_FUND_MANAGEMENT: 'Quản lý quỹ',
+    CASH_FUND_MANAGEMENT: 'Yêu cầu số điện thoại',
+    TRANSACTION_HISTORY_MANAGEMENT: 'Lịch sử giao dịch',
     CUSTOMER: 'Khách hàng',
 
   }

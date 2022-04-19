@@ -1,12 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {BaseApi} from './base-api';
 import {identityUrl} from './base-url';
 import * as jwt_decode from 'jwt-decode';
 import {User} from '@app/shared/types/model';
-import {resolveSrv} from 'dns';
+import {CurrentUser, Report, Result} from '@app/shared/types/entity.interface';
 
 interface TokenInfo {
   expires_in: number;
@@ -89,5 +88,23 @@ export class AuthenticationService extends BaseApi {
           console.log(data);
         }
       }));
+  }
+
+  getCurrentUser(){
+    return this.httpClient.get<CurrentUser>(this.createUrl('GetCurrentUser'));
+  }
+
+  report(){
+    return this.httpClient.get<Result<Report>>(this.createUrl('Report'));
+  }
+
+  recharge(command){
+    return this.httpClient.post(this.createUrl('Recharge'), command);
+
+  }
+
+  deduction(command){
+    return this.httpClient.post(this.createUrl('Deduction'), command);
+
   }
 }

@@ -60,7 +60,14 @@ export enum PaymentGateway {
   BankTransfer,
   Momo,
   VnPay,
-  ZaloPay
+  ZaloPay,
+  Wallet,
+}
+
+export enum Action{
+  Recharge,
+  Deduction,
+  Refund
 }
 
 export enum MessageStatus {

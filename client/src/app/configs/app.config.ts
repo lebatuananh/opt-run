@@ -12,5 +12,6 @@ export const AppConfiguration: AppConfig = {
 };
 
 // Change your API endpoint here
-export const IDENTITY_ENDPOINT = 'https://localhost:7058/api';
-export const API_ENDPOINT = environment.production ? 'https://mobi-api.mobihome.vn' : 'https://localhost:7058/api';
+export const IDENTITY_ENDPOINT = 'https://api.runotp.xyz/api';
+// export const API_ENDPOINT = environment.production ? 'https://api.runotp.xyz' : 'https://api.runotp.xyz/api';
+export const API_ENDPOINT =  'https://api.runotp.xyz/api';

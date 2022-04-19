@@ -18,7 +18,7 @@ public class OtpTextNowTask : IOtpTextNowTask
     {
         var orderHistories =
             await _orderHistoryRepository.FindAll(x =>
-                    x.Status != OrderStatus.Error && x.Status != OrderStatus.Success).Take(1000)
+                    x.Status != OrderStatus.Error && x.Status != OrderStatus.Success).Take(40)
                 .OrderBy(x => x.CreatedDate)
                 .ToListAsync();
         var orderRequestIds = orderHistories.Select(x => x.Id);

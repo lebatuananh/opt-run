@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunOtp.WebApi", "src\app\Ru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunOtp.Driver", "src\app\RunOtp.Driver\RunOtp.Driver.csproj", "{DE9078EE-9117-4401-B513-6C4097C07FBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.Telegram", "src\app\Serilog.Sinks.Telegram\Serilog.Sinks.Telegram.csproj", "{8FE8A31A-DAC5-4BB4-BFC2-3F215BAD9FB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{DE9078EE-9117-4401-B513-6C4097C07FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE9078EE-9117-4401-B513-6C4097C07FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9078EE-9117-4401-B513-6C4097C07FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE8A31A-DAC5-4BB4-BFC2-3F215BAD9FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE8A31A-DAC5-4BB4-BFC2-3F215BAD9FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE8A31A-DAC5-4BB4-BFC2-3F215BAD9FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE8A31A-DAC5-4BB4-BFC2-3F215BAD9FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{8E99370A-615D-40FF-8FD3-F71531CDE6C5} = {B5DA1777-1895-42F1-B6E4-440C76D72285}
 		{3AE54668-2827-4C6F-8528-93C869AF6BF6} = {B5DA1777-1895-42F1-B6E4-440C76D72285}
 		{DE9078EE-9117-4401-B513-6C4097C07FBE} = {B5DA1777-1895-42F1-B6E4-440C76D72285}
+		{8FE8A31A-DAC5-4BB4-BFC2-3F215BAD9FB1} = {B5DA1777-1895-42F1-B6E4-440C76D72285}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC1F705C-9337-40C2-90EE-058CC308F6FC}

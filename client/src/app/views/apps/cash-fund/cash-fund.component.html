@@ -22,11 +22,14 @@
               {{ value }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="OtpCode" prop="requestId" [width]="200" [sortable]="false">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-              {{ value }}
-            </ng-template>
-          </ngx-datatable-column>
+<!--          <ngx-datatable-column name="Web" prop="webType" [width]="200" [sortable]="false">-->
+<!--            <ng-template let-value="value" ngx-datatable-cell-template>-->
+<!--              <ng-container [ngSwitch]="value">-->
+<!--                <span *ngSwitchCase="0" class="badge bg-secondary rounded-pill">RunOtp</span>-->
+<!--                <span *ngSwitchCase="1" class="badge bg-info rounded-pill">OtpTextNow</span>-->
+<!--              </ng-container>-->
+<!--            </ng-template>-->
+<!--          </ngx-datatable-column>-->
           <ngx-datatable-column name="Trạng thái" prop="status" [width]="100" [sortable]="false">
             <ng-template let-value="value" ngx-datatable-cell-template>
               <ng-container [ngSwitch]="value">
@@ -47,11 +50,11 @@
               {{ value | date:'dd/MM/yyyy HH:mm' }}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Hành động" prop="id" [sortable]="false">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-              <a class="btn btn-primary btn-sm  ms-2" (click)="edit(value)">Cập nhật</a>
-            </ng-template>
-          </ngx-datatable-column>
+<!--          <ngx-datatable-column name="Hành động" prop="id" [sortable]="false">-->
+<!--            <ng-template let-value="value" ngx-datatable-cell-template>-->
+<!--              <a class="btn btn-primary btn-sm  ms-2" (click)="edit(value)">Cập nhật</a>-->
+<!--            </ng-template>-->
+<!--          </ngx-datatable-column>-->
         </ngx-datatable>
       </div>
 
