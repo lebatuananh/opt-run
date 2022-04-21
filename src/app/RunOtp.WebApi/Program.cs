@@ -53,36 +53,19 @@ await WithSeriLog(async () =>
     app.UseMiddleware<ExceptionMiddleware>();
     app.UseCustomCors();
     app.UseRouting();
-    // app.UseHangfireDashboard("/hf", new DashboardOptions()
-    // {
-    //     DashboardTitle = "Message Hangfire Dashboard",
-    //     Authorization = new[]
-    //     {
-    //         new HangfireCustomBasicAuthenticationFilter
-    //         {
-    //             User = builder.Configuration.GetSection("HangfireSettings:UserName").Value,
-    //             Pass = builder.Configuration.GetSection("HangfireSettings:Password").Value
-    //         }
-    //     },
-    //     IgnoreAntiforgeryToken = true
-    // });
-    // RecurringJob
-    //     .AddOrUpdate<IOtpTextNowTask>("ScanOrderHistoryOtpTextNowStatus", x => x.ExecuteAsync(),
-    //         "*/20 * * * * *");
-    // RecurringJob
-    //     .AddOrUpdate<IOtpTextNowTask>("ScanTransactionOtpTextNow", x => x.ExecuteUpdateWalletAsync(),
-    //         "*/30 * * * * *");
     app.UseAuthentication();
     app.UseAuthorization();
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-        app.MapFallback(() => Results.Redirect("/swagger"));
-    }
+    // if (app.Environment.IsDevelopment())
+    // {
+    //     app.UseSwagger();
+    //     app.UseSwaggerUI();
+    //     app.MapFallback(() => Results.Redirect("/swagger"));
+    // }
 
-    app.UseEndpoints(
-        endpoints => { endpoints.MapControllers(); });
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    // app.MapFallback(() => Results.Redirect("/swagger"));
+    app.MapControllers();
     await app.AutoInit(app.Logger);
     app.Run();
 });

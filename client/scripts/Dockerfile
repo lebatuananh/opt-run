@@ -3,11 +3,10 @@ LABEL name="lebatuananh/runotp.webapp"
 
 FROM node:12 as dep
 WORKDIR /runotp
+RUN chmod 777 -R /runotp
 COPY ./package.json /runotp
 RUN npm install --unsafe-perm
 RUN npm dedupe
-
-ARG config=production
 
 COPY . /runotp
 RUN npm run build -- --aot --prod --output-hashing none --output-path /dist

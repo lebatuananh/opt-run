@@ -102,12 +102,12 @@ export interface Transaction extends Entity{
 
 export interface CurrentUser{
   id: string;
-  Email: string;
-  Balance: number;
-  TotalAmountUsed: number;
-  Deposit: number;
-  Discount: number;
-  ClientSecret: string;
+  email: string;
+  balance: number;
+  totalAmountUsed: number;
+  deposit: number;
+  discount: number;
+  clientSecret: string;
 }
 
 export interface Report{

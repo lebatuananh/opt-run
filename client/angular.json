@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mobi-message": {
+    "runotp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -30,7 +30,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mobi-message",
+            "outputPath": "dist/runotp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -102,18 +102,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mobi-message:build"
+            "browserTarget": "runotp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mobi-message:build:production"
+              "browserTarget": "runotp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mobi-message:build"
+            "browserTarget": "runotp:build"
           }
         },
         "test": {
@@ -150,16 +150,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mobi-message:serve"
+            "devServerTarget": "runotp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mobi-message:serve:production"
+              "devServerTarget": "runotp:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "mobi-message"
+  "defaultProject": "runotp"
 }

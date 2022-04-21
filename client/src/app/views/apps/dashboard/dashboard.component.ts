@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {Report, Result} from '@app/shared/types/entity.interface';
+import {CurrentUser, Report, Result} from '@app/shared/types/entity.interface';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {AuthenticationService} from '@app/shared/services/authentication.service';
@@ -11,6 +11,7 @@ import {AuthenticationService} from '@app/shared/services/authentication.service
 })
 export class DashboardComponent implements OnInit {
   report: Report;
+  currentUser: CurrentUser;
   constructor(private router: Router,
               private route: ActivatedRoute,
               private toast: ToastrService,
@@ -22,15 +23,9 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchData(): void{
-    // this.authenticationService.report().subscribe(data => {
-    //   this.report = data.value.data;
-    //   console.log('report:', this.report);
-    // }, () => {
-    //   this.toast.error('Đã xảy ra lỗi');
-    // });
-
-    this.route.data.subscribe(({ data }: { data: Result<Report> }) => {
+    this.route.data.subscribe(({ data, user }: { data: Result<Report>, user: Result<CurrentUser> }) => {
       this.report = data.value.data;
+      this.currentUser = user.value.data;
     });
   }
 

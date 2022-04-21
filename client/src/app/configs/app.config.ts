@@ -10,8 +10,5 @@ export const AppConfiguration: AppConfig = {
   navMenuColor: 'light',
   headerNavColor: '#ffffff'
 };
-
-// Change your API endpoint here
 export const IDENTITY_ENDPOINT = 'https://api.runotp.xyz/api';
-// export const API_ENDPOINT = environment.production ? 'https://api.runotp.xyz' : 'https://api.runotp.xyz/api';
 export const API_ENDPOINT =  'https://api.runotp.xyz/api';

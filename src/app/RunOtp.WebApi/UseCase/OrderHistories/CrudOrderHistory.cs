@@ -140,8 +140,9 @@ public struct MutateOrderHistory
             switch (request.WebType)
             {
                 case WebType.RunOtp:
-                    var resultRunOtpResponse = await _runOtpClient.CreateRequest(_scopeContext.CurrentAccountId);
-                    return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultRunOtpResponse));
+                    // var resultRunOtpResponse = await _runOtpClient.CreateRequest(_scopeContext.CurrentAccountId);
+                    // return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultRunOtpResponse));
+                    break;
                 case WebType.OtpTextNow:
                     var resultNumberResponse = await _otpTextNowClient.CreateRequest(_scopeContext.CurrentAccountId);
                     return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultNumberResponse));

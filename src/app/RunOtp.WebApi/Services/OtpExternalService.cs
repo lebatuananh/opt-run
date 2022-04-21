@@ -42,8 +42,8 @@ public class OtpExternalService : IOtpExternalService
         switch (webType)
         {
             case WebType.RunOtp:
-                var resultRunOtpResponse = await _runOtpClient.CreateRequest(user.Id);
-                return resultRunOtpResponse;
+                // var resultRunOtpResponse = await _runOtpClient.CreateRequest(user.Id);
+                return null;
             case WebType.OtpTextNow:
                 var resultNumberResponse = await _otpTextNowClient.CreateRequest(user.Id);
                 return resultNumberResponse;
@@ -68,7 +68,7 @@ public class OtpExternalService : IOtpExternalService
         switch (webType)
         {
             case WebType.RunOtp:
-                var resultRunOtpResponse = await _runOtpClient.CheckRequest(user.Id, requestId.ToString());
+                // var resultRunOtpResponse = await _runOtpClient.CheckRequest(user.Id, requestId.ToString());
                 return null;
             case WebType.OtpTextNow:
                 var resultNumberResponse = await _otpTextNowClient.CheckOtpRequest(requestId.ToString());

@@ -6,7 +6,7 @@ namespace RunOtp.Domain.UserAggregate;
 
 public class AppUser : IdentityUser<Guid>, IAggregateRoot
 {
-    public const decimal OtpPrice = 300;
+    public const decimal OtpPrice = 250;
 
     public AppUser()
     {

@@ -51,7 +51,6 @@ export class AuthenticationService extends BaseApi {
     let user: User;
     if (this.isUserAuthenticated()) {
       const userData = jwt_decode(localStorage.getItem('tokenInfo'));
-      console.log('userData', userData);
       user = new User(localStorage.getItem('tokenInfo'),
         userData.username,
         userData.fullName,
@@ -94,7 +93,7 @@ export class AuthenticationService extends BaseApi {
   }
 
   getCurrentUser(){
-    return this.httpClient.get<CurrentUser>(this.createUrl('GetCurrentUser'));
+    return this.httpClient.get<Result<CurrentUser>>(this.createUrl('GetCurrentUser'));
   }
 
   report(){
