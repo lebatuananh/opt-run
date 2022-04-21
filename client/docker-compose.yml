@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  runotp.webapi:
+    container_name: runotp.webapp
+    image: lebatuananh/runotp.webapp
+    build:
+      context: .
+      dockerfile: scripts/Dockerfile
+    ports:
+      - "5201:80"
+
+networks:
+  my_network:
+    external: true

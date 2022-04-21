@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { NavMenu } from '@app/shared/types/nav-menu.interface';
 import { navConfiguration } from '@app/configs/nav.config';
 import { NavMenuColor } from '@app/shared/types/app-config.interface';
+import {User} from '@app/shared/types/model';
+import {AuthenticationService} from '@app/shared/services/authentication.service';
 
 @Component({
     selector: 'side-nav',
@@ -24,10 +26,11 @@ import { NavMenuColor } from '@app/shared/types/app-config.interface';
     }
 })
 export class SideNavComponent implements OnInit {
-    constructor(private router: Router) { }
+    constructor( private router: Router) { }
 
     menu: NavMenu[] = [];
-    @Input() collapse: boolean;
+
+  @Input() collapse: boolean;
     @Input() quickExpand: boolean;
     @Input() color: NavMenuColor = 'light';
 

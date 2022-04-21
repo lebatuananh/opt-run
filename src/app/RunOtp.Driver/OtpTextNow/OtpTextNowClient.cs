@@ -52,19 +52,6 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                 WebType.OtpTextNow, OrderStatus.Created, userId);
             _orderHistoryRepository.Add(entity);
             await _orderHistoryRepository.CommitAsync();
-            var user = await _userManager.FindByIdAsync(userId.ToString());
-            if (user is null)
-            {
-                throw new Exception("Người dùng không tồn tại");
-            }
-
-            var totalAmount = user.Discount > 0 ? user.Discount : AppUser.OtpPrice;
-            var entityTransaction = new Transaction(userId, totalAmount,
-                "Thanh toán cho dịch vụ code",
-                "Account", PaymentGateway.Wallet, Action.Deduction, entity.Id.ToString());
-            _transactionRepository.Add(entityTransaction);
-
-            await _transactionRepository.CommitAsync();
             return new CreateOrderResponseClient { RequestId = entity.Id, PhoneNumber = response.Number };
         }
         catch (Exception e)
@@ -79,9 +66,6 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
         if (item is null) throw new Exception($"Không tìm thấy bản ghi Id={id}");
         var url =
             $"{ClientConstant.OtpTextNow.Endpoint}/?key={ClientConstant.OtpTextNow.ApiKey}&action=get_code&id={item.RequestId}";
-
-        var transaction = await _transactionRepository.GetSingleAsync(x => x.Ref == item.Id.ToString());
-        if (transaction is null) throw new Exception($"Không tìm thấy bản ghi ref={item.Id}");
         var response =
             await GetAsync<OtpCodeResponse>(url, ClientConstant.ClientName, ClientConstant.OtpTextNow.Url);
         try
@@ -106,8 +90,6 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                             response.Status = OrderStatus.Error;
                             item.Error(response.OtpCode);
                             await UpdateAndSaveDataAsync(item);
-                            transaction.MarkError();
-                            await _transactionRepository.CommitAsync();
                             break;
                         default:
                         {
@@ -115,38 +97,31 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                             {
                                 response.Status = OrderStatus.Success;
                                 item.Success(response.OtpCode);
-                                await UpdateAndSaveDataAsync(item);
+                                _orderHistoryRepository.Update(item);
                                 var user = await _userManager
                                     .FindByIdAsync(item.UserId.ToString());
-                                Log.Error("Log Data After: ${OtpCode} ${PhoneNumber} ${UserId} ${Balance} ${Status} ",
-                                    $"{response.OtpCode}",
-                                    $"{item.NumberPhone}", user.Id, user.Balance, item.Status);
                                 if (user is null)
                                 {
-                                    throw new Exception("Người dùng không tồn tại");
+                                    throw new Exception("User not found");
                                 }
 
-                                user.SubtractMoneyOtp();
-                                Log.Error("Log Data: ${OtpCode} ${PhoneNumber} ${UserId} ${Balance} ",
-                                    $"{response.OtpCode}",
-                                    $"{item.NumberPhone}", user.Id, user.Balance);
-                                var result = await _userManager.UpdateAsync(user);
-                                if (!result.Succeeded)
+                                var transaction =
+                                    await _transactionRepository.GetSingleAsync(x => x.Ref == item.Id.ToString());
+                                if (transaction == null)
                                 {
-                                    Log.Error("Lỗi lưu người dùng");
-                                    throw new Exception("Đã có lỗi xảy ra, xin vui lòng thử lại sau");
+                                    var totalAmount = user.Discount > 0 ? user.Discount : AppUser.OtpPrice;
+                                    var entityTransaction = new Transaction(user.Id, totalAmount,
+                                        $"Thanh toán cho dịch vụ code : {item.OtpCode} - {item.Id}",
+                                        "Account", PaymentGateway.Wallet, Action.Deduction, item.Id.ToString());
+                                    _transactionRepository.Add(entityTransaction);
+                                    await _transactionRepository.CommitAsync();
                                 }
-
-                                transaction.MarkCompleted();
-                                await _transactionRepository.CommitAsync();
                             }
                             else
                             {
                                 response.Status = OrderStatus.Error;
                                 item.Error(response.OtpCode);
                                 await UpdateAndSaveDataAsync(item);
-                                transaction.MarkError();
-                                await _transactionRepository.CommitAsync();
                             }
 
                             break;
@@ -164,7 +139,6 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
 
     private async Task UpdateAndSaveDataAsync(OrderHistory item)
     {
-        _orderHistoryRepository.Update(item);
         await _orderHistoryRepository.CommitAsync();
     }
 }

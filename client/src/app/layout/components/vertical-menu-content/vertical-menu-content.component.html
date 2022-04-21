@@ -1,9 +1,9 @@
 <nav-menu [border]="false">
     <ng-container *ngFor="let item of menu">
-        <ng-container *ngIf="item.submenu.length > 0 && item.type === 'title'">
+        <ng-container *ngIf="item.submenu.length > 0 && item.type === 'title'&& item.role.includes(user?.role)">
             <div class="nav-group-title" *ngIf="item.type === 'title'">{{(item.translateKey | translate) || item.title}}</div>
             <ng-container *ngFor="let firstLevel of item.submenu">
-                <ng-container *ngIf="firstLevel.submenu.length > 0">
+                <ng-container *ngIf="firstLevel.submenu.length > 0 && item.role.includes(user?.role)">
                     <nav-submenu [index]="firstLevel.key" [defaultOpen]="isSubNavOpen(firstLevel.key)">
                         <ng-template #title>
                             <ng-container *ngTemplateOutlet="iconTemplate;context:{type: firstLevel.iconType, icon: firstLevel.icon}"></ng-container>
@@ -18,7 +18,7 @@
                         </nav-menu-item>
                     </nav-submenu>
                 </ng-container>
-                <ng-container *ngIf="firstLevel.submenu.length === 0">
+                <ng-container *ngIf="firstLevel.submenu.length === 0 && firstLevel.role.includes(user?.role)">
                     <nav-menu-item [index]="firstLevel.key">
                         <a [routerLink]="firstLevel.path" routerLinkActive="router-link-active" (click)="onLinkClick(firstLevel.path)">
                             <ng-container *ngTemplateOutlet="iconTemplate;context:{type: firstLevel.iconType, icon: firstLevel.icon}"></ng-container>

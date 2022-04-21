@@ -1,15 +1,15 @@
 FROM nginx:1.14.2-alpine as base
-LABEL name="docker.sanslab.vn/mobihome/mobi-message"
+LABEL name="lebatuananh/runotp.webapp"
 
 FROM node:12 as dep
-WORKDIR /mobi-message
-COPY ./package.json /mobi-message
+WORKDIR /runotp
+COPY ./package.json /runotp
 RUN npm install --unsafe-perm
 RUN npm dedupe
 
 ARG config=production
 
-COPY . /mobi-message
+COPY . /runotp
 RUN npm run build -- --aot --prod --output-hashing none --output-path /dist
 
 FROM base

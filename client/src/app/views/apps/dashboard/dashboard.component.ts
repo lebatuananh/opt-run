@@ -11,16 +11,27 @@ import {AuthenticationService} from '@app/shared/services/authentication.service
 })
 export class DashboardComponent implements OnInit {
   report: Report;
-  constructor(private router: Router, private route: ActivatedRoute, private toast: ToastrService,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private toast: ToastrService,
               private authenticationService: AuthenticationService,
               private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-   this.authenticationService.report().subscribe(data => {
-     this.report = data.value.data;
-   }, () => {
-     this.toast.error('Đã xảy ra lỗi');
-   });
+    this.fetchData();
+  }
+
+  fetchData(): void{
+    // this.authenticationService.report().subscribe(data => {
+    //   this.report = data.value.data;
+    //   console.log('report:', this.report);
+    // }, () => {
+    //   this.toast.error('Đã xảy ra lỗi');
+    // });
+
+    this.route.data.subscribe(({ data }: { data: Result<Report> }) => {
+      this.report = data.value.data;
+    });
   }
 
 }

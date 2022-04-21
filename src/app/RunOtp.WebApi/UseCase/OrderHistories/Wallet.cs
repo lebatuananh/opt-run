@@ -63,7 +63,7 @@ public struct Wallet
             var user = await _userManager.FindByIdAsync(request.UserId.ToString());
             if (user == null)
             {
-                throw new Exception("Người dùng không tồn tại");
+                throw new Exception("User not found");
             }
             user.Recharge(request.TotalAmount);
             var result = await _userManager.UpdateAsync(user);
@@ -82,7 +82,7 @@ public struct Wallet
             var user = await _userManager.FindByIdAsync(request.UserId.ToString());
             if (user == null)
             {
-                throw new Exception("Người dùng không tồn tại");
+                throw new Exception("User not found");
             }
             user.SubtractMoney(request.TotalAmount);
             var result = await _userManager.UpdateAsync(user);

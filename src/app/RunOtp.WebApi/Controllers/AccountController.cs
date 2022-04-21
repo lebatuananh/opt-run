@@ -48,6 +48,13 @@ public class AccountController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Policy = AuthorizationConsts.AdministrationPolicy)]
+    public async Task<IResult> GetPaging([FromQuery] int skip, int take, string query)
+    {
+        return await Mediator.Send(new MutateUser.GetListUserQueries(skip, take, query));
+    }
+
+    [HttpGet]
     public async Task<IResult> Report()
     {
         return await Mediator.Send(new Report.GetReportQuery());

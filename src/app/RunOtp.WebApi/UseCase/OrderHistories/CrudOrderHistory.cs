@@ -127,13 +127,15 @@ public struct MutateOrderHistory
             var user = await _userManager.FindByIdAsync(_scopeContext.CurrentAccountId.ToString());
             if (user is null)
             {
-                throw new Exception("Người dùng không tồn tại, nhập lại thử apiKey");
+                throw new Exception("User does not exist, try re-entering apiKey");
             }
 
             if (user.Balance < 0)
             {
-                throw new Exception("Tài khoản của bạn không đủ để sử dụng dịch vụ, xin vui lòng nạp thêm tiền");
+                throw new Exception("Your account is not enough to use the service, please add more money");
             }
+
+            request ??= new CreateOrderHistoryCommand() { WebType = WebType.OtpTextNow };
 
             switch (request.WebType)
             {

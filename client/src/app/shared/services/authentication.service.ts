@@ -5,7 +5,8 @@ import {BaseApi} from './base-api';
 import {identityUrl} from './base-url';
 import * as jwt_decode from 'jwt-decode';
 import {User} from '@app/shared/types/model';
-import {CurrentUser, Report, Result} from '@app/shared/types/entity.interface';
+import {CurrentUser, QueryResult, Report, Result, Transaction, UserDto} from '@app/shared/types/entity.interface';
+import {Observable} from 'rxjs';
 
 interface TokenInfo {
   expires_in: number;
@@ -52,10 +53,12 @@ export class AuthenticationService extends BaseApi {
       const userData = jwt_decode(localStorage.getItem('tokenInfo'));
       console.log('userData', userData);
       user = new User(localStorage.getItem('tokenInfo'),
-        userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
+        userData.username,
         userData.fullName,
         userData.Email,
-        userData.avatar);
+        userData.avatar,
+        userData.role
+        );
     } else {
       user = null;
     }
@@ -75,7 +78,7 @@ export class AuthenticationService extends BaseApi {
     localStorage.removeItem('tokenInfo');
   }
 
-  register(userName: string, fullName: string, email: string, password: string, confirmPassword: string){
+  register(userName: string, fullName: string, email: string, password: string, confirmPassword: string): Observable<any>{
     return this.httpClient.post<any>(this.createUrl(`Register`), {
       userName,
       fullName,
@@ -105,6 +108,11 @@ export class AuthenticationService extends BaseApi {
 
   deduction(command){
     return this.httpClient.post(this.createUrl('Deduction'), command);
+  }
 
+
+  query(params: { skip: number, take: number, query: string }) {
+    return this.httpClient.get<Result<QueryResult<UserDto>>>(this.createUrl('GetPaging'),
+      {params: this.createParams(params)});
   }
 }

@@ -9,7 +9,8 @@ const dashboard: NavMenu[] = [
     iconType: 'feather',
     icon: 'icon-home',
     key: 'dashboard',
-    submenu: []
+    submenu: [],
+    role: ['Customer', 'Admin']
   },
 ];
 
@@ -31,7 +32,8 @@ const apps: NavMenu[] = [
         iconType: 'feather',
         icon: 'icon-message-square',
         key: 'apps.cashdfund',
-        submenu: []
+        submenu: [],
+        role: ['Customer', 'Admin']
       },
       {
         path: '/transaction',
@@ -41,7 +43,8 @@ const apps: NavMenu[] = [
         iconType: 'feather',
         icon: 'icon-shopping-cart',
         key: 'apps.transaction',
-        submenu: []
+        submenu: [],
+        role: ['Customer', 'Admin']
       },
       {
         path: '/customer',
@@ -51,9 +54,11 @@ const apps: NavMenu[] = [
         iconType: 'feather',
         icon: 'icon-user',
         key: 'apps.customer',
-        submenu: []
+        submenu: [],
+        role: ['Admin']
       },
-    ]
+    ],
+    role: ['Customer', 'Admin']
   }
 ];
 

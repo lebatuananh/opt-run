@@ -1,5 +1,8 @@
-﻿using RunOtp.Domain.TransactionAggregate;
+﻿using RunOtp.Domain.OrderHistory;
+using RunOtp.Domain.TransactionAggregate;
+using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Infrastructure;
+using Action = RunOtp.Domain.TransactionAggregate.Action;
 
 namespace RunOtp.WebApi.UseCase.Transactions;
 
@@ -10,12 +13,15 @@ public struct MutateTransaction
     internal class Handler : IRequestHandler<GetListTransactionQueries, IResult>
     {
         private readonly ITransactionRepository _transactionRepository;
+        private readonly IOrderHistoryRepository _orderHistoryRepository;
         private readonly IScopeContext _scopeContext;
 
-        public Handler(ITransactionRepository transactionRepository, IScopeContext scopeContext)
+        public Handler(ITransactionRepository transactionRepository, IScopeContext scopeContext,
+            IOrderHistoryRepository orderHistoryRepository)
         {
             _transactionRepository = transactionRepository;
             _scopeContext = scopeContext;
+            _orderHistoryRepository = orderHistoryRepository;
         }
 
         public async Task<IResult> Handle(GetListTransactionQueries request, CancellationToken cancellationToken)

@@ -1,17 +1,16 @@
 <div class="container-fluid p-0" style="width: 100%;">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-2">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between mb-3">
           <h4 class="mb-2 fw-bolder">Tổng số tiền</h4>
-          {{report?.totalBalance}}
         </div>
         <div class="d-flex align-items-center justify-content-between">
-          <div><h3>{{report?.totalBalance | currency: "VND"}}</h3></div>
+          <div><h3>{{report?.totalBalance| currency: "VND"}}</h3></div>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-3">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between mb-3">
           <h4 class="mb-2 fw-bolder">Tổng tiền nạp hôm nay</h4>
@@ -21,35 +20,33 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-2">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between mb-3">
           <h4 class="mb-2 fw-bolder">Tổng yêu cầu</h4>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-          <div><h3>$168.90</h3></div>
+          <div><h3>{{report?.totalRequest}} yêu cầu</h3></div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between mb-3">
           <h4 class="mb-2 fw-bolder">Tổng yêu cầu thành công</h4>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-          <div><h3>$168.90</h3></div>
+          <div><h3>{{report?.totalRequestSuccess}} yêu cầu</h3></div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-2">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between mb-3">
           <h4 class="mb-2 fw-bolder">Tổng yêu cầu lỗi</h4>
         </div>
         <div class="d-flex align-items-center justify-content-between">
-          <div><h3>$168.90</h3></div>
+          <div><h3>{{report?.totalRequestError}} yêu cầu</h3></div>
         </div>
       </div>
     </div>

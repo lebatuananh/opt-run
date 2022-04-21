@@ -172,3 +172,19 @@ export interface MessageResponse {
   errorStatus: number;
   errorMessage: string;
 }
+
+export enum UserStatus{
+  Active,
+  InActive
+}
+
+export interface UserDto extends Entity{
+  email: string;
+  username: string;
+  balance: number;
+  totalAmountUsed: number;
+  deposit: number;
+  discount: number;
+  clientSecret: string;
+  status: UserStatus;
+}

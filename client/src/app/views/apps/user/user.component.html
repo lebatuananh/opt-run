@@ -1,0 +1,66 @@
+<div class="container-fluid p-0" style="width: 100%;">
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3 d-flex align-items-center justify-content-between">
+        <h4 class="mb-2 fw-bolder">Danh sách khách hàng</h4>
+        <div class="mb-2 d-flex">
+          <search-input [placeholder]="'Tìm kiếm...'" (changed)="search($event)"></search-input>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <ngx-datatable #table columnMode="force" class="bootstrap" [headerHeight]="50" [footerHeight]="50"
+                       rowHeight="auto" [externalSorting]="true" [messages]="messages" [loadingIndicator]="isLoading"
+                       [externalPaging]="true" [limit]="take" [rows]="items" [count]="count" (page)="onPage($event)">
+          <ngx-datatable-column name="Tên đăng nhập" prop="username" [width]="150" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Email" prop="email" [width]="150" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Trạng thái" prop="status" [width]="100" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <ng-container [ngSwitch]="value">
+                <span *ngSwitchCase="0" class="badge bg-success rounded-pill">Kích hoạt</span>
+                <span *ngSwitchCase="1" class="badge bg-danger rounded-pill">Khóa</span>
+              </ng-container>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Tiền đã nạp" prop="deposit" [width]="100" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value | currency: "VND"}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Số dư" prop="balance" [width]="100" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value | currency: "VND"}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Số tiền đã sử dụng" prop="totalAmountUsed" [width]="100" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value | currency: "VND"}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Giá chiết khấu" prop="discount" [width]="100" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value | currency: "VND"}}
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Hành động" prop="id" [width]="200" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <a class="btn btn-primary btn-sm  ms-2" (click)="recharge(value)">Nạp tiền</a>
+              <a class="btn btn-primary btn-sm  ms-2" (click)="edit(value)">Cập nhật</a>
+            </ng-template>
+
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+
+    </div>
+  </div>
+</div>

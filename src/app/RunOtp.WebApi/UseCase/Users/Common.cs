@@ -1,5 +1,6 @@
 ﻿using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.TransactionAggregate;
+using RunOtp.Domain.UserAggregate;
 using RunOtp.Domain.WebConfigurationAggregate;
 using Action = RunOtp.Domain.TransactionAggregate.Action;
 
@@ -14,7 +15,9 @@ public record UserDto(
     decimal TotalAmountUsed,
     decimal Deposit,
     int Discount,
-    string ClientSecret)
+    string ClientSecret,
+    UserStatus Status
+    )
 {
     // public List<TransactionDto> TransactionDtos { set; get; }
     // public List<OrderHistoryDto> OrderHistoryDtos { set; get; }

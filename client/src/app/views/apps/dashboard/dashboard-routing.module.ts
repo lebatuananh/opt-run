@@ -6,6 +6,7 @@ import {DashboardResolve} from '@app/views/apps/dashboard/dashboard.resolve';
 const routes: Routes = [{
   path: '',
   component: DashboardComponent,
+  resolve: {data: DashboardResolve}
 }];
 
 @NgModule({

@@ -29,7 +29,7 @@ public static class Extensions
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         // TODO: MainDbContext
-        services.AddDbContext<MainDbContext>(options =>
+        services.AddDbContextFactory<MainDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString(ConfigurationKeys.DefaultConnectionString), b =>
             {

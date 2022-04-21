@@ -26,7 +26,9 @@ export class CashFundService extends BaseApi {
   }
 
   create() {
-    return this.httpClient.post(this.createUrl('Create'), {} );
+    return this.httpClient.post(this.createUrl('Create'), {
+      webType: 1
+    } );
   }
 
   update(id: string, command) {

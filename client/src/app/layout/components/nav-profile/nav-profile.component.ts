@@ -36,6 +36,5 @@ export class NavProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserInfo();
-    console.log(this.authenticationService.getUserInfo());
   }
 }

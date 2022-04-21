@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.AspNetCore.Identity;
-using RunOtp.Domain.RoleAggregate;
 using RunOtp.Domain.UserAggregate;
 
 namespace RunOtp.WebApi.UseCase.Users;
@@ -67,16 +66,18 @@ public struct MutateUser
         }
     }
 
-    internal class Handler : IRequestHandler<RegisterUserCommand, IResult>,
-        IRequestHandler<GetUserQuery, IResult>
+    internal class Handler :
+        IRequestHandler<RegisterUserCommand, IResult>,
+        IRequestHandler<GetUserQuery, IResult>,
+        IRequestHandler<GetListUserQueries, IResult>
     {
-        private readonly RoleManager<AppRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IScopeContext _scopeContext;
 
-        public Handler(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager)
+        public Handler(UserManager<AppUser> userManager, IScopeContext scopeContext)
         {
-            _roleManager = roleManager;
             _userManager = userManager;
+            _scopeContext = scopeContext;
         }
 
         public async Task<IResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -105,12 +106,27 @@ public struct MutateUser
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken: cancellationToken);
             if (user is null)
             {
-                throw new Exception("Người dùng không tồn tại");
+                throw new Exception("User not found");
             }
 
             var userDto = new UserDto(user.Id, user.Email, user.UserName, user.Balance, user.TotalAmountUsed,
-                user.Deposit, user.Discount, user.ClientSecret);
+                user.Deposit, user.Discount, user.ClientSecret, user.Status);
             return Results.Ok(ResultModel<UserDto>.Create(userDto));
+        }
+
+        public async Task<IResult> Handle(GetListUserQueries request, CancellationToken cancellationToken)
+        {
+            var queryResult = await _userManager.Users.Where(x =>
+                    string.IsNullOrEmpty(x.UserName) || EF.Functions.ILike(x.UserName, $"%{request.Query}%"))
+                .OrderByDescending(x => x.Balance).ToQueryResultAsync(request.Skip, request.Take);
+            var result = new QueryResult<UserDto>()
+            {
+                Count = queryResult.Count,
+                Items = queryResult.Items.Select(user => new UserDto(user.Id, user.Email, user.UserName, user.Balance,
+                    user.TotalAmountUsed,
+                    user.Deposit, user.Discount, user.ClientSecret, user.Status))
+            };
+            return Results.Ok(ResultModel<QueryResult<UserDto>>.Create(result));
         }
     }
 }

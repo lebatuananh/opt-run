@@ -1,14 +1,16 @@
-import { 
-    Component, 
+import {
+    Component,
     ChangeDetectionStrategy,
-    ViewEncapsulation, 
+    ViewEncapsulation,
     OnInit,
     EventEmitter,
     Output
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavMenu } from '@app/shared/types/nav-menu.interface';
-import { navConfiguration } from '@app/configs/nav.config'
+import { navConfiguration } from '@app/configs/nav.config';
+import {User} from '@app/shared/types/model';
+import {AuthenticationService} from '@app/shared/services/authentication.service';
 
 @Component({
     selector: 'vertical-menu-content',
@@ -19,53 +21,57 @@ import { navConfiguration } from '@app/configs/nav.config'
 
 export class VerticalMenuContentComponent implements OnInit {
 
-    menu : NavMenu[] = [];
-    @Output() onNavLinkClick= new EventEmitter();
+    menu: NavMenu[] = [];
+  user: User;
 
-    constructor(private router: Router) { 
+  @Output() onNavLinkClick = new EventEmitter();
+
+    constructor(private authenticationServices: AuthenticationService, private router: Router) {
     }
 
     ngOnInit(): void {
-        this.menu = navConfiguration
+        this.menu = navConfiguration;
+        this.user = this.authenticationServices.getUserInfo();
+
     }
 
-    onLinkClick (path: string) {
-        this.onNavLinkClick.emit(path)
+    onLinkClick(path: string) {
+        this.onNavLinkClick.emit(path);
     }
 
     isSubNavOpen(key: string) {
-        const currentRouteTree = this.getRouteTreeInfo(this.menu)
-        return this.isExisted(currentRouteTree, key)
+        const currentRouteTree = this.getRouteTreeInfo(this.menu);
+        return this.isExisted(currentRouteTree, key);
     }
 
     isExisted(navTree, key: string) {
 
-        if(!navTree) {
-            return navTree
+        if (!navTree) {
+            return navTree;
         }
 
-        if( navTree.key === key ){
+        if ( navTree.key === key ){
             return true;
         }
-        let treeNode; 
-        for (let p in navTree) {
-            if( navTree.hasOwnProperty(p) && typeof navTree[p] === 'object' ) {
+        let treeNode;
+        for (const p in navTree) {
+            if ( navTree.hasOwnProperty(p) && typeof navTree[p] === 'object' ) {
                 treeNode = this.isExisted(navTree[p], key);
-                if(treeNode){
+                if (treeNode){
                     return treeNode;
                 }
             }
         }
         return treeNode;
     }
-    
+
     getRouteTreeInfo(nodes: NavMenu[]) {
         let result: NavMenu;
-        let found: boolean
+        let found: boolean;
         nodes.some((o: NavMenu) => {
             let submenu: NavMenu;
             if (o.path === this.router.url) {
-                found = true
+                found = true;
                 return result = o;
             }
             if (o.submenu && (submenu = this.getRouteTreeInfo(o.submenu))) {

@@ -48,6 +48,7 @@ public static class Extension
                             .AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
+                        
                     });
             else
                 optionsAction.Invoke(options);

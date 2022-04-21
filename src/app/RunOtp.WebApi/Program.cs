@@ -17,7 +17,6 @@ await WithSeriLog(async () =>
     builder.Host.AddSerilog("RunOtp");
     // Add services to the container.
     builder.Services
-        .AddCustomCors()
         .AddHttpContextAccessor()
         .AddHttpClient(builder.Configuration)
         .AddIdentityFramework()
@@ -25,9 +24,10 @@ await WithSeriLog(async () =>
         .AddCustomValidators(new[] { typeof(Anchor) })
         .AddAuthenticationCustom(builder.Configuration)
         .AddAuthorizationPolicies()
+        .AddCustomCors()
         .AddSwaggerConfig(builder.Configuration)
         .AddPersistence(builder.Configuration)
-        .AddHangFireCustom(builder.Configuration)
+        // .AddHangFireCustom(builder.Configuration)
         .AddConfig(builder.Configuration)
         .AddRepository()
         .AddServices()
@@ -38,6 +38,8 @@ await WithSeriLog(async () =>
         .AddEndpointsApiExplorer()
         .AddInitializationStages()
         .AddControllers();
+    builder.Services.AddHostedService<TransactionHostedServices>();
+    builder.Services.AddHostedService<OtpTextNowHostedServices>();
     var app = builder.Build();
 
     // https://github.com/npgsql/efcore.pg/issues/2158
@@ -51,28 +53,36 @@ await WithSeriLog(async () =>
     app.UseMiddleware<ExceptionMiddleware>();
     app.UseCustomCors();
     app.UseRouting();
-    app.UseHangfireDashboard("/hf", new DashboardOptions()
-    {
-        DashboardTitle = "Message Hangfire Dashboard",
-        Authorization = new[]
-        {
-            new HangfireCustomBasicAuthenticationFilter
-            {
-                User = builder.Configuration.GetSection("HangfireSettings:UserName").Value,
-                Pass = builder.Configuration.GetSection("HangfireSettings:Password").Value
-            }
-        },
-        IgnoreAntiforgeryToken = true
-    });
-    RecurringJob
-        .AddOrUpdate<IOtpTextNowTask>("ScanOrderHistoryOtpTextNowStatus", x => x.ExecuteAsync(), "*/20 * * * * *");
-
+    // app.UseHangfireDashboard("/hf", new DashboardOptions()
+    // {
+    //     DashboardTitle = "Message Hangfire Dashboard",
+    //     Authorization = new[]
+    //     {
+    //         new HangfireCustomBasicAuthenticationFilter
+    //         {
+    //             User = builder.Configuration.GetSection("HangfireSettings:UserName").Value,
+    //             Pass = builder.Configuration.GetSection("HangfireSettings:Password").Value
+    //         }
+    //     },
+    //     IgnoreAntiforgeryToken = true
+    // });
+    // RecurringJob
+    //     .AddOrUpdate<IOtpTextNowTask>("ScanOrderHistoryOtpTextNowStatus", x => x.ExecuteAsync(),
+    //         "*/20 * * * * *");
+    // RecurringJob
+    //     .AddOrUpdate<IOtpTextNowTask>("ScanTransactionOtpTextNow", x => x.ExecuteUpdateWalletAsync(),
+    //         "*/30 * * * * *");
     app.UseAuthentication();
     app.UseAuthorization();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.MapFallback(() => Results.Redirect("/swagger"));
-    app.MapControllers();
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+        app.MapFallback(() => Results.Redirect("/swagger"));
+    }
+
+    app.UseEndpoints(
+        endpoints => { endpoints.MapControllers(); });
     await app.AutoInit(app.Logger);
     app.Run();
 });

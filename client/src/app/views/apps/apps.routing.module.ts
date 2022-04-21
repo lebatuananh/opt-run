@@ -30,14 +30,14 @@ const routes: Routes = [
       hidePageHeader: true
     }
   },
-  // {
-  //   path: 'customer',
-  //   loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule),
-  //   data: {
-  //     title: 'Khách hàng',
-  //     hidePageHeader: false
-  //   }
-  // },
+  {
+    path: 'customer',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    data: {
+      title: 'Khách hàng',
+      hidePageHeader: false
+    }
+  },
 ];
 
 @NgModule({

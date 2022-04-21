@@ -31,7 +31,7 @@ public class OtpExternalService : IOtpExternalService
         var user = await _userManager.Users.SingleOrDefaultAsync(x => x.ClientSecret == apiKey);
         if (user is null)
         {
-            throw new Exception("Người dùng không tồn tại, nhập lại thử apiKey");
+            throw new Exception("User does not exist, try re-entering apiKey");
         }
 
         if (user.Balance < 0)
@@ -62,7 +62,7 @@ public class OtpExternalService : IOtpExternalService
         var user = await _userManager.Users.SingleOrDefaultAsync(x => x.ClientSecret == apiKey);
         if (user is null)
         {
-            throw new Exception("Người dùng không tồn tại, nhập lại thử apiKey");
+            throw new Exception("User does not exist, try re-entering apiKey");
         }
 
         switch (webType)
