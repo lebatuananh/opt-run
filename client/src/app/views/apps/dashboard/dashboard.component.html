@@ -60,7 +60,8 @@
         <div class="d-flex align-items-center justify-content-between">
           <div><h4>Tích hợp yêu cầu số điện thoại</h4></div>
         </div>
-        <pre class="prettyprint lang-bash prettyprinted"><span class="pln">https://api.runotp.xyz/api/OtpExternal/CreateRequest?apiKey={{currentUser?.clientSecret}}&webType=1</span></pre>
+        <pre class="prettyprint lang-bash prettyprinted"><span class="pln">https://api.runotp.xyz/api/OtpExternal/CreateRequest?apiKey={{currentUser?.clientSecret}}
+          &webType=1</span></pre>
         <div><h4>Kết quả trả về</h4></div>
         <div><b>Thành công</b></div>
         <p>"requestId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx","phoneNumber":"xxxxxxxxxx</p>
@@ -68,7 +69,8 @@
         <div class="d-flex align-items-center justify-content-between">
           <div><h4>Kiểm tra otp code trả về</h4></div>
         </div>
-        <pre class="prettyprint lang-bash prettyprinted"><span class="pln">https://api.runotp.xyz/api/OtpExternal/CheckRequest?apiKey={{currentUser?.clientSecret}}&webType=1&requestId=a1e17f8e-5146-4928-9924-c7177b1500e5</span></pre>
+        <pre class="prettyprint lang-bash prettyprinted"><span class="pln">https://api.runotp.xyz/api/OtpExternal/CheckRequest?apiKey={{currentUser?.clientSecret}}
+          &webType=1&requestId=a1e17f8e-5146-4928-9924-c7177b1500e5</span></pre>
         <div><h4>Kết quả trả về</h4></div>
         <div><b>Thất bại</b></div>
         <p>"otpCode":"","message":null,"status":3</p>

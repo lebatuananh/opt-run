@@ -9,7 +9,7 @@ RUN npm install --unsafe-perm
 RUN npm dedupe
 
 COPY . /runotp
-RUN npm run build -- --aot --prod --output-hashing none --output-path /dist
+RUN npm run build -- --aot --prod --output-hashing=all --output-path /dist
 
 FROM base
 COPY --from=dep /dist /dist
