@@ -9,6 +9,9 @@ public interface IBaseApiClient
         bool requiredLogin = false);
 
     Task<T> GetAsync<T>(string url, string clientName, string baseApiUrl, bool requiredLogin = false);
+    
+    Task<T> GetObjectAsync<T>(string url, string clientName, string baseApiUrl, bool requiredLogin = false);
+
 
     Task<TResponse> PostAsync<TRequest, TResponse>(string url, string clientName, string baseApiUrl,
         TRequest requestContent,

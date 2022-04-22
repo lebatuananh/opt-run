@@ -64,6 +64,27 @@ public class BaseApiClient : IBaseApiClient
         return data;
     }
 
+    public async Task<T> GetObjectAsync<T>(string url, string clientName, string baseApiUrl, bool requiredLogin = false)
+    {
+        var client = _httpClientFactory.CreateClient(clientName);
+        client.BaseAddress = new Uri(baseApiUrl);
+        if (requiredLogin)
+        {
+            if (_httpContextAccessor.HttpContext != null)
+            {
+                var token = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
+        }
+
+        var response = await client.GetAsync(url);
+        await PreprocessResponse<object>(response, null);
+        var body = await response.Content.ReadAsStringAsync();
+        Log.Error("Body {Body}", body);
+        var data = JsonConvert.DeserializeObject<T>(body);
+        return data;
+    }
+
     public async Task<TResponse> PostAsync<TResponse>(string url, string clientName, string baseApiUrl,
         bool requiredLogin = true)
     {

@@ -3,5 +3,6 @@
 public enum WebType
 {
     RunOtp,
-    OtpTextNow
+    OtpTextNow,
+    RentOtp
 }

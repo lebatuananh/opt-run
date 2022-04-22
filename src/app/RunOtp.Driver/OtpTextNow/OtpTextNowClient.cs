@@ -44,12 +44,16 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
     {
         var url =
             $"{ClientConstant.OtpTextNow.Endpoint}/?key={ClientConstant.OtpTextNow.ApiKey}&action=get_number&id=1";
-        var response = await GetAsync<NumberResponse>(url, ClientConstant.ClientName, ClientConstant.OtpTextNow.Url);
+        var response = await GetObjectAsync<NumberResponse>(url, ClientConstant.ClientName, ClientConstant.OtpTextNow.Url);
+        if (response.Status == 1)
+        {
+            throw new Exception("Temporarily out of phone");
+        }
         if (response.Number is null || response.RequestId is null)
         {
             for (var i = 0; i < 5; i++)
             {
-                response = await GetAsync<NumberResponse>(url, ClientConstant.ClientName,
+                response = await GetObjectAsync<NumberResponse>(url, ClientConstant.ClientName,
                     ClientConstant.OtpTextNow.Url);
                 if (response.Number is not null && response.RequestId is not null)
                 {

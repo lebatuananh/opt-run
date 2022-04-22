@@ -10,6 +10,14 @@ public static class ClientConstant
         public static string Url = "http://otptextnow.com";
         public static string Endpoint = "/api";
     }
+    
+    public static class RentOtp
+    {
+        public static string ApiKey = "8d99c74fca4193e1552509bd1ac8b8e112d405af";
+        public static string Url = "http://thuecodetextnow.com";
+        public static string Endpoint = "/api";
+    }
+    
 
     public static class RunOtp
     {

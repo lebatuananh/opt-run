@@ -7,6 +7,8 @@ public class NumberResponse
 {
     [JsonProperty("number")] public string Number { get; set; }
     [JsonProperty("request_id")] public string RequestId { get; set; }
+    [JsonProperty("msg")] public string Message { get; set; }
+    [JsonProperty("status")] public int Status { get; set; }
 }
 
 public class OtpCodeResponse

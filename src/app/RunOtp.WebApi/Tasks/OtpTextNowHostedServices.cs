@@ -1,5 +1,7 @@
 using RunOtp.Domain.OrderHistory;
+using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Driver.OtpTextNow;
+using RunOtp.Driver.RentOtp;
 
 namespace RunOtp.WebApi.Tasks;
 
@@ -22,6 +24,7 @@ public class OtpTextNowHostedServices : IHostedService
                 {
                     var orderHistoryRepository = scope.ServiceProvider.GetRequiredService<IOrderHistoryRepository>();
                     var otpTextNowClient = scope.ServiceProvider.GetRequiredService<IOtpTextNowClient>();
+                    var rentTextNowClient = scope.ServiceProvider.GetRequiredService<IRentCodeTextNowClient>();
 
                     var orderHistories =
                         await orderHistoryRepository.FindAll(x =>
@@ -29,12 +32,23 @@ public class OtpTextNowHostedServices : IHostedService
                             .Take(300)
                             .OrderBy(x => x.CreatedDate)
                             .ToListAsync(cancellationToken: cancellationToken);
-                    var orderRequestIds = orderHistories.Select(x => x.Id).ToList();
-                    if (orderRequestIds.Any())
+                    if (orderHistories.Any())
                     {
-                        foreach (var item in orderRequestIds)
+                        foreach (var item in orderHistories)
                         {
-                            await otpTextNowClient.CheckOtpRequest(item.ToString());
+                            switch (item.WebType)
+                            {
+                                case WebType.RentOtp:
+                                    await rentTextNowClient.CheckOtpRequest(item.ToString());
+                                    break;
+                                case WebType.OtpTextNow:
+                                    await otpTextNowClient.CheckOtpRequest(item.ToString());
+                                    break;
+                                case WebType.RunOtp:
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
                         }
                     }
                 }
