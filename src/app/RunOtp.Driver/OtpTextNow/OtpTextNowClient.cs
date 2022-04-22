@@ -45,7 +45,23 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
         var url =
             $"{ClientConstant.OtpTextNow.Endpoint}/?key={ClientConstant.OtpTextNow.ApiKey}&action=get_number&id=1";
         var response = await GetAsync<NumberResponse>(url, ClientConstant.ClientName, ClientConstant.OtpTextNow.Url);
-        if (response?.Number is null || response.RequestId is null) return null;
+        if (response.Number is null || response.RequestId is null)
+        {
+            for (var i = 0; i < 5; i++)
+            {
+                response = await GetAsync<NumberResponse>(url, ClientConstant.ClientName,
+                    ClientConstant.OtpTextNow.Url);
+                if (response.Number is not null && response.RequestId is not null)
+                {
+                    break;
+                }
+
+                await Task.Delay(300);
+            }
+        }
+        Log.Error("Request: ${RequestId} - Number: ${Number}", response.Number, response.RequestId);
+
+        if (response.Number is null || response.RequestId is null) throw new Exception("Can't get phone number");
         try
         {
             var entity = new OrderHistory(response.RequestId, response.Number, string.Empty,

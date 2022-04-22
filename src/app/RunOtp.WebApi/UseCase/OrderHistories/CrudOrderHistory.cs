@@ -130,7 +130,7 @@ public struct MutateOrderHistory
                 throw new Exception("User does not exist, try re-entering apiKey");
             }
 
-            if (user.Balance < 0)
+            if (user.Balance <= 0)
             {
                 throw new Exception("Your account is not enough to use the service, please add more money");
             }

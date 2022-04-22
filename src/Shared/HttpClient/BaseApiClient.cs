@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace Shared.HttpClient;
 
@@ -59,7 +60,6 @@ public class BaseApiClient : IBaseApiClient
         var response = await client.GetAsync(url);
         await PreprocessResponse<object>(response, null);
         var body = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(body);
         var data = JsonConvert.DeserializeObject<T>(body);
         return data;
     }

@@ -39,6 +39,7 @@
         "Name": "PostgreSQL",
         "Args": {
           "connectionString": "Server=my.netcoreexamples.com;Port=5432;Database=run_otp;User Id=admin;Password=Mramra1234!@;",
+//          "connectionString": "Server=localhost;Port=5432;Database=run_otp;User Id=admin;Password=Mramra1234!@;Pooling=true;",
           "tableName": "log",
           "schemaName": "data",
           "loggerColumnOptions": {

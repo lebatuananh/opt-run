@@ -26,7 +26,7 @@ public class OtpTextNowHostedServices : IHostedService
                     var orderHistories =
                         await orderHistoryRepository.FindAll(x =>
                                 x.Status != OrderStatus.Error && x.Status != OrderStatus.Success)
-                            .Take(100)
+                            .Take(300)
                             .OrderBy(x => x.CreatedDate)
                             .ToListAsync(cancellationToken: cancellationToken);
                     var orderRequestIds = orderHistories.Select(x => x.Id).ToList();
