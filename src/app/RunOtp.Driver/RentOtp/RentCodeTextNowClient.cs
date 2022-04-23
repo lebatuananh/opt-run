@@ -106,11 +106,21 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
                         await _transactionRepository.CommitAsync();
                     }
                 }
-                else
-                {
-                    
-                }
             }
+            else
+                switch (response.Status)
+                {
+                    case RentCodeNumberResponse.StatusProcessing:
+                        responseClient.Status = OrderStatus.Processing;
+                        item.Processing(RentCodeNumberResponse.StatusProcessing);
+                        await _transactionRepository.CommitAsync();
+                        break;
+                    case RentCodeNumberResponse.StatusError:
+                        responseClient.Status = OrderStatus.Error;
+                        item.Error(string.Empty);
+                        await _transactionRepository.CommitAsync();
+                        break;
+                }
         }
         catch (Exception e)
         {

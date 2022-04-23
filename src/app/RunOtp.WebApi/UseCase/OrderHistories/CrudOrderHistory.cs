@@ -78,12 +78,13 @@ public struct MutateOrderHistory
             if (_scopeContext.Role.Equals(SystemConstants.Admin))
             {
                 queryable = await _orderHistoryRepository
-                    .FindAll()
+                    .FindAll(x => x.AppUser)
                     .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
             }
             else
             {
-                queryable = await _orderHistoryRepository.FindAll(x => x.UserId == _scopeContext.CurrentAccountId)
+                queryable = await _orderHistoryRepository
+                    .FindAll(x => x.UserId == _scopeContext.CurrentAccountId, x => x.AppUser)
                     .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
             }
 
@@ -98,6 +99,7 @@ public struct MutateOrderHistory
                         x.WebType,
                         x.Status,
                         x.OtpCode,
+                        x.AppUser.Email,
                         x.CreatedDate,
                         x.LastUpdatedDate))
                     .ToList()
@@ -116,6 +118,7 @@ public struct MutateOrderHistory
                 item.WebType,
                 item.Status,
                 item.OtpCode,
+                item.AppUser.Email,
                 item.CreatedDate,
                 item.LastUpdatedDate);
             return Results.Ok(ResultModel<OrderHistoryDto>.Create(result));

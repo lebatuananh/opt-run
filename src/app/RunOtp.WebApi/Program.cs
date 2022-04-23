@@ -38,8 +38,8 @@ await WithSeriLog(async () =>
         .AddEndpointsApiExplorer()
         .AddInitializationStages()
         .AddControllers();
-    builder.Services.AddHostedService<TransactionHostedServices>();
     builder.Services.AddHostedService<OtpTextNowHostedServices>();
+    builder.Services.AddHostedService<TransactionHostedServices>();
     var app = builder.Build();
 
     // https://github.com/npgsql/efcore.pg/issues/2158

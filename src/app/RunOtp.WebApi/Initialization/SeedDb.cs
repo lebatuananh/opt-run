@@ -55,7 +55,8 @@ public class SeedDb : IStage
                 UserName = "admin",
                 FullName = "Administrator",
                 Email = "admin@gmail.com",
-                Balance = 0,
+                Balance = 100000,
+                ClientSecret = Guid.NewGuid().ToString("N"),
                 Status = UserStatus.Active
             }, "123654$");
             var user = await _userManager.FindByNameAsync("admin");

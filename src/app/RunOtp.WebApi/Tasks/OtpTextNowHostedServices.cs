@@ -29,7 +29,7 @@ public class OtpTextNowHostedServices : IHostedService
                     var orderHistories =
                         await orderHistoryRepository.FindAll(x =>
                                 x.Status != OrderStatus.Error && x.Status != OrderStatus.Success)
-                            .Take(300)
+                            .Take(500)
                             .OrderBy(x => x.CreatedDate)
                             .ToListAsync(cancellationToken: cancellationToken);
                     if (orderHistories.Any())
@@ -39,10 +39,10 @@ public class OtpTextNowHostedServices : IHostedService
                             switch (item.WebType)
                             {
                                 case WebType.RentOtp:
-                                    await rentTextNowClient.CheckOtpRequest(item.ToString());
+                                    await rentTextNowClient.CheckOtpRequest(item.Id.ToString());
                                     break;
                                 case WebType.OtpTextNow:
-                                    await otpTextNowClient.CheckOtpRequest(item.ToString());
+                                    await otpTextNowClient.CheckOtpRequest(item.Id.ToString());
                                     break;
                                 case WebType.RunOtp:
                                     break;

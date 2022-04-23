@@ -8,5 +8,6 @@ public record OrderHistoryDto(Guid Id,
     WebType WebType,
     OrderStatus Status,
     string OtpCode,
+    string Email,
     DateTimeOffset CreatedDate,
     DateTimeOffset LastUpdatedDate);

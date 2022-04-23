@@ -30,12 +30,13 @@ public struct MutateTransaction
             if (_scopeContext.Role.Equals(SystemConstants.Admin))
             {
                 queryable = await _transactionRepository
-                    .FindAll()
+                    .FindAll(x => x.AppUser)
                     .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
             }
             else
             {
-                queryable = await _transactionRepository.FindAll(x => x.UserId == _scopeContext.CurrentAccountId)
+                queryable = await _transactionRepository
+                    .FindAll(x => x.UserId == _scopeContext.CurrentAccountId, x => x.AppUser)
                     .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
             }
 
@@ -50,6 +51,7 @@ public struct MutateTransaction
                         x.BankAccount,
                         x.Note,
                         x.Response,
+                        x.AppUser.Email,
                         x.Status,
                         x.CompletedDate,
                         x.PaymentGateway,
