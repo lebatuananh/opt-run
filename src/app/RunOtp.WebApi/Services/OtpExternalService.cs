@@ -42,9 +42,15 @@ public class OtpExternalService : IOtpExternalService
         }
 
         var user = await _userManager.Users.SingleOrDefaultAsync(x => x.ClientSecret == apiKey);
+
         if (user is null)
         {
             throw new Exception("User does not exist, try re-entering apiKey");
+        }
+
+        if (user.Status == UserStatus.InActive)
+        {
+            throw new Exception("Account has not been activated or locked, please contact admin for support");
         }
 
         if (user.Balance < 0)

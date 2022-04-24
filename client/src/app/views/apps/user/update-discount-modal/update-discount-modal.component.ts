@@ -1,19 +1,19 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {UserDto} from '@app/shared/types/entity.interface';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserDto} from '@app/shared/types/entity.interface';
 import {AuthenticationService} from '@app/shared/services/authentication.service';
 import {BsModalRef} from 'ngx-bootstrap/modal';
-import {ToastrService} from 'ngx-toastr';
 import {TranslateService} from '@ngx-translate/core';
-import {tap} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-recharge-user-modal',
-  templateUrl: './recharge-user-modal.component.html',
-  styleUrls: ['./recharge-user-modal.component.scss']
+  selector: 'app-update-discount-modal',
+  templateUrl: './update-discount-modal.component.html',
+  styleUrls: ['./update-discount-modal.component.scss']
 })
-export class RechargeUserModalComponent implements OnInit {
+export class UpdateDiscountModalComponent implements OnInit {
   @Output() submitted = new EventEmitter();
   createMore: boolean;
   form: FormGroup;
@@ -33,10 +33,9 @@ export class RechargeUserModalComponent implements OnInit {
     this.buildForm();
   }
 
-
   onSubmit(): void {
     this.isLoading = true;
-    const save$ = this.recharge();
+    const save$ = this.updateDiscount();
     save$.subscribe(() => {
       this.submitted.emit(this.createMore);
       this.hide();
@@ -52,24 +51,21 @@ export class RechargeUserModalComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      note: [, Validators.required],
-      bankAccount: [, Validators.required],
-      totalAmount: [, [Validators.required, Validators.pattern('^[0-9]*$')]]
+      discount: [, [Validators.required, Validators.pattern('^[0-9]*$')]]
     });
   }
 
 
-  private recharge(): Observable<any> {
+  private updateDiscount(): Observable<any> {
     const command = {
       ...this.form.value,
-      userId: this.userDto.id
+      id: this.userDto.id
     };
-    return this.authenticationService.recharge(command)
+    return this.authenticationService.updateDiscount(command)
       .pipe(
-        tap(() => this.toastr.success(this.translate.instant('Nạp tiền thành công'))
+        tap(() => this.toastr.success(this.translate.instant('Cập nhật chiết khấu thành công'))
         )
       );
   }
-
 
 }

@@ -30,25 +30,25 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  login() {
+  login(): void {
     this.isSubmit = true;
     const next = () => {
       this.succeed.emit();
     };
     const error = err => {
       this.showResult = true;
-      const data = err.error;
-      this.backendError = this.translate.instant(data?.error_description || data?.error || 'Đã có lỗi xảy ra');
+      const data = err.Data;
+      this.backendError = data ? data : 'Đã có lỗi xảy ra' ;
     };
     this.authenticationService.login(this.formGroup.value.username, this.formGroup.value.password).subscribe(next, error)
       .add(() => this.isSubmit = false);
   }
 
-  onShowPasswordClick() {
+  onShowPasswordClick(): void {
     this.showPassword = !this.showPassword;
   }
 
-  onReset() {
+  onReset(): void {
     this.formGroup.reset();
   }
 }

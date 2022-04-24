@@ -35,4 +35,9 @@ public class WebConfiguration : ModifierTrackingEntity, IAggregateRoot
     {
         Selected = true;
     }
+    
+    public void ChangeUnSelected()
+    {
+        Selected = false;
+    }
 }

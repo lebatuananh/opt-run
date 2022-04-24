@@ -54,6 +54,10 @@ public struct Token
             var user = await _userManager.FindByNameAsync(request.UserName);
             var role = await _userManager.GetRolesAsync(user);
             if (user == null) return Results.NotFound($"Không tìm thấy tài khoản {request.UserName}");
+            if (user.Status == UserStatus.InActive)
+            {
+                throw new Exception("Account has not been activated or locked, please contact admin for support");
+            }
             var result = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, false, true);
             if (!result.Succeeded)
                 return Results.BadRequest("Mật khẩu không đúng");

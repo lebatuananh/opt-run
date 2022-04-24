@@ -85,6 +85,7 @@ export interface OrderHistory extends Entity{
   message: string;
   webType: WebType;
   status: OrderStatus;
+  email: string;
   otpCode: string;
 }
 
@@ -96,6 +97,7 @@ export interface Transaction extends Entity{
   bankAccount: string;
   completedDate: Date;
   response: string;
+  email: string;
   paymentGateway: PaymentGateway;
   status: TransactionStatus;
 }
@@ -113,6 +115,7 @@ export interface CurrentUser{
 export interface Report{
   totalBalance: number;
   totalRechargeToday: number;
+  totalRecharge: number;
   totalRequest: number;
   totalRequestSuccess: number;
   totalRequestError: number;
@@ -185,6 +188,19 @@ export interface UserDto extends Entity{
   totalAmountUsed: number;
   deposit: number;
   discount: number;
+  totalRequest: number;
+  totalSuccess: number;
+  totalFailed: number;
   clientSecret: string;
   status: UserStatus;
+}
+
+
+export interface WebConfiguration extends Entity{
+  apiSecret: string;
+  url: string;
+  webName: string;
+  endpoint: string;
+  webType: WebType;
+  selected: boolean;
 }

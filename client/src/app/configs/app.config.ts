@@ -10,5 +10,5 @@ export const AppConfiguration: AppConfig = {
   navMenuColor: 'light',
   headerNavColor: '#ffffff'
 };
-export const IDENTITY_ENDPOINT = 'https://api.runotp.xyz/api';
-export const API_ENDPOINT =  'https://api.runotp.xyz/api';
+export const IDENTITY_ENDPOINT = environment.production ? 'https://api.runotp.xyz/api' : 'https://localhost:7058/api';
+export const API_ENDPOINT =  environment.production ? 'https://api.runotp.xyz/api' : 'https://localhost:7058/api';

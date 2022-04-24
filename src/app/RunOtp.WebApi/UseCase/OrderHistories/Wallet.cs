@@ -22,7 +22,7 @@ public struct Wallet
                     .GreaterThan(0);
                 RuleFor(v => v.UserId)
                     .NotEmpty()
-                    .WithMessage("Giá trị Id không được null");
+                    .WithMessage("Id value cannot be null");
             }
         }
     }
@@ -42,7 +42,7 @@ public struct Wallet
                     .GreaterThan(0);
                 RuleFor(v => v.UserId)
                     .NotEmpty()
-                    .WithMessage("Giá trị Id không được null");
+                    .WithMessage("Id value cannot be null");
             }
         }
     }

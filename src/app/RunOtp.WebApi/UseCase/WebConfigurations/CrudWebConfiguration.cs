@@ -113,6 +113,7 @@ public struct MutateWebConfiguration
                 Count = queryable.Count,
                 Items = queryable.Items
                     .Select(x => new WebConfigurationDto(x.Id, x.ApiSecret, x.Url, x.WebName, x.Endpoint, x.Status,
+                        x.Selected,
                         x.CreatedDate,
                         x.LastUpdatedDate))
                     .ToList()
@@ -124,8 +125,14 @@ public struct MutateWebConfiguration
         {
             var item = await _webConfigurationRepository.GetByIdAsync(request.Id);
             if (item is null) throw new Exception($"Không tìm thấy bản ghi item={request.Id}");
-            var result = new WebConfigurationDto(item.Id, item.ApiSecret, item.Url, item.WebName, item.Endpoint,
+            var result = new WebConfigurationDto(
+                item.Id,
+                item.ApiSecret,
+                item.Url,
+                item.WebName,
+                item.Endpoint,
                 item.Status,
+                item.Selected,
                 item.CreatedDate,
                 item.LastUpdatedDate);
             return Results.Ok(ResultModel<WebConfigurationDto>.Create(result));
