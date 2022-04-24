@@ -90,6 +90,13 @@ namespace RunOtp.WebApi
                 fieldInfo: typeof(DateTrackingEntity).GetField("<LastUpdatedDate>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
             lastUpdatedDate.AddAnnotation("Relational:ColumnName", "last_updated_date");
 
+            var selected = runtimeEntityType.AddProperty(
+                "Selected",
+                typeof(bool),
+                propertyInfo: typeof(WebConfiguration).GetProperty("Selected", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(WebConfiguration).GetField("<Selected>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+            selected.AddAnnotation("Relational:ColumnName", "selected");
+
             var status = runtimeEntityType.AddProperty(
                 "Status",
                 typeof(WebStatus),

@@ -30,6 +30,7 @@ public struct Report
         public Task<IResult> Handle(GetReportQuery request, CancellationToken cancellationToken)
         {
             decimal totalRecharge;
+            decimal totalBalance;
             decimal rechargeToday;
             int totalRequest;
             int requestSuccess;
@@ -37,17 +38,20 @@ public struct Report
             if (_scopeContext.Role == SystemConstants.Admin)
             {
                 totalRecharge = _userManager.Users.Sum(x => x.Deposit);
+                totalBalance = _userManager.Users.Sum(x => x.Balance);
                 rechargeToday =
                     _transactionRepository.FindAll(x => string.IsNullOrEmpty(x.Ref) && x.Action == Action.Recharge)
                         .Sum(x => x.TotalAmount);
                 totalRequest = _orderHistoryRepository.FindAll().Count();
                 requestSuccess = _orderHistoryRepository.FindAll(x => x.Status == OrderStatus.Success).Count();
                 requestFailed = _orderHistoryRepository.FindAll(x => x.Status == OrderStatus.Error).Count();
-                var result = new ReportDto(totalRecharge, rechargeToday, totalRequest, requestSuccess, requestFailed);
+                var result = new ReportDto(totalRecharge, totalBalance, rechargeToday, totalRequest, requestSuccess,
+                    requestFailed);
                 return Task.FromResult(Results.Ok(ResultModel<ReportDto>.Create(result)));
             }
 
             totalRecharge = _userManager.Users.Where(x => x.Id == _scopeContext.CurrentAccountId).Sum(x => x.Deposit);
+            totalBalance = _userManager.Users.Where(x => x.Id == _scopeContext.CurrentAccountId).Sum(x => x.Balance);
             rechargeToday =
                 _transactionRepository.FindAll(x =>
                         string.IsNullOrEmpty(x.Ref) && x.Action == Action.Recharge &&
@@ -59,7 +63,7 @@ public struct Report
             requestFailed = _orderHistoryRepository
                 .FindAll(x => x.Status == OrderStatus.Error && x.UserId == _scopeContext.CurrentAccountId).Count();
             var resultCurrent =
-                new ReportDto(totalRecharge, rechargeToday, totalRequest, requestSuccess, requestFailed);
+                new ReportDto(totalRecharge, totalBalance, rechargeToday, totalRequest, requestSuccess, requestFailed);
             return Task.FromResult(Results.Ok(ResultModel<ReportDto>.Create(resultCurrent)));
         }
     }

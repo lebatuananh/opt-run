@@ -42,6 +42,7 @@ public record UserDto(
 }
 
 public record ReportDto(
+    decimal TotalRecharge,
     decimal TotalBalance,
     decimal TotalRechargeToday,
     int TotalRequest,

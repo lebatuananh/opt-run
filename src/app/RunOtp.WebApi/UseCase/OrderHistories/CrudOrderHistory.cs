@@ -6,11 +6,10 @@ using RunOtp.Domain.UserAggregate;
 using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Driver;
 using RunOtp.Driver.OtpTextNow;
+using RunOtp.Driver.RentOtp;
 using RunOtp.Driver.RunOtp;
 using RunOtp.Infrastructure;
 using RunOtp.WebApi.UseCase.WebConfigurations;
-using Serilog;
-using Log = Serilog.Log;
 
 namespace RunOtp.WebApi.UseCase.OrderHistories;
 
@@ -59,10 +58,13 @@ public struct MutateOrderHistory
         private readonly IScopeContext _scopeContext;
         private readonly IOtpTextNowClient _otpTextNowClient;
         private readonly IRunOtpClient _runOtpClient;
+        private readonly IRentCodeTextNowClient _rentCodeTextNowClient;
+        private readonly IWebConfigurationRepository _webConfigurationRepository;
 
         public Handler(IOrderHistoryRepository orderHistoryRepository, IOtpTextNowClient otpTextNowClient,
             IRunOtpClient runOtpClient, ITransactionRepository transactionRepository, IScopeContext scopeContext,
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager, IWebConfigurationRepository webConfigurationRepository,
+            IRentCodeTextNowClient rentCodeTextNowClient)
         {
             _orderHistoryRepository = orderHistoryRepository;
             _otpTextNowClient = otpTextNowClient;
@@ -70,6 +72,8 @@ public struct MutateOrderHistory
             _transactionRepository = transactionRepository;
             _scopeContext = scopeContext;
             _userManager = userManager;
+            _webConfigurationRepository = webConfigurationRepository;
+            _rentCodeTextNowClient = rentCodeTextNowClient;
         }
 
         public async Task<IResult> Handle(GetListOrderHistoryQueries request, CancellationToken cancellationToken)
@@ -138,9 +142,10 @@ public struct MutateOrderHistory
                 throw new Exception("Your account is not enough to use the service, please add more money");
             }
 
-            request ??= new CreateOrderHistoryCommand() { WebType = WebType.OtpTextNow };
+            var webTypeResult = await _webConfigurationRepository.GetSingleAsync(x => x.Selected);
+            var webType = webTypeResult?.WebType ?? WebType.RentOtp;
 
-            switch (request.WebType)
+            switch (webType)
             {
                 case WebType.RunOtp:
                     // var resultRunOtpResponse = await _runOtpClient.CreateRequest(_scopeContext.CurrentAccountId);
@@ -149,8 +154,13 @@ public struct MutateOrderHistory
                 case WebType.OtpTextNow:
                     var resultNumberResponse = await _otpTextNowClient.CreateRequest(_scopeContext.CurrentAccountId);
                     return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultNumberResponse));
+                case WebType.RentOtp:
+                    var resultNumberRentResponse =
+                        await _rentCodeTextNowClient.CreateRequest(_scopeContext.CurrentAccountId);
+                    return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultNumberRentResponse));
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-
             return Results.Ok();
         }
     }

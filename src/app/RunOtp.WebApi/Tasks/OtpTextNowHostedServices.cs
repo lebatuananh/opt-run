@@ -39,15 +39,13 @@ public class OtpTextNowHostedServices : IHostedService
                             switch (item.WebType)
                             {
                                 case WebType.RentOtp:
-                                    await rentTextNowClient.CheckOtpRequest(item.Id.ToString());
+                                    await rentTextNowClient.CheckOtpRequest(item);
                                     break;
                                 case WebType.OtpTextNow:
-                                    await otpTextNowClient.CheckOtpRequest(item.Id.ToString());
+                                    await otpTextNowClient.CheckOtpRequest(item);
                                     break;
                                 case WebType.RunOtp:
                                     break;
-                                default:
-                                    throw new ArgumentOutOfRangeException();
                             }
                         }
                     }

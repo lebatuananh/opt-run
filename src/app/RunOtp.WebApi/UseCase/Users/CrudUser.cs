@@ -6,7 +6,7 @@ namespace RunOtp.WebApi.UseCase.Users;
 
 public struct MutateUser
 {
-    public record GetListUserQueries(int Skip, int Take, string? Query) : IQueries;
+    public record GetListUserQueries(int Skip, int Take, string Query) : IQueries;
 
     public record RegisterUserCommand : ICreateCommand
     {
