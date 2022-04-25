@@ -5,11 +5,11 @@ using RunOtp.Driver.RentOtp;
 
 namespace RunOtp.WebApi.Tasks;
 
-public class OtpTextNowHostedServices : IHostedService
+public class CreatedOrderHistoryHostedServices : IHostedService
 {
     private readonly IServiceScopeFactory _scopeFactory;
 
-    public OtpTextNowHostedServices(IServiceScopeFactory scopeFactory)
+    public CreatedOrderHistoryHostedServices(IServiceScopeFactory scopeFactory)
     {
         _scopeFactory = scopeFactory;
     }
@@ -27,9 +27,8 @@ public class OtpTextNowHostedServices : IHostedService
                     var rentTextNowClient = scope.ServiceProvider.GetRequiredService<IRentCodeTextNowClient>();
 
                     var orderHistories =
-                        await orderHistoryRepository.FindAll(x =>
-                                x.Status != OrderStatus.Error && x.Status != OrderStatus.Success)
-                            .Take(500)
+                        await orderHistoryRepository.FindAll(x => x.Status == OrderStatus.Created)
+                            .Take(1000)
                             .OrderBy(x => x.CreatedDate)
                             .ToListAsync(cancellationToken: cancellationToken);
                     if (orderHistories.Any())

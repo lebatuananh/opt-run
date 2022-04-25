@@ -55,7 +55,7 @@ public class RunOtpClient : BaseApiClient, IRunOtpClient
         }
     }
 
-    public Task<RunOtpResponse> CheckRequest(Guid userId, string requestId)
+    public Task<RunOtpResponse> CheckOtpRequest(OrderHistory orderHistory)
     {
         throw new NotImplementedException();
     }

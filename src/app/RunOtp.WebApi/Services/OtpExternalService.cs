@@ -53,19 +53,19 @@ public class OtpExternalService : IOtpExternalService
             throw new Exception("Account has not been activated or locked, please contact admin for support");
         }
 
-        if (user.Balance < 0)
+        if (user.Balance <= 0)
         {
-            throw new Exception("Tài khoản của bạn không đủ để sử dụng dịch vụ, xin vui lòng nạp thêm tiền");
+            throw new Exception("Your account is not enough to use the service, please add more money");
         }
 
         var webTypeResult = await _webConfigurationRepository.GetSingleAsync(x => x.Selected);
-        webType = webTypeResult?.WebType ?? WebType.RentOtp;
+        webType = webTypeResult?.WebType ?? WebType.RunOtp;
 
         switch (webType)
         {
             case WebType.RunOtp:
-                // var resultRunOtpResponse = await _runOtpClient.CreateRequest(user.Id);
-                return null;
+                var resultRunOtpResponse = await _runOtpClient.CreateRequest(user.Id);
+                return resultRunOtpResponse;
             case WebType.OtpTextNow:
                 var resultNumberResponse = await _otpTextNowClient.CreateRequest(user.Id);
                 return resultNumberResponse;

@@ -38,7 +38,8 @@ await WithSeriLog(async () =>
         .AddEndpointsApiExplorer()
         .AddInitializationStages()
         .AddControllers();
-    builder.Services.AddHostedService<OtpTextNowHostedServices>();
+    builder.Services.AddHostedService<CreatedOrderHistoryHostedServices>();
+    builder.Services.AddHostedService<ProcessingOrderHistoryHostedServices>();
     builder.Services.AddHostedService<TransactionHostedServices>();
     var app = builder.Build();
 
