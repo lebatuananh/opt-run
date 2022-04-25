@@ -242,7 +242,7 @@ public class BaseApiClient : IBaseApiClient
         if (!responseMessage.IsSuccessStatusCode)
         {
             var bodyText = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-            throw new Exception(bodyText);
+            throw new Exception($"Server is busy, please try again later {bodyText}");
         }
     }
 }

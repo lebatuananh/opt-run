@@ -45,3 +45,10 @@ public record ReportDto(
     int TotalRequest,
     int TotalRequestSuccess,
     int TotalRequestError);
+
+public record TotalOrderHistoryDto(
+    int TotalTransaction,
+    int TotalRequest,
+    int TotalRequestSuccess,
+    int TotalRequestError
+);

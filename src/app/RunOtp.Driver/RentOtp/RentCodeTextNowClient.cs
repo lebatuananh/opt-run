@@ -30,31 +30,33 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
 
     public async Task<CreateOrderResponseClient> CreateRequest(Guid userId)
     {
-        var url =
-            $"{ClientConstant.RentOtp.Endpoint}/get-phone/?access_token={ClientConstant.RentOtp.ApiKey}";
-        var response =
-            await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName, ClientConstant.RentOtp.Url);
-
-        if (string.IsNullOrEmpty(response.Phone))
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                response = await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName,
-                    ClientConstant.RentOtp.Url);
-                if (!string.IsNullOrEmpty(response.Phone))
-                {
-                    break;
-                }
-
-                await Task.Delay(300);
-            }
-        }
-
-        Log.Error("Request: ${RequestId} - Balance: ${Balance}", response.Phone, response.Balance);
-
-        if (string.IsNullOrEmpty(response.Phone)) throw new Exception("Can't get phone number");
         try
         {
+            var url =
+                $"{ClientConstant.RentOtp.Endpoint}/get-phone/?access_token={ClientConstant.RentOtp.ApiKey}";
+            var response =
+                await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName,
+                    ClientConstant.RentOtp.Url);
+
+            if (string.IsNullOrEmpty(response.Phone))
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    response = await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName,
+                        ClientConstant.RentOtp.Url);
+                    if (!string.IsNullOrEmpty(response.Phone))
+                    {
+                        break;
+                    }
+
+                    await Task.Delay(300);
+                }
+            }
+
+            Log.Error("Request: ${RequestId} - Balance: ${Balance}", response.Phone, response.Balance);
+
+            if (string.IsNullOrEmpty(response.Phone)) throw new Exception("Can't get phone number");
+
             var entity = new OrderHistory(string.Empty, response.Phone, string.Empty,
                 WebType.RentOtp, OrderStatus.Created, userId);
             _orderHistoryRepository.Add(entity);
@@ -108,6 +110,13 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
                         await _transactionRepository.CommitAsync();
                     }
                 }
+            }
+            else if (!response.Success && response.Description == RentCodeNumberResponse.NoPhoneMessage)
+            {
+                Log.Error("Code Error: {Response}", JsonConvert.SerializeObject(response));
+                responseClient.Status = OrderStatus.Error;
+                orderHistory.Error(RentCodeNumberResponse.StatusError);
+                await _orderHistoryRepository.CommitAsync();
             }
             else
             {

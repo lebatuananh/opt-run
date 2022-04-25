@@ -59,7 +59,7 @@ public class OtpExternalService : IOtpExternalService
         }
 
         var webTypeResult = await _webConfigurationRepository.GetSingleAsync(x => x.Selected);
-        webType = webTypeResult?.WebType ?? WebType.RunOtp;
+        webType = webTypeResult?.WebType ?? WebType.RentOtp;
 
         switch (webType)
         {
@@ -124,7 +124,7 @@ public class OtpExternalService : IOtpExternalService
                     Status = resultNumberRentResponse.Status
                 };
             default:
-                throw new Exception("Xịn mới bạn nhập đúng site lấy lấy mã code");
+                throw new Exception("This record does not exist");
         }
     }
 }

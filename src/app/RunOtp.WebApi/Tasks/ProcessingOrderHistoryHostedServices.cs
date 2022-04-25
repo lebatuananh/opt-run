@@ -3,7 +3,7 @@ using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Driver.OtpTextNow;
 using RunOtp.Driver.RentOtp;
 using RunOtp.Driver.RunOtp;
-
+using Log = Serilog.Log;
 namespace RunOtp.WebApi.Tasks;
 
 public class ProcessingOrderHistoryHostedServices : IHostedService
@@ -38,6 +38,7 @@ public class ProcessingOrderHistoryHostedServices : IHostedService
                     {
                         foreach (var item in orderHistories)
                         {
+                            Log.Error("Request processing {Id} - {Phone} - {Web}", item.Id, item.NumberPhone, item.WebType);
                             switch (item.WebType)
                             {
                                 case WebType.RentOtp:

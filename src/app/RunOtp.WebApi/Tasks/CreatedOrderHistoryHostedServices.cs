@@ -2,6 +2,7 @@ using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Driver.OtpTextNow;
 using RunOtp.Driver.RentOtp;
+using Log = Serilog.Log;
 
 namespace RunOtp.WebApi.Tasks;
 
@@ -35,6 +36,7 @@ public class CreatedOrderHistoryHostedServices : IHostedService
                     {
                         foreach (var item in orderHistories)
                         {
+                            Log.Error("Request created {Id} - {Phone} - {Web}", item.Id, item.NumberPhone, item.WebType);
                             switch (item.WebType)
                             {
                                 case WebType.RentOtp:

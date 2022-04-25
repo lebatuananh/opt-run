@@ -27,7 +27,7 @@ public class TransactionHostedServices : IHostedService
                     var transactionRepository = scope.ServiceProvider.GetRequiredService<ITransactionRepository>();
                     var transactions = await transactionRepository.FindAll(
                             x => !string.IsNullOrEmpty(x.Ref) && x.Status != TransactionStatus.Completed)
-                        .Take(100)
+                        .Take(1000)
                         .OrderBy(x => x.CreatedDate).ToListAsync(cancellationToken: cancellationToken);
                     if (transactions.Count > 0)
                     {

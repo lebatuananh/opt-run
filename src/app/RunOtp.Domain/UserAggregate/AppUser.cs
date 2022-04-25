@@ -60,12 +60,7 @@ public class AppUser : IdentityUser<Guid>, IAggregateRoot
 
     public void SubtractMoneyOtp()
     {
-        if (Discount > 0)
-        {
-            SubtractMoney(Discount);
-        }
-
-        SubtractMoney(OtpPrice);
+        SubtractMoney(Discount > 0 ? Discount : OtpPrice);
     }
 
     public void Enable()
