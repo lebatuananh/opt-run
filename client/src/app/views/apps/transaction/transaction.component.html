@@ -45,6 +45,11 @@
               </ng-container>
             </ng-template>
           </ngx-datatable-column>
+          <ngx-datatable-column name="Username" prop="username" [width]="150" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
           <ngx-datatable-column name="Thông tin" prop="note" [width]="200" [sortable]="false">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{ value }}

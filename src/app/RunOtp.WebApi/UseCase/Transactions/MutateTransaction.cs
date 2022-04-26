@@ -51,7 +51,7 @@ public struct MutateTransaction
                         x.BankAccount,
                         x.Note,
                         x.Response,
-                        x.AppUser.Email,
+                        x.AppUser.UserName,
                         x.Status,
                         x.CompletedDate,
                         x.PaymentGateway,

@@ -85,7 +85,7 @@ export interface OrderHistory extends Entity{
   message: string;
   webType: WebType;
   status: OrderStatus;
-  email: string;
+  username: string;
   otpCode: string;
 }
 
@@ -97,7 +97,7 @@ export interface Transaction extends Entity{
   bankAccount: string;
   completedDate: Date;
   response: string;
-  email: string;
+  username: string;
   paymentGateway: PaymentGateway;
   status: TransactionStatus;
 }

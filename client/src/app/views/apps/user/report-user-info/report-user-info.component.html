@@ -1,0 +1,17 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Thông tin chi tiết khách hàng</h5>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="isLoading" class="row">
+      <div class="col-lg-4">Số yêu cầu: {{reportUser.totalRequest}}</div>
+      <div class="col-lg-4">Số yêu cầu thành công: {{reportUser.totalRequestSuccess}}</div>
+      <div class="col-lg-4">Số yêu cầu lỗi: {{reportUser.totalRequestError}}</div>
+    </div>
+    <div class="d-flex align-items-center mt-4">
+      <div class="ms-auto">
+        <button type="button" class="btn btn-sm btn-secondary me-2" (click)="hide()">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>

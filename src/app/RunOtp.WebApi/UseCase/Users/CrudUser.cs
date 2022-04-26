@@ -117,20 +117,14 @@ public struct MutateUser
 
         public async Task<IResult> Handle(GetListUserQueries request, CancellationToken cancellationToken)
         {
-            var queryResult = await _userManager.Users.Include(x => x.OrderHistories).Where(x =>
+            var queryResult = await _userManager.Users.Where(x =>
                     string.IsNullOrEmpty(x.UserName) || EF.Functions.ILike(x.UserName, $"%{request.Query}%"))
                 .OrderByDescending(x => x.Balance).ToQueryResultAsync(request.Skip, request.Take);
 
-            var resultItems = queryResult.Items.Select(x =>
-            {
-                // var totalRequest = x.OrderHistories.Count;
-                // var totalSuccessRequest = x.OrderHistories.Count(u => u.Status == OrderStatus.Success);
-                // var totalErrorRequest = x.OrderHistories.Count(u => u.Status == OrderStatus.Error);
-                return new UserPagingDto(x.Id, x.Email, x.UserName, x.Balance,
-                    x.TotalAmountUsed,
-                    x.Deposit, x.Discount, x.ClientSecret, 0, 0, 0,
-                    x.Status);
-            });
+            var resultItems = queryResult.Items.Select(x => new UserPagingDto(x.Id, x.Email, x.UserName, x.Balance,
+                x.TotalAmountUsed,
+                x.Deposit, x.Discount, x.ClientSecret, 0, 0, 0,
+                x.Status));
 
             var result = new QueryResult<UserPagingDto>()
             {

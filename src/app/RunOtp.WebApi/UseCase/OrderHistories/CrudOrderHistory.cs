@@ -103,7 +103,7 @@ public struct MutateOrderHistory
                         x.WebType,
                         x.Status,
                         x.OtpCode,
-                        x.AppUser.Email,
+                        x.AppUser.UserName,
                         x.CreatedDate,
                         x.LastUpdatedDate))
                     .ToList()
@@ -122,7 +122,7 @@ public struct MutateOrderHistory
                 item.WebType,
                 item.Status,
                 item.OtpCode,
-                item.AppUser.Email,
+                item.AppUser.UserName,
                 item.CreatedDate,
                 item.LastUpdatedDate);
             return Results.Ok(ResultModel<OrderHistoryDto>.Create(result));

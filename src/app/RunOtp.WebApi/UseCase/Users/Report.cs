@@ -76,7 +76,7 @@ public struct Report
             var totalRequest = orderHistories.Count;
             var totalRequestSuccess = orderHistories.Count(x => x.Status == OrderStatus.Success);
             var totalRequestError = orderHistories.Count(x => x.Status == OrderStatus.Error);
-            var response = new ReportDto(0, 0, totalRequest, totalRequestSuccess, totalRequestError);
+            var response = new ReportDto(0, 0, 0, totalRequest, totalRequestSuccess, totalRequestError);
             return Results.Ok(ResultModel<ReportDto>.Create(response));
         }
     }

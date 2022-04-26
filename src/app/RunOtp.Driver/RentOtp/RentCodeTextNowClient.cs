@@ -53,7 +53,8 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
                 }
             }
 
-            Log.Error("Request: ${RequestId} - Balance: ${Balance}", response.Phone, response.Balance);
+            Log.Error("Request create: {RequestId} - Balance: {Balance} - UserId: {UserId}", response.Phone,
+                response.Balance, userId);
 
             if (string.IsNullOrEmpty(response.Phone)) throw new Exception("Can't get phone number");
 
@@ -75,7 +76,8 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
             $"{ClientConstant.RentOtp.Endpoint}/get-otp/?access_token={ClientConstant.RentOtp.ApiKey}&phone={orderHistory.NumberPhone}";
         var response =
             await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName, ClientConstant.RentOtp.Url);
-        Log.Error("Response RentCode: {Response}", JsonConvert.SerializeObject(response));
+        Log.Error("Response RentCode: {Response} - {UserId}", JsonConvert.SerializeObject(response),
+            orderHistory.UserId);
         var responseClient = new OtpCodeResponse()
         {
             Message = response.Message,
@@ -113,7 +115,6 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
             }
             else if (!response.Success && response.Description == RentCodeNumberResponse.NoPhoneMessage)
             {
-                Log.Error("Code Error: {Response}", JsonConvert.SerializeObject(response));
                 responseClient.Status = OrderStatus.Error;
                 orderHistory.Error(RentCodeNumberResponse.StatusError);
                 await _orderHistoryRepository.CommitAsync();
@@ -128,7 +129,6 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
                         await _orderHistoryRepository.CommitAsync();
                         break;
                     case RentCodeNumberResponse.StatusError:
-                        Log.Error("Code Error: {Response}", JsonConvert.SerializeObject(response));
                         responseClient.Status = OrderStatus.Error;
                         orderHistory.Error(RentCodeNumberResponse.StatusError);
                         await _orderHistoryRepository.CommitAsync();

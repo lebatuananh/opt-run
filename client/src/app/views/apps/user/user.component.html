@@ -44,39 +44,43 @@
               {{value | currency: "VND"}}
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Y/c" prop="totalRequest" [width]="100" [sortable]="false">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value}} y/c
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Y/c thành công" prop="totalSuccess" [width]="100" [sortable]="false">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value}} y/c
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Y/c thất bại" prop="totalFailed" [width]="100" [sortable]="false">
-            <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value}} y/c
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Giá chiết khấu" prop="discount" [width]="100" [sortable]="false">
+<!--          <ngx-datatable-column name="Y/c" prop="totalRequest" [width]="100" [sortable]="false">-->
+<!--            <ng-template let-value="value" ngx-datatable-cell-template>-->
+<!--              {{value}} y/c-->
+<!--            </ng-template>-->
+<!--          </ngx-datatable-column>-->
+<!--          <ngx-datatable-column name="Y/c thành công" prop="totalSuccess" [width]="100" [sortable]="false">-->
+<!--            <ng-template let-value="value" ngx-datatable-cell-template>-->
+<!--              {{value}} y/c-->
+<!--            </ng-template>-->
+<!--          </ngx-datatable-column>-->
+<!--          <ngx-datatable-column name="Y/c thất bại" prop="totalFailed" [width]="100" [sortable]="false">-->
+<!--            <ng-template let-value="value" ngx-datatable-cell-template>-->
+<!--              {{value}} y/c-->
+<!--            </ng-template>-->
+<!--          </ngx-datatable-column>-->
+          <ngx-datatable-column name="Giá chiết khấu" prop="discount" [width]="150" [sortable]="false">
             <ng-template let-value="value" ngx-datatable-cell-template>
               {{value | currency: "VND"}}
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Hành động" prop="id" [width]="200" [sortable]="false">
+          <ngx-datatable-column name="Hành động" prop="id" [width]="300" [sortable]="false">
             <ng-template let-value="value" ngx-datatable-cell-template>
               <div class="my-2">
                 <a class="btn btn-primary btn-sm  ms-2" (click)="recharge(value)">Nạp tiền</a>
                 <a class="btn btn-info btn-sm  ms-2" (click)="updateDiscount(value)">Cập nhật</a>
               </div>
-              <div>
+              <div class="my-2">
                 <a class="btn btn-success btn-sm  ms-2"
                    [confirm-dialog]="'Bạn có muốn kích hoạt tài khoản này?'" (confirmed)="active(value)">Kích
                   hoạt</a>
                 <a class="btn btn-danger btn-sm  ms-2"
                    [confirm-dialog]="'Bạn có muốn khoá tài khoản này?'" (confirmed)="inActive(value)">Khoá</a>
+              </div>
+              <div class="my-2">
+                <a class="btn btn-info btn-sm  ms-2"
+                   (click)="reportInformation(value)">Thông tin</a>
               </div>
 
             </ng-template>
