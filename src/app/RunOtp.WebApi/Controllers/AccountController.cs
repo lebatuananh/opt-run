@@ -54,6 +54,27 @@ public class AccountController : BaseController
         return await Mediator.Send(new MutateUser.GetListUserQueries(skip, take, query));
     }
 
+    [HttpPost]
+    [Authorize(Policy = AuthorizationConsts.AdministrationPolicy)]
+    public async Task<IResult> Active(ChangeStatusUser.ActiveUserCommand activeUserCommand)
+    {
+        return await Mediator.Send(activeUserCommand);
+    }
+
+    [HttpPost]
+    [Authorize(Policy = AuthorizationConsts.AdministrationPolicy)]
+    public async Task<IResult> InActive(ChangeStatusUser.InActiveUserCommand inActiveUserCommand)
+    {
+        return await Mediator.Send(inActiveUserCommand);
+    }
+
+    [HttpPost]
+    [Authorize(Policy = AuthorizationConsts.AdministrationPolicy)]
+    public async Task<IResult> UpdateDiscount(ChangeStatusUser.UpdateDiscountCommand updateDiscountCommand)
+    {
+        return await Mediator.Send(updateDiscountCommand);
+    }
+
     [HttpGet]
     [Authorize(Policy = AuthorizationConsts.AdministrationPolicy)]
     public async Task<IResult> GetReportByUserId(Guid userId)

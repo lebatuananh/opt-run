@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using RunOtp.Domain.ErrorLog;
 using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.RoleAggregate;
 using RunOtp.Domain.TransactionAggregate;
@@ -41,7 +42,7 @@ public static class Extensions
         });
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<MainDbContext>());
-        services.AddScoped<IScopeContext, ScopeContext>();
+        services.AddTransient<IScopeContext, ScopeContext>();
         return services;
     }
 
@@ -120,8 +121,7 @@ public static class Extensions
         services.AddTransient<IWebConfigurationRepository, WebConfigurationRepository>();
         services.AddTransient<IOrderHistoryRepository, OrderHistoryRepository>();
         services.AddTransient<ITransactionRepository, TransactionRepository>();
-        services.AddTransient<IOtpTextNowTask, OtpTextNowTask>();
-
+        services.AddTransient<IErrorLogRepository, ErrorLogRepository>();
         return services;
     }
 

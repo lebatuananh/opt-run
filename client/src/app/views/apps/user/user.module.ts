@@ -9,13 +9,15 @@ import {SharedModule} from '@app/shared/shared.module';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {UserRoutingModule} from '@app/views/apps/user/user.routing.module';
 import { RechargeUserModalComponent } from './recharge-user-modal/recharge-user-modal.component';
+import {UpdateDiscountModalComponent} from '@app/views/apps/user/update-discount-modal/update-discount-modal.component';
 
 
 
 @NgModule({
   declarations: [
     UserComponent,
-    RechargeUserModalComponent
+    RechargeUserModalComponent,
+    UpdateDiscountModalComponent
   ],
   imports: [
     CommonModule,

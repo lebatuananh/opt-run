@@ -561,6 +561,10 @@ namespace RunOtp.WebApi.Data.Migrations.RunOtp
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("last_updated_date");
 
+                    b.Property<bool>("Selected")
+                        .HasColumnType("boolean")
+                        .HasColumnName("selected");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer")
                         .HasColumnName("status");

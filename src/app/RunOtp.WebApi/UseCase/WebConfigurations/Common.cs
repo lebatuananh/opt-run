@@ -9,6 +9,7 @@ public record WebConfigurationDto(
     string WebName,
     string Endpoint,
     WebStatus Status,
+    bool Selected,
     DateTimeOffset CreatedDate,
     DateTimeOffset LastUpdatedDate
 );

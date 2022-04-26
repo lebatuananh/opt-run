@@ -26,6 +26,7 @@ export class CashFundComponent extends DataTableContainer<OrderHistory> {
               private translate: TranslateService,
   ) {
     super(cd);
+    this.take = 50;
   }
 
   protected fetch(): Observable<Result<QueryResult<OrderHistory>>> {

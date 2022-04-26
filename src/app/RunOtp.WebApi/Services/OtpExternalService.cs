@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.UserAggregate;
 using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Driver;
@@ -14,14 +15,23 @@ public class OtpExternalService : IOtpExternalService
     private readonly IOtpTextNowClient _otpTextNowClient;
     private readonly IRentCodeTextNowClient _rentCodeTextNowClient;
     private readonly UserManager<AppUser> _userManager;
+    private readonly IWebConfigurationRepository _webConfigurationRepository;
+    private readonly IOrderHistoryRepository _orderHistoryRepository;
 
-    public OtpExternalService(IRunOtpClient runOtpClient, IOtpTextNowClient otpTextNowClient,
-        UserManager<AppUser> userManager, IRentCodeTextNowClient rentCodeTextNowClient)
+    public OtpExternalService(
+        IRunOtpClient runOtpClient,
+        IOtpTextNowClient otpTextNowClient,
+        UserManager<AppUser> userManager,
+        IRentCodeTextNowClient rentCodeTextNowClient,
+        IWebConfigurationRepository webConfigurationRepository,
+        IOrderHistoryRepository orderHistoryRepository)
     {
         _runOtpClient = runOtpClient;
         _otpTextNowClient = otpTextNowClient;
         _userManager = userManager;
         _rentCodeTextNowClient = rentCodeTextNowClient;
+        _webConfigurationRepository = webConfigurationRepository;
+        _orderHistoryRepository = orderHistoryRepository;
     }
 
     public async Task<CreateOrderResponseClient> CreateOtpRequest(string apiKey, WebType webType)
@@ -32,21 +42,30 @@ public class OtpExternalService : IOtpExternalService
         }
 
         var user = await _userManager.Users.SingleOrDefaultAsync(x => x.ClientSecret == apiKey);
+
         if (user is null)
         {
             throw new Exception("User does not exist, try re-entering apiKey");
         }
 
-        if (user.Balance < 0)
+        if (user.Status == UserStatus.InActive)
         {
-            throw new Exception("Tài khoản của bạn không đủ để sử dụng dịch vụ, xin vui lòng nạp thêm tiền");
+            throw new Exception("Account has not been activated or locked, please contact admin for support");
         }
+
+        if (user.Balance <= 0)
+        {
+            throw new Exception("Your account is not enough to use the service, please add more money");
+        }
+
+        var webTypeResult = await _webConfigurationRepository.GetSingleAsync(x => x.Selected);
+        webType = webTypeResult?.WebType ?? WebType.RentOtp;
 
         switch (webType)
         {
             case WebType.RunOtp:
-                // var resultRunOtpResponse = await _runOtpClient.CreateRequest(user.Id);
-                return null;
+                var resultRunOtpResponse = await _runOtpClient.CreateRequest(user.Id);
+                return resultRunOtpResponse;
             case WebType.OtpTextNow:
                 var resultNumberResponse = await _otpTextNowClient.CreateRequest(user.Id);
                 return resultNumberResponse;
@@ -71,13 +90,25 @@ public class OtpExternalService : IOtpExternalService
             throw new Exception("User does not exist, try re-entering apiKey");
         }
 
-        switch (webType)
+        var item = await _orderHistoryRepository.GetByIdAsync(requestId);
+        if (item is null) throw new Exception($"Không tìm thấy bản ghi Id={requestId}");
+        if (item.Status is OrderStatus.Success or OrderStatus.Error)
+        {
+            return new OtpExternalResponse()
+            {
+                Message = item.Message,
+                Status = item.Status,
+                OtpCode = item.OtpCode
+            };
+        }
+
+        switch (item.WebType)
         {
             case WebType.RunOtp:
                 // var resultRunOtpResponse = await _runOtpClient.CheckRequest(user.Id, requestId.ToString());
                 return null;
             case WebType.OtpTextNow:
-                var resultNumberResponse = await _otpTextNowClient.CheckOtpRequest(requestId.ToString());
+                var resultNumberResponse = await _otpTextNowClient.CheckOtpRequest(item);
                 return new OtpExternalResponse()
                 {
                     Message = resultNumberResponse.Message,
@@ -85,7 +116,7 @@ public class OtpExternalService : IOtpExternalService
                     Status = resultNumberResponse.Status
                 };
             case WebType.RentOtp:
-                var resultNumberRentResponse = await _rentCodeTextNowClient.CheckOtpRequest(requestId.ToString());
+                var resultNumberRentResponse = await _rentCodeTextNowClient.CheckOtpRequest(item);
                 return new OtpExternalResponse()
                 {
                     Message = resultNumberRentResponse.Message,
@@ -93,7 +124,7 @@ public class OtpExternalService : IOtpExternalService
                     Status = resultNumberRentResponse.Status
                 };
             default:
-                throw new Exception("Xịn mới bạn nhập đúng site lấy lấy mã code");
+                throw new Exception("This record does not exist");
         }
     }
 }

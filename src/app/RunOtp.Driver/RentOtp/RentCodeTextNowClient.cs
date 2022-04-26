@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.TransactionAggregate;
 using RunOtp.Domain.UserAggregate;
@@ -29,31 +30,33 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
 
     public async Task<CreateOrderResponseClient> CreateRequest(Guid userId)
     {
-        var url =
-            $"{ClientConstant.RentOtp.Endpoint}/get-phone/?access_token={ClientConstant.RentOtp.ApiKey}";
-        var response =
-            await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName, ClientConstant.RentOtp.Url);
-
-        if (string.IsNullOrEmpty(response.Phone))
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                response = await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName,
-                    ClientConstant.RentOtp.Url);
-                if (!string.IsNullOrEmpty(response.Phone))
-                {
-                    break;
-                }
-
-                await Task.Delay(300);
-            }
-        }
-
-        Log.Error("Request: ${RequestId} - Balance: ${Balance}", response.Phone, response.Balance);
-
-        if (string.IsNullOrEmpty(response.Phone)) throw new Exception("Can't get phone number");
         try
         {
+            var url =
+                $"{ClientConstant.RentOtp.Endpoint}/get-phone/?access_token={ClientConstant.RentOtp.ApiKey}";
+            var response =
+                await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName,
+                    ClientConstant.RentOtp.Url);
+
+            if (string.IsNullOrEmpty(response.Phone))
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    response = await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName,
+                        ClientConstant.RentOtp.Url);
+                    if (!string.IsNullOrEmpty(response.Phone))
+                    {
+                        break;
+                    }
+
+                    await Task.Delay(300);
+                }
+            }
+
+            Log.Error("Request: ${RequestId} - Balance: ${Balance}", response.Phone, response.Balance);
+
+            if (string.IsNullOrEmpty(response.Phone)) throw new Exception("Can't get phone number");
+
             var entity = new OrderHistory(string.Empty, response.Phone, string.Empty,
                 WebType.RentOtp, OrderStatus.Created, userId);
             _orderHistoryRepository.Add(entity);
@@ -66,61 +69,72 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
         }
     }
 
-    public async Task<OtpCodeResponse> CheckOtpRequest(string id)
+    public async Task<OtpCodeResponse> CheckOtpRequest(OrderHistory orderHistory)
     {
-        var item = await _orderHistoryRepository.GetByIdAsync(new Guid(id));
-        if (item is null) throw new Exception($"Không tìm thấy bản ghi Id={id}");
         var url =
-            $"{ClientConstant.RentOtp.Endpoint}/get-otp/?access_token={ClientConstant.RentOtp.ApiKey}&phone={item.NumberPhone}";
+            $"{ClientConstant.RentOtp.Endpoint}/get-otp/?access_token={ClientConstant.RentOtp.ApiKey}&phone={orderHistory.NumberPhone}";
         var response =
             await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName, ClientConstant.RentOtp.Url);
+        Log.Error("Response RentCode: {Response}", JsonConvert.SerializeObject(response));
         var responseClient = new OtpCodeResponse()
         {
             Message = response.Message,
         };
         try
         {
-            if (!string.IsNullOrEmpty(response.Otp))
+            if (!string.IsNullOrEmpty(response.Otp) && response.Status == RentCodeNumberResponse.StatusSuccess)
             {
                 if (response.Otp.IsNumeric())
                 {
                     responseClient.Status = OrderStatus.Success;
-                    item.Success(response.Otp);
-                    _orderHistoryRepository.Update(item);
+                    responseClient.OtpCode = response.Otp;
+                    orderHistory.Success(response.Otp);
+                    _orderHistoryRepository.Update(orderHistory);
+                    await _orderHistoryRepository.CommitAsync();
                     var user = await _userManager
-                        .FindByIdAsync(item.UserId.ToString());
+                        .FindByIdAsync(orderHistory.UserId.ToString());
                     if (user is null)
                     {
                         throw new Exception("User not found");
                     }
 
                     var transaction =
-                        await _transactionRepository.GetSingleAsync(x => x.Ref == item.Id.ToString());
+                        await _transactionRepository.GetSingleAsync(x => x.Ref == orderHistory.Id.ToString());
                     if (transaction == null)
                     {
                         var totalAmount = user.Discount > 0 ? user.Discount : AppUser.OtpPrice;
                         var entityTransaction = new Transaction(user.Id, totalAmount,
-                            $"Thanh toán cho dịch vụ code : {item.OtpCode} - {item.Id}",
-                            "Account", PaymentGateway.Wallet, Action.Deduction, item.Id.ToString());
+                            $"Thanh toán cho dịch vụ code : {orderHistory.OtpCode} - {orderHistory.Id}",
+                            "Account", PaymentGateway.Wallet, Action.Deduction, orderHistory.Id.ToString());
                         _transactionRepository.Add(entityTransaction);
                         await _transactionRepository.CommitAsync();
                     }
                 }
             }
+            else if (!response.Success && response.Description == RentCodeNumberResponse.NoPhoneMessage)
+            {
+                Log.Error("Code Error: {Response}", JsonConvert.SerializeObject(response));
+                responseClient.Status = OrderStatus.Error;
+                orderHistory.Error(RentCodeNumberResponse.StatusError);
+                await _orderHistoryRepository.CommitAsync();
+            }
             else
+            {
                 switch (response.Status)
                 {
                     case RentCodeNumberResponse.StatusProcessing:
                         responseClient.Status = OrderStatus.Processing;
-                        item.Processing(RentCodeNumberResponse.StatusProcessing);
-                        await _transactionRepository.CommitAsync();
+                        orderHistory.Processing(RentCodeNumberResponse.StatusProcessing);
+                        await _orderHistoryRepository.CommitAsync();
                         break;
                     case RentCodeNumberResponse.StatusError:
+                        Log.Error("Code Error: {Response}", JsonConvert.SerializeObject(response));
                         responseClient.Status = OrderStatus.Error;
-                        item.Error(string.Empty);
-                        await _transactionRepository.CommitAsync();
+                        orderHistory.Error(RentCodeNumberResponse.StatusError);
+                        await _orderHistoryRepository.CommitAsync();
                         break;
                 }
+            }
         }
         catch (Exception e)
         {

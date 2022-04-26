@@ -32,7 +32,7 @@ public class RunOtpClient : BaseApiClient, IRunOtpClient
                 ClientConstant.ClientName,
                 ClientConstant.RunOtp.Url);
         var data = response.Results.Data?.First();
-        if (data is null || string.IsNullOrEmpty(data?.Phone) ||
+        if (data is null || string.IsNullOrEmpty(data.Phone) ||
             string.IsNullOrEmpty(data?.RequestId)) return null;
         try
         {
@@ -55,7 +55,7 @@ public class RunOtpClient : BaseApiClient, IRunOtpClient
         }
     }
 
-    public Task<RunOtpResponse> CheckRequest(Guid userId, string requestId)
+    public Task<RunOtpResponse> CheckOtpRequest(OrderHistory orderHistory)
     {
         throw new NotImplementedException();
     }

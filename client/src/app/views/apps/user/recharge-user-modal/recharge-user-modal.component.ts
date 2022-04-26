@@ -66,7 +66,7 @@ export class RechargeUserModalComponent implements OnInit {
     };
     return this.authenticationService.recharge(command)
       .pipe(
-        tap(() => this.toastr.success(this.translate.instant('Cập nhật template key thành công'))
+        tap(() => this.toastr.success(this.translate.instant('Nạp tiền thành công'))
         )
       );
   }

@@ -44,11 +44,13 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
     {
         var url =
             $"{ClientConstant.OtpTextNow.Endpoint}/?key={ClientConstant.OtpTextNow.ApiKey}&action=get_number&id=1";
-        var response = await GetObjectAsync<NumberResponse>(url, ClientConstant.ClientName, ClientConstant.OtpTextNow.Url);
+        var response =
+            await GetObjectAsync<NumberResponse>(url, ClientConstant.ClientName, ClientConstant.OtpTextNow.Url);
         if (response.Status == 1)
         {
             throw new Exception("Temporarily out of phone");
         }
+
         if (response.Number is null || response.RequestId is null)
         {
             for (var i = 0; i < 5; i++)
@@ -63,6 +65,7 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                 await Task.Delay(300);
             }
         }
+
         Log.Error("Request: ${RequestId} - Number: ${Number}", response.Number, response.RequestId);
 
         if (response.Number is null || response.RequestId is null) throw new Exception("Can't get phone number");
@@ -80,12 +83,10 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
         }
     }
 
-    public async Task<OtpCodeResponse> CheckOtpRequest(string id)
+    public async Task<OtpCodeResponse> CheckOtpRequest(OrderHistory orderHistory)
     {
-        var item = await _orderHistoryRepository.GetByIdAsync(new Guid(id));
-        if (item is null) throw new Exception($"Không tìm thấy bản ghi Id={id}");
         var url =
-            $"{ClientConstant.OtpTextNow.Endpoint}/?key={ClientConstant.OtpTextNow.ApiKey}&action=get_code&id={item.RequestId}";
+            $"{ClientConstant.OtpTextNow.Endpoint}/?key={ClientConstant.OtpTextNow.ApiKey}&action=get_code&id={orderHistory.RequestId}";
         var response =
             await GetAsync<OtpCodeResponse>(url, ClientConstant.ClientName, ClientConstant.OtpTextNow.Url);
         try
@@ -95,44 +96,45 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                 if (response.Message == "Please send request slow down!" && string.IsNullOrEmpty(response.OtpCode))
                 {
                     response.Status = OrderStatus.Processing;
-                    item.Processing(string.Empty);
-                    await UpdateAndSaveDataAsync(item);
+                    orderHistory.Processing(string.Empty);
+                    await UpdateAndSaveDataAsync(orderHistory);
                 }
                 else
                     switch (response.OtpCode)
                     {
                         case "is_comming":
                             response.Status = OrderStatus.Processing;
-                            item.Processing(response.OtpCode);
-                            await UpdateAndSaveDataAsync(item);
+                            orderHistory.Processing(response.OtpCode);
+                            await UpdateAndSaveDataAsync(orderHistory);
                             break;
                         case "timeout":
                             response.Status = OrderStatus.Error;
-                            item.Error(response.OtpCode);
-                            await UpdateAndSaveDataAsync(item);
+                            orderHistory.Error(response.OtpCode);
+                            await UpdateAndSaveDataAsync(orderHistory);
                             break;
                         default:
                         {
                             if (response.OtpCode.IsNumeric())
                             {
                                 response.Status = OrderStatus.Success;
-                                item.Success(response.OtpCode);
-                                _orderHistoryRepository.Update(item);
+                                orderHistory.Success(response.OtpCode);
+                                _orderHistoryRepository.Update(orderHistory);
                                 var user = await _userManager
-                                    .FindByIdAsync(item.UserId.ToString());
+                                    .FindByIdAsync(orderHistory.UserId.ToString());
                                 if (user is null)
                                 {
                                     throw new Exception("User not found");
                                 }
 
                                 var transaction =
-                                    await _transactionRepository.GetSingleAsync(x => x.Ref == item.Id.ToString());
+                                    await _transactionRepository.GetSingleAsync(
+                                        x => x.Ref == orderHistory.Id.ToString());
                                 if (transaction == null)
                                 {
                                     var totalAmount = user.Discount > 0 ? user.Discount : AppUser.OtpPrice;
                                     var entityTransaction = new Transaction(user.Id, totalAmount,
-                                        $"Thanh toán cho dịch vụ code : {item.OtpCode} - {item.Id}",
-                                        "Account", PaymentGateway.Wallet, Action.Deduction, item.Id.ToString());
+                                        $"Thanh toán cho dịch vụ code : {orderHistory.OtpCode} - {orderHistory.Id}",
+                                        "Account", PaymentGateway.Wallet, Action.Deduction, orderHistory.Id.ToString());
                                     _transactionRepository.Add(entityTransaction);
                                     await _transactionRepository.CommitAsync();
                                 }
@@ -140,8 +142,8 @@ public class OtpTextNowClient : BaseApiClient, IOtpTextNowClient
                             else
                             {
                                 response.Status = OrderStatus.Error;
-                                item.Error(response.OtpCode);
-                                await UpdateAndSaveDataAsync(item);
+                                orderHistory.Error(response.OtpCode);
+                                await UpdateAndSaveDataAsync(orderHistory);
                             }
 
                             break;

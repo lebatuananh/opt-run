@@ -114,4 +114,16 @@ export class AuthenticationService extends BaseApi {
     return this.httpClient.get<Result<QueryResult<UserDto>>>(this.createUrl('GetPaging'),
       {params: this.createParams(params)});
   }
+
+  active(command){
+    return this.httpClient.post(this.createUrl('Active'), command);
+  }
+
+  inActive(command){
+    return this.httpClient.post(this.createUrl('InActive'), command);
+  }
+
+  updateDiscount(command){
+    return this.httpClient.post(this.createUrl('UpdateDiscount'), command);
+  }
 }

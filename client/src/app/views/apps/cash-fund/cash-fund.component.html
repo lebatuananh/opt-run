@@ -30,6 +30,11 @@
 <!--              </ng-container>-->
 <!--            </ng-template>-->
 <!--          </ngx-datatable-column>-->
+          <ngx-datatable-column name="Email" prop="email" [width]="150" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
           <ngx-datatable-column name="Trạng thái" prop="status" [width]="100" [sortable]="false">
             <ng-template let-value="value" ngx-datatable-cell-template>
               <ng-container [ngSwitch]="value">

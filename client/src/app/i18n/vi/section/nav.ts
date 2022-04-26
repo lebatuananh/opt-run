@@ -12,6 +12,7 @@ export const nav = {
     PAGES_ERRORS: 'Lỗi',
     CASH_FUND_MANAGEMENT: 'Yêu cầu số điện thoại',
     TRANSACTION_HISTORY_MANAGEMENT: 'Lịch sử giao dịch',
+    WEB_CONFIGURATION: 'Cấu hình',
     CUSTOMER: 'Khách hàng',
 
   }

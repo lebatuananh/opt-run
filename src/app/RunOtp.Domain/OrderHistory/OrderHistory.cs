@@ -16,7 +16,7 @@ public class OrderHistory : ModifierTrackingEntity, IAggregateRoot
     public DateTimeOffset CreatedTimeResponse { get; set; }
     public DateTimeOffset FinishTimeResponse { get; set; }
     public virtual AppUser AppUser { get; set; }
-
+    
     public OrderHistory(string requestId, string numberPhone, string message, WebType webType,
         OrderStatus status, Guid userId)
     {

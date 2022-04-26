@@ -38,8 +38,8 @@ export class RegisterFormComponent implements OnInit {
       };
         const error = err => {
         this.showResult = true;
-        const data = err.error;
-        this.backendError = this.translate.instant(data?.error_description || data?.error || 'Đã có lỗi xảy ra');
+        const data = err.Data;
+        this.backendError = data ? data : 'Đã có lỗi xảy ra' ;
       };
         this.authenticationService.register(this.formGroup.value.userName,
           this.formGroup.value.fullName,

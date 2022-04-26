@@ -1,0 +1,50 @@
+<div class="container-fluid p-0" style="width: 100%;">
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3 d-flex align-items-center justify-content-between">
+        <h4 class="mb-2 fw-bolder">Danh sách cấu hình</h4>
+        <div class="mb-2 d-flex">
+          <search-input [placeholder]="'Tìm kiếm...'" (changed)="search($event)"></search-input>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <ngx-datatable #table columnMode="force" class="bootstrap" [headerHeight]="50" [footerHeight]="50"
+                       rowHeight="auto" [externalSorting]="true" [messages]="messages" [loadingIndicator]="isLoading"
+                       [externalPaging]="true" [limit]="take" [rows]="items" [count]="count" (page)="onPage($event)">
+          <ngx-datatable-column name="Web" prop="webName" [width]="150" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Trạng thái" prop="selected" [width]="100" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <ng-container [ngSwitch]="value">
+                <span *ngSwitchCase="1" class="badge bg-success rounded-pill">Đang chạy</span>
+                <span *ngSwitchCase="0" class="badge bg-danger rounded-pill">Chưa chạy</span>
+              </ng-container>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Ngày tạo" prop="createdDate" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value | date:'dd/MM/yyyy HH:mm' }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Cập nhật cuối" prop="lastUpdatedDate" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{ value | date:'dd/MM/yyyy HH:mm' }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Hành động" prop="id" [width]="200" [sortable]="false">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <a class="btn btn-primary btn-sm  ms-2" [confirm-dialog]="'Bạn có xác nhận muốn chuyển sang cấu hình web?'" (confirmed)="selected(value)">Chuyển đổi</a>
+              <a class="btn btn-primary btn-sm  ms-2" (click)="edit(value)">Cập nhật</a>
+            </ng-template>
+
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+
+    </div>
+  </div>
+</div>

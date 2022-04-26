@@ -1,12 +1,13 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.AspNetCore.Identity;
+using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.UserAggregate;
 
 namespace RunOtp.WebApi.UseCase.Users;
 
 public struct MutateUser
 {
-    public record GetListUserQueries(int Skip, int Take, string? Query) : IQueries;
+    public record GetListUserQueries(int Skip, int Take, string Query) : IQueries;
 
     public record RegisterUserCommand : ICreateCommand
     {
@@ -60,7 +61,7 @@ public struct MutateUser
                 {
                     RuleFor(v => v.Id)
                         .NotEmpty()
-                        .WithMessage("Giá trị Id không được null");
+                        .WithMessage("Id value cannot be null");
                 }
             }
         }
@@ -86,11 +87,11 @@ public struct MutateUser
             var findByUsername = await _userManager.FindByNameAsync(request.UserName);
             if (findByEmail != null || findByUsername != null)
             {
-                throw new Exception("Người dùng đã tồn tại");
+                throw new Exception("User already exists");
             }
 
             var result = await _userManager.CreateAsync(new AppUser(request.UserName, request.Email, request.FullName,
-                request.BirthDay, string.Empty, UserStatus.Active), request.Password);
+                request.BirthDay, string.Empty, UserStatus.InActive), request.Password);
 
             if (!result.Succeeded) throw new Exception("Đăng ký không thành công");
             var appUser = await _userManager.FindByNameAsync(request.UserName);
@@ -116,17 +117,27 @@ public struct MutateUser
 
         public async Task<IResult> Handle(GetListUserQueries request, CancellationToken cancellationToken)
         {
-            var queryResult = await _userManager.Users.Where(x =>
+            var queryResult = await _userManager.Users.Include(x => x.OrderHistories).Where(x =>
                     string.IsNullOrEmpty(x.UserName) || EF.Functions.ILike(x.UserName, $"%{request.Query}%"))
                 .OrderByDescending(x => x.Balance).ToQueryResultAsync(request.Skip, request.Take);
-            var result = new QueryResult<UserDto>()
+
+            var resultItems = queryResult.Items.Select(x =>
+            {
+                // var totalRequest = x.OrderHistories.Count;
+                // var totalSuccessRequest = x.OrderHistories.Count(u => u.Status == OrderStatus.Success);
+                // var totalErrorRequest = x.OrderHistories.Count(u => u.Status == OrderStatus.Error);
+                return new UserPagingDto(x.Id, x.Email, x.UserName, x.Balance,
+                    x.TotalAmountUsed,
+                    x.Deposit, x.Discount, x.ClientSecret, 0, 0, 0,
+                    x.Status);
+            });
+
+            var result = new QueryResult<UserPagingDto>()
             {
                 Count = queryResult.Count,
-                Items = queryResult.Items.Select(user => new UserDto(user.Id, user.Email, user.UserName, user.Balance,
-                    user.TotalAmountUsed,
-                    user.Deposit, user.Discount, user.ClientSecret, user.Status))
+                Items = resultItems.ToList()
             };
-            return Results.Ok(ResultModel<QueryResult<UserDto>>.Create(result));
+            return Results.Ok(ResultModel<QueryResult<UserPagingDto>>.Create(result));
         }
     }
 }

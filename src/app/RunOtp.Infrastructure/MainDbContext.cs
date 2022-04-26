@@ -27,7 +27,7 @@ public class MainDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfW
     public MainDbContext()
     {
     }
-
+    
     public MainDbContext(DbContextOptions options) : base(options)
     {
     }

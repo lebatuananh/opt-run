@@ -26,9 +26,9 @@ await WithSeriLog(async () =>
         .AddAuthorizationPolicies()
         .AddCustomCors()
         .AddSwaggerConfig(builder.Configuration)
-        .AddPersistence(builder.Configuration)
         // .AddHangFireCustom(builder.Configuration)
         .AddConfig(builder.Configuration)
+        .AddPersistence(builder.Configuration)
         .AddRepository()
         .AddServices()
         .AddHttpClient(builder.Configuration)
@@ -38,7 +38,8 @@ await WithSeriLog(async () =>
         .AddEndpointsApiExplorer()
         .AddInitializationStages()
         .AddControllers();
-    builder.Services.AddHostedService<OtpTextNowHostedServices>();
+    builder.Services.AddHostedService<CreatedOrderHistoryHostedServices>();
+    builder.Services.AddHostedService<ProcessingOrderHistoryHostedServices>();
     builder.Services.AddHostedService<TransactionHostedServices>();
     var app = builder.Build();
 

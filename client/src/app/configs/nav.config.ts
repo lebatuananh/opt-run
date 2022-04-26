@@ -57,6 +57,17 @@ const apps: NavMenu[] = [
         submenu: [],
         role: ['Admin']
       },
+      {
+        path: '/web-config',
+        title: 'Cấu hình',
+        translateKey: 'NAV.WEB_CONFIGURATION',
+        type: 'item',
+        iconType: 'feather',
+        icon: 'icon-server',
+        key: 'apps.webConfig',
+        submenu: [],
+        role: ['Admin']
+      },
     ],
     role: ['Customer', 'Admin']
   }

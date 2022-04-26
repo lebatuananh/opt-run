@@ -38,6 +38,14 @@ const routes: Routes = [
       hidePageHeader: false
     }
   },
+  {
+    path: 'web-config',
+    loadChildren: () => import('./web-config/web-config.module').then(m => m.WebConfigModule),
+    data: {
+      title: 'Cấu hình',
+      hidePageHeader: false
+    }
+  },
 ];
 
 @NgModule({
