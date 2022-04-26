@@ -1,9 +1,4 @@
-﻿using RunOtp.Domain.OrderHistory;
-using RunOtp.Domain.TransactionAggregate;
-using RunOtp.Domain.UserAggregate;
-using RunOtp.Domain.WebConfigurationAggregate;
-using Action = RunOtp.Domain.TransactionAggregate.Action;
-
+﻿using RunOtp.Domain.UserAggregate;
 
 namespace RunOtp.WebApi.UseCase.Users;
 

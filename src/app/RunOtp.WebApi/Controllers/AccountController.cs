@@ -55,6 +55,13 @@ public class AccountController : BaseController
     }
 
     [HttpGet]
+    [Authorize(Policy = AuthorizationConsts.AdministrationPolicy)]
+    public async Task<IResult> GetReportByUserId(Guid userId)
+    {
+        return await Mediator.Send(new Report.GetReportByUserIdQuery(userId));
+    }
+
+    [HttpGet]
     public async Task<IResult> Report()
     {
         return await Mediator.Send(new Report.GetReportQuery());

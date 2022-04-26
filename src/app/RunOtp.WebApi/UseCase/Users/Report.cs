@@ -11,7 +11,9 @@ public struct Report
 {
     public record GetReportQuery : IQuery;
 
-    internal class Handler : IRequestHandler<GetReportQuery, IResult>
+    public record GetReportByUserIdQuery(Guid UserId) : IQuery;
+
+    internal class Handler : IRequestHandler<GetReportQuery, IResult>, IRequestHandler<GetReportByUserIdQuery, IResult>
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly ITransactionRepository _transactionRepository;
@@ -61,6 +63,17 @@ public struct Report
             var resultCurrent =
                 new ReportDto(totalRecharge, rechargeToday, totalRequest, requestSuccess, requestFailed);
             return Task.FromResult(Results.Ok(ResultModel<ReportDto>.Create(resultCurrent)));
+        }
+
+        public async Task<IResult> Handle(GetReportByUserIdQuery request, CancellationToken cancellationToken)
+        {
+            var orderHistories = await _orderHistoryRepository.FindAll(x => x.UserId == request.UserId)
+                .ToListAsync(cancellationToken: cancellationToken);
+            var totalRequest = orderHistories.Count;
+            var totalRequestSuccess = orderHistories.Count(x => x.Status == OrderStatus.Success);
+            var totalRequestError = orderHistories.Count(x => x.Status == OrderStatus.Error);
+            var response = new ReportDto(0, 0, totalRequest, totalRequestSuccess, totalRequestError);
+            return Results.Ok(ResultModel<ReportDto>.Create(response));
         }
     }
 }
