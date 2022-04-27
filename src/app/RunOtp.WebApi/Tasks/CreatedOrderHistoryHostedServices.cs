@@ -2,6 +2,7 @@ using RunOtp.Domain.OrderHistory;
 using RunOtp.Domain.WebConfigurationAggregate;
 using RunOtp.Driver.OtpTextNow;
 using RunOtp.Driver.RentOtp;
+using RunOtp.Driver.RunOtp;
 using Log = Serilog.Log;
 
 namespace RunOtp.WebApi.Tasks;
@@ -26,6 +27,7 @@ public class CreatedOrderHistoryHostedServices : IHostedService
                     var orderHistoryRepository = scope.ServiceProvider.GetRequiredService<IOrderHistoryRepository>();
                     var otpTextNowClient = scope.ServiceProvider.GetRequiredService<IOtpTextNowClient>();
                     var rentTextNowClient = scope.ServiceProvider.GetRequiredService<IRentCodeTextNowClient>();
+                    var runOtpClient = scope.ServiceProvider.GetRequiredService<IRunOtpClient>();
 
                     var orderHistories =
                         await orderHistoryRepository.FindAll(x => x.Status == OrderStatus.Created)
@@ -46,6 +48,7 @@ public class CreatedOrderHistoryHostedServices : IHostedService
                                     await otpTextNowClient.CheckOtpRequest(item);
                                     break;
                                 case WebType.RunOtp:
+                                    await runOtpClient.CheckOtpRequest(item);
                                     break;
                             }
                         }

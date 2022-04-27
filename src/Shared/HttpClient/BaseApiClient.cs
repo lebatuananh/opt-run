@@ -60,6 +60,7 @@ public class BaseApiClient : IBaseApiClient
         var response = await client.GetAsync(url);
         await PreprocessResponse<object>(response, null);
         var body = await response.Content.ReadAsStringAsync();
+        Log.Error("Body: {Body} - Url: {Url}", body, url);
         var data = JsonConvert.DeserializeObject<T>(body);
         return data;
     }

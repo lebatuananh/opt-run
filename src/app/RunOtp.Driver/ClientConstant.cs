@@ -27,5 +27,6 @@ public static class ClientConstant
         public static string Processing = "0";
         public static string Success = "1";
         public static string Cancel = "2";
+        public static string Timeout = "4";
     }
 }

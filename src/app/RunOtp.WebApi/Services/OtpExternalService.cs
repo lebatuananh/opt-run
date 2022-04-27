@@ -59,7 +59,7 @@ public class OtpExternalService : IOtpExternalService
         }
 
         var webTypeResult = await _webConfigurationRepository.GetSingleAsync(x => x.Selected);
-        webType = webTypeResult?.WebType ?? WebType.RentOtp;
+        webType = webTypeResult?.WebType ?? WebType.RunOtp;
 
         switch (webType)
         {

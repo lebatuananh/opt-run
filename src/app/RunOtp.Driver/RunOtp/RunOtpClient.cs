@@ -55,8 +55,24 @@ public class RunOtpClient : BaseApiClient, IRunOtpClient
         }
     }
 
-    public Task<RunOtpResponse> CheckOtpRequest(OrderHistory orderHistory)
+    public async Task<RunOtpResponse> CheckOtpRequest(OrderHistory orderHistory)
     {
-        throw new NotImplementedException();
+        var url =
+            $"{ClientConstant.RunOtp.Endpoint}/api.php?apikey={ClientConstant.RunOtp.ApiKey}&action=data-request&requestId={orderHistory.RequestId}";
+        var response =
+            await GetAsync<RunOtpResponse>(
+                url,
+                ClientConstant.ClientName,
+                ClientConstant.RunOtp.Url);
+        try
+        {
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+
+        return null;
     }
 }
