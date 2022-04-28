@@ -143,14 +143,13 @@ public struct MutateOrderHistory
             }
 
             var webTypeResult = await _webConfigurationRepository.GetSingleAsync(x => x.Selected);
-            var webType = webTypeResult?.WebType ?? WebType.RentOtp;
+            var webType = webTypeResult?.WebType ?? WebType.OtpTextNow;
 
             switch (webType)
             {
                 case WebType.RunOtp:
-                    // var resultRunOtpResponse = await _runOtpClient.CreateRequest(_scopeContext.CurrentAccountId);
-                    // return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultRunOtpResponse));
-                    break;
+                    var resultRunOtpResponse = await _runOtpClient.CreateRequest(_scopeContext.CurrentAccountId);
+                    return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultRunOtpResponse));
                 case WebType.OtpTextNow:
                     var resultNumberResponse = await _otpTextNowClient.CreateRequest(_scopeContext.CurrentAccountId);
                     return Results.Ok(ResultModel<CreateOrderResponseClient>.Create(resultNumberResponse));
@@ -161,6 +160,7 @@ public struct MutateOrderHistory
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             return Results.Ok();
         }
     }

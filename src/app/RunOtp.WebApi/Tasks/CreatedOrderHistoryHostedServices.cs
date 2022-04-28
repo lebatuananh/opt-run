@@ -38,7 +38,7 @@ public class CreatedOrderHistoryHostedServices : IHostedService
                     {
                         foreach (var item in orderHistories)
                         {
-                            Log.Error("Request created {Id} - {Phone} - {Web}", item.Id, item.NumberPhone, item.WebType);
+                            // Log.Error("Request created {Id} - {Phone} - {Web}", item.Id, item.NumberPhone, item.WebType);
                             switch (item.WebType)
                             {
                                 case WebType.RentOtp:

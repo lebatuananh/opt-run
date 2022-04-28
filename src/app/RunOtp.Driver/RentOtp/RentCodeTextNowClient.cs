@@ -66,7 +66,7 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
         }
         catch (Exception e)
         {
-            throw e;
+            throw new Exception(e.Message);
         }
     }
 
@@ -76,8 +76,8 @@ public class RentCodeTextNowClient : BaseApiClient, IRentCodeTextNowClient
             $"{ClientConstant.RentOtp.Endpoint}/get-otp/?access_token={ClientConstant.RentOtp.ApiKey}&phone={orderHistory.NumberPhone}";
         var response =
             await GetObjectAsync<RentCodeNumberResponse>(url, ClientConstant.ClientName, ClientConstant.RentOtp.Url);
-        Log.Error("Response RentCode: {Response} - {UserId}", JsonConvert.SerializeObject(response),
-            orderHistory.UserId);
+        // Log.Error("Response RentCode: {Response} - {UserId}", JsonConvert.SerializeObject(response),
+        //     orderHistory.UserId);
         var responseClient = new OtpCodeResponse()
         {
             Message = response.Message,

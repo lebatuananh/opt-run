@@ -59,7 +59,7 @@ public class OtpExternalService : IOtpExternalService
         }
 
         var webTypeResult = await _webConfigurationRepository.GetSingleAsync(x => x.Selected);
-        webType = webTypeResult?.WebType ?? WebType.RunOtp;
+        webType = webTypeResult?.WebType ?? WebType.OtpTextNow;
 
         switch (webType)
         {
@@ -105,8 +105,13 @@ public class OtpExternalService : IOtpExternalService
         switch (item.WebType)
         {
             case WebType.RunOtp:
-                // var resultRunOtpResponse = await _runOtpClient.CheckRequest(user.Id, requestId.ToString());
-                return null;
+                var resultRunOtpResponse = await _runOtpClient.CheckOtpRequest(item);
+                return new OtpExternalResponse()
+                {
+                    Message = resultRunOtpResponse.Message,
+                    OtpCode = resultRunOtpResponse.OtpCode,
+                    Status = resultRunOtpResponse.Status
+                };
             case WebType.OtpTextNow:
                 var resultNumberResponse = await _otpTextNowClient.CheckOtpRequest(item);
                 return new OtpExternalResponse()

@@ -100,6 +100,11 @@ export class AuthenticationService extends BaseApi {
     return this.httpClient.get<Result<Report>>(this.createUrl('Report'));
   }
 
+
+  reportByUserId(params: { userId: string}){
+    return this.httpClient.get<Result<Report>>(this.createUrl('GetReportByUserId'), {params: this.createParams(params)});
+  }
+
   recharge(command){
     return this.httpClient.post(this.createUrl('Recharge'), command);
 
