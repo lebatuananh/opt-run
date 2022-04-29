@@ -81,15 +81,38 @@ public struct MutateOrderHistory
             QueryResult<OrderHistory> queryable;
             if (_scopeContext.Role.Equals(SystemConstants.Admin))
             {
-                queryable = await _orderHistoryRepository
-                    .FindAll(x => x.AppUser)
-                    .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+                var queryAll = _orderHistoryRepository
+                    .FindAll(x => x.AppUser);
+                if (!string.IsNullOrEmpty(request.Query))
+                {
+                    queryable = await queryAll.Where(x =>
+                            x.AppUser.UserName == request.Query ||
+                            EF.Functions.ILike(x.NumberPhone, $"%{request.Query}%"))
+                        .OrderByDescending(x => x.CreatedDate)
+                        .ToQueryResultAsync(request.Skip, request.Take);
+                }
+                else
+                {
+                    queryable = await queryAll
+                        .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+                }
             }
             else
             {
-                queryable = await _orderHistoryRepository
-                    .FindAll(x => x.UserId == _scopeContext.CurrentAccountId, x => x.AppUser)
-                    .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+                var queryCurrentUser = _orderHistoryRepository
+                    .FindAll(x => x.UserId == _scopeContext.CurrentAccountId, x => x.AppUser);
+                if (!string.IsNullOrEmpty(request.Query))
+                {
+                    queryable = await queryCurrentUser.Where(x =>
+                            EF.Functions.ILike(x.NumberPhone, $"%{request.Query}%"))
+                        .OrderByDescending(x => x.CreatedDate)
+                        .ToQueryResultAsync(request.Skip, request.Take);
+                }
+                else
+                {
+                    queryable = await queryCurrentUser
+                        .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+                }
             }
 
             var result = new QueryResult<OrderHistoryDto>

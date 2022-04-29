@@ -29,15 +29,38 @@ public struct MutateTransaction
             QueryResult<Transaction> queryable;
             if (_scopeContext.Role.Equals(SystemConstants.Admin))
             {
-                queryable = await _transactionRepository
-                    .FindAll(x => x.AppUser)
-                    .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+                var queryAll = _transactionRepository
+                    .FindAll(x => x.AppUser);
+                if (!string.IsNullOrEmpty(request.Query))
+                {
+                    queryable = await queryAll.Where(x =>
+                            x.AppUser.UserName == request.Query || EF.Functions.ILike(x.Note, $"%{request.Query}%"))
+                        .OrderByDescending(x => x.CreatedDate)
+                        .ToQueryResultAsync(request.Skip, request.Take);
+                }
+                else
+                {
+                    queryable = await queryAll
+                        .OrderByDescending(x => x.CreatedDate)
+                        .ToQueryResultAsync(request.Skip, request.Take);
+                }
             }
             else
             {
-                queryable = await _transactionRepository
-                    .FindAll(x => x.UserId == _scopeContext.CurrentAccountId, x => x.AppUser)
-                    .OrderByDescending(x => x.CreatedDate).ToQueryResultAsync(request.Skip, request.Take);
+                var queryCurrentUser = _transactionRepository
+                    .FindAll(x => x.UserId == _scopeContext.CurrentAccountId, x => x.AppUser);
+                if (!string.IsNullOrEmpty(request.Query))
+                {
+                    queryable = await queryCurrentUser.Where(x => EF.Functions.ILike(x.Note, $"%{request.Query}%"))
+                        .OrderByDescending(x => x.CreatedDate)
+                        .ToQueryResultAsync(request.Skip, request.Take);
+                }
+                else
+                {
+                    queryable = await queryCurrentUser
+                        .OrderByDescending(x => x.CreatedDate)
+                        .ToQueryResultAsync(request.Skip, request.Take);
+                }
             }
 
             var result = new QueryResult<TransactionDto>
