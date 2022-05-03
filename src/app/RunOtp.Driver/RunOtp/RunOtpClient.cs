@@ -78,16 +78,19 @@ public class RunOtpClient : BaseApiClient, IRunOtpClient
                 url,
                 ClientConstant.ClientName,
                 ClientConstant.RunOtp.Url);
+        if (response is null || response.Results is null)
+        {
+            throw new Exception("An error occurred, please try again later");
+        }
+
         var data = response.Results.Data?.First();
+
         if (data is null)
         {
             throw new Exception("An error occurred, please try again later");
         }
 
-        var responseClient = new OtpCodeResponse()
-        {
-            OtpCode = data.Otp
-        };
+        var responseClient = new OtpCodeResponse();
 
         try
         {
@@ -113,6 +116,7 @@ public class RunOtpClient : BaseApiClient, IRunOtpClient
             {
                 if (data.Otp.IsNumeric())
                 {
+                    responseClient.OtpCode = data.Otp;
                     responseClient.Status = OrderStatus.Success;
                     orderHistory.Success(data.Otp);
                     _orderHistoryRepository.Update(orderHistory);
