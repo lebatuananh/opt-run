@@ -38,7 +38,7 @@ public class OtpExternalService : IOtpExternalService
     {
         if (string.IsNullOrEmpty(apiKey))
         {
-            throw new Exception("Apikey không tồn tại");
+            throw new Exception("Apikey doesn't exist");
         }
 
         var user = await _userManager.Users.SingleOrDefaultAsync(x => x.ClientSecret == apiKey);

@@ -72,18 +72,18 @@ public class RunOtpClient : BaseApiClient, IRunOtpClient
     public async Task<OtpCodeResponse> CheckOtpRequest(OrderHistory orderHistory)
     {
         var url =
-            $"{ClientConstant.RunOtp.Endpoint}/api.php?apikey={ClientConstant.RunOtp.ApiKey}&action=data-request&requestId={orderHistory.RequestId}";
+            $"{ClientConstant.RunOtp.Endpoint}?apikey={ClientConstant.RunOtp.ApiKey}&action=data-request&requestId={orderHistory.RequestId}";
         var response =
             await GetAsync<RunOtpResponse>(
                 url,
                 ClientConstant.ClientName,
                 ClientConstant.RunOtp.Url);
-        if (response is null || response.Results is null)
+        if (response is null || response.Data is null)
         {
             throw new Exception("An error occurred, please try again later");
         }
 
-        var data = response.Results.Data?.First();
+        var data = response.Data?.First();
 
         if (data is null)
         {

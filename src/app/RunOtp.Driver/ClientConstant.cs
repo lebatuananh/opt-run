@@ -28,7 +28,7 @@ public static class ClientConstant
         public static readonly string ProcessingMessage = "Đang chờ OTP";
         public static readonly string Timeout = "4";
         public static readonly string TimeoutMessage = "Hết thời gian";
-        public static readonly string Success = "1";
+        public static readonly string Success = "200";
         public static readonly string SuccessMessage = "Thành công";
         public static readonly string Cancel = "2";
         public static readonly string CancelMessage = "Đã hủy";
