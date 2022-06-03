@@ -1,0 +1,3639 @@
+[
+    {
+      "Id": "VirtoCommerce.Core",
+      "Title": "Commerce core module",
+      "Description": "Common e-commerce domain functionality",
+      "Authors": [
+        "Eugeny Tatarincev",
+        "Artem Dudarev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-core-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Core)/Content/logoVC.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "security core",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-core/releases/download/3.200.0/VirtoCommerce.Core_3.200.0.zip",
+          "Incompatibilities": [],
+          "Dependencies": null,
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.1510",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Core_3.201.0-alpha.1510.zip",
+          "Incompatibilities": [],
+          "Dependencies": null,
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.AzureSearch",
+      "Title": "Azure Search module",
+      "Description": "Indexed search functionality with AzureSearch engine",
+      "Authors": [
+        "Artem Dudarev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-azure-search-module",
+      "IconUrl": "Modules/$(VirtoCommerce.AzureSearch)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020 - 2021 Virto Commerce. All rights reserved",
+      "Tags": "azure search",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-azure-search/releases/download/3.203.0/VirtoCommerce.AzureSearch_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.151",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.AzureSearch_3.204.0-alpha.151.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Cart",
+      "Title": "Shopping cart module",
+      "Description": "Shopping cart / checkout functionality",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-shoppingcart-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Cart)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "shopping cart",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.201.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-cart/releases/download/3.201.0/VirtoCommerce.Cart_3.201.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.202.0",
+          "VersionTag": "alpha.541",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Cart_3.202.0-alpha.541.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Catalog",
+      "Title": "Catalog module",
+      "Description": "Catalog, categories, products, variations, properties management",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-catalog-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Catalog)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "catalog",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.215.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.207.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-catalog/releases/download/3.214.0/VirtoCommerce.Catalog_3.214.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            },
+            {
+              "Id": "VirtoCommerce.Export",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.BulkActionsModule",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        },
+        {
+          "Version": "3.216.0",
+          "VersionTag": "alpha.1940",
+          "PlatformVersion": "3.207.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Catalog_3.216.0-alpha.1940.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            },
+            {
+              "Id": "VirtoCommerce.Export",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.BulkActionsModule",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Content",
+      "Title": "CMS Content module",
+      "Description": "Front-end CMS functionality based on liquid technology",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-cms-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Content)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "cms menu",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-content/releases/download/3.203.0/VirtoCommerce.Content_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.AzureBlobAssets",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.FileSystemAssets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.804",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Content_3.204.0-alpha.804.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.AzureBlobAssets",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.FileSystemAssets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Customer",
+      "Title": "Customer management module",
+      "Description": "Managing customers contacts and organizations",
+      "Authors": [
+        "Artem Dudarev",
+        "Egidijus Mažeika"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-customer-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Customer)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "customer",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.204.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-customer/releases/download/3.204.0/VirtoCommerce.Customer_3.204.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.205.0",
+          "VersionTag": "alpha.683",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Customer_3.205.0-alpha.683.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ElasticSearch",
+      "Title": "Elastic Search module",
+      "Description": "Indexed search functionality with Elastic engine",
+      "Authors": [
+        "Artem Dudarev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-elastic-search",
+      "IconUrl": "Modules/$(VirtoCommerce.Elasticsearch)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020 - 2022 Virto Commerce. All rights reserved",
+      "Tags": "elastic search",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.205.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-elastic-search/releases/download/3.205.0/VirtoCommerce.ElasticSearch_3.205.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        },
+        {
+          "Version": "3.206.0",
+          "VersionTag": "alpha.163",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ElasticSearch_3.206.0-alpha.163.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Export",
+      "Title": "Generic Export module",
+      "Description": "Generic export functionality",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": "Modules/$(VirtoCommerce.Export)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "export",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-export/releases/download/3.200.0/VirtoCommerce.Export_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.163",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Export_3.201.0-alpha.163.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ImageTools",
+      "Title": "Image tools module",
+      "Description": "Image tools helps to automate image transformation procedures such as resizing and cropping",
+      "Authors": [
+        "Konstantin Savosteev",
+        "Nikolay Prohorov",
+        "Eugeney Tatarincev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/image-tools-module",
+      "IconUrl": "Modules/$(VirtoCommerce.ImageTools)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "images",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-image-tools/releases/download/3.203.0/VirtoCommerce.ImageTools_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.268",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ImageTools_3.204.0-alpha.268.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Inventory",
+      "Title": "Inventory module",
+      "Description": "Simplify inventory management functionality",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-inventory-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Inventory)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "order system",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-inventory/releases/download/3.203.0/VirtoCommerce.Inventory_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.356",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Inventory_3.204.0-alpha.356.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.LuceneSearch",
+      "Title": "Lucene Search module",
+      "Description": "Indexed search functionality with Lucene engine",
+      "Authors": [
+        "Artem Dudarev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-lucene-search-module",
+      "IconUrl": "Modules/$(VirtoCommerce.LuceneSearch)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "lucene search",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-lucene-search/releases/download/3.203.0/VirtoCommerce.LuceneSearch_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.135",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.LuceneSearch_3.204.0-alpha.135.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Marketing",
+      "Title": "Marketing module",
+      "Description": "Marketing system with dynamic contents and promotions management",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-marketing-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Marketing)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "marketing promotion",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-marketing/releases/download/3.200.0/VirtoCommerce.Marketing_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.746",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Marketing_3.201.0-alpha.746.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "Third version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Notifications",
+      "Title": "Notifications module",
+      "Description": "description",
+      "Authors": [
+        "Eugeny Tatarincev",
+        "Andrei Kostyrin"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-module-notification",
+      "IconUrl": "Modules/$(VirtoCommerce.Notifications)/Content/logoVC.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "notifications",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-notification/releases/download/3.203.0/VirtoCommerce.Notifications_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.251",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Notifications_3.204.0-alpha.251.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Orders",
+      "Title": "Orders module",
+      "Description": "Document based flexible orders management system",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-orders-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Orders)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "order system",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.204.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-order/releases/download/3.204.0/VirtoCommerce.Orders_3.204.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.205.0",
+          "VersionTag": "alpha.1003",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Orders_3.205.0-alpha.1003.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Payment",
+      "Title": "Payment module",
+      "Description": "Add payment methods management",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-payment-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Payment)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "payments",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-payment/releases/download/3.203.0/VirtoCommerce.Payment_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.153",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Payment_3.204.0-alpha.153.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Pricing",
+      "Title": "Pricing module",
+      "Description": "Robust pricing management functionality based on price list and dynamic evaluation",
+      "Authors": [
+        "Eugeney Tatarincev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-pricing-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Pricing)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "price pricelist merchandise",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.206.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-pricing/releases/download/3.206.0/VirtoCommerce.Pricing_3.206.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Export",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.207.0",
+          "VersionTag": "alpha.590",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Pricing_3.207.0-alpha.590.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Export",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.202.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Search",
+      "Title": "Search module",
+      "Description": "Search module",
+      "Authors": [
+        "Eugeny Tatarincev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-core-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Search)/Content/logoVC.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "security core",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.206.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-search/releases/download/3.206.0/VirtoCommerce.Search_3.206.0.zip",
+          "Incompatibilities": [],
+          "Dependencies": null,
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.207.0",
+          "VersionTag": "alpha.597",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Search_3.207.0-alpha.597.zip",
+          "Incompatibilities": [],
+          "Dependencies": null,
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Shipping",
+      "Title": "Shipping module",
+      "Description": "Add shipping methods management",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-shipping-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Shipping)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "shipping",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-shipping/releases/download/3.200.0/VirtoCommerce.Shipping_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.116",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Shipping_3.201.0-alpha.116.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Sitemaps",
+      "Title": "Sitemaps module",
+      "Description": "Sitemaps generation management for stores",
+      "Authors": [
+        "Andrey Orlov"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/automatic-sitemaps-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Sitemaps)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "sitemaps",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.201.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-sitemaps/releases/download/3.201.0/VirtoCommerce.Sitemaps_3.201.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Content",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.202.0",
+          "VersionTag": "alpha.261",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Sitemaps_3.202.0-alpha.261.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Content",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Store",
+      "Title": "Store module",
+      "Description": "Multi store management with individual store settings",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-store-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Store)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "stores",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-store/releases/download/3.203.0/VirtoCommerce.Store_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.603",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Store_3.204.0-alpha.603.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Subscription",
+      "Title": "Subscription module",
+      "Description": "Represent recurrent subscriptions functionality",
+      "Authors": [
+        "Egidijus MaЕѕeika",
+        "Eugeney Tatarincev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/subscriptions-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Subscription)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020-2021 Virto Commerce. All rights reserved",
+      "Tags": "subscriptions system",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-subscription/releases/download/3.200.0/VirtoCommerce.Subscription_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.258",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Subscription_3.201.0-alpha.258.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Tax",
+      "Title": "Tax module",
+      "Description": "Tax and fees",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/virto-tax-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Tax)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "stores",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-tax/releases/download/3.200.0/VirtoCommerce.Tax_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.114",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Tax_3.201.0-alpha.114.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.CustomerReviews",
+      "Title": "Product Rating and Reviews",
+      "Description": "Product Rating and Reviews",
+      "Authors": [
+        "Egidijus Mazeika",
+        "Andrew Nikutin",
+        "Evgeny Gusev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": "Modules/$(VirtoCommerce.CustomerReviews)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 Virto Commerce. All rights reserved",
+      "Tags": "customer review",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.204.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-customer-review/releases/download/3.204.0/VirtoCommerce.CustomerReviews_3.204.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.205.0",
+          "VersionTag": "alpha.120",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.CustomerReviews_3.205.0-alpha.120.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.AuthorizeNet",
+      "Title": "Authorize.Net DPM payment gateway",
+      "Description": "APIs and UI for Authorize.Net Direct Post Method (DPM) payment gateway",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/authorizenet-dpm-payment-gateway",
+      "IconUrl": "Modules/$(VirtoCommerce.AuthorizeNet)/Content/Authorizenet_logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "Authorize.Net payment gateway",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.201.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-Authorize.Net/releases/download/3.201.0/VirtoCommerce.AuthorizeNet_3.201.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.202.0",
+          "VersionTag": "alpha.260",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.AuthorizeNet_3.202.0-alpha.260.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.AvalaraTax",
+      "Title": "Avalara tax",
+      "Description": "APIs and UI for Avalara tax integration",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/integration-with-avalara-tax-service",
+      "IconUrl": "Modules/$(VirtoCommerce.AvalaraTax)/Content/400.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "avalara tax",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-avatax/releases/download/3.200.0/VirtoCommerce.AvalaraTax_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Tax",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.239",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.AvalaraTax_3.201.0-alpha.239.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Tax",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.CatalogPersonalization",
+      "Title": "Catalog personalization module",
+      "Description": "Personalization feature for the products and categories.",
+      "Authors": [
+        "Eugeney Tarincev",
+        "Artyom Androsov",
+        "Artem Dudarev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-catalog-personalization",
+      "IconUrl": "Modules/$(VirtoCommerce.CatalogPersonalization)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "catalog personalization products categories",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-catalog-personalization/releases/download/3.200.0/VirtoCommerce.CatalogPersonalization_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.180",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.CatalogPersonalization_3.201.0-alpha.180.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.CatalogPublishing",
+      "Title": "Catalog publishing module",
+      "Description": "Allow you to see progress on filling in information about products and marks missed info.",
+      "Authors": [
+        "Alexey Antonov",
+        "Andrew Orlov",
+        "Aleksandr Vishnyakov",
+        "Artem Dudarev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/catalog-publishing",
+      "IconUrl": "Modules/$(VirtoCommerce.CatalogPublishing)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020 - 2021 Virto Commerce. All rights reserved",
+      "Tags": "publishing filling",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-catalog-publishing/releases/download/3.200.0/VirtoCommerce.CatalogPublishing_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Pricing",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "Initial implementation of module features."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.278",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.CatalogPublishing_3.201.0-alpha.278.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Pricing",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "Initial implementation of module features."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.PageBuilderModule",
+      "Title": "CMS Page Builder",
+      "Description": "Compose pages in visual page builder.",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright В© 2011-2020 Virto Commerce. All rights reserved",
+      "Tags": "cms content pagebuilder",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.10.5",
+          "VersionTag": "",
+          "PlatformVersion": "3.0.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-pagebuilder/releases/download/3.10.5/VirtoCommerce.PageBuilderModule_3.10.5.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.0.0"
+            },
+            {
+              "Id": "VirtoCommerce.Content",
+              "Version": "3.0.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.0.1"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.11.0",
+          "VersionTag": "alpha.250",
+          "PlatformVersion": "3.0.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.PageBuilderModule_3.11.0-alpha.250.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.0.0"
+            },
+            {
+              "Id": "VirtoCommerce.Content",
+              "Version": "3.0.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.0.1"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Contentful",
+      "Title": "Contentful Module (preview)",
+      "Description": "Integration module for contentful.com.",
+      "Authors": [
+        "Alexander Siniouguine"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2020 Virto Commerce. All rights reserved",
+      "Tags": "cms contentful",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.0.1",
+          "VersionTag": "preview",
+          "PlatformVersion": "3.0.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-contentful/releases/download/3.0.1-preview/VirtoCommerce.Contentful_3.0.1-preview.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Content",
+              "Version": "3.0.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.0.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.BulkActionsModule",
+      "Title": "Bulk Actions",
+      "Description": "Bulk actions module",
+      "Authors": [
+        "Burashov T.S."
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020 - 2021 Virto Commerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-bulk-actions/releases/download/3.200.0/VirtoCommerce.BulkActionsModule_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.150",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.BulkActionsModule_3.201.0-alpha.150.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Quote",
+      "Title": "Quote module",
+      "Description": "Quoter enables business users to execute quote requests online. Once initiated, an online conversation takes place with internal users who interact with the business user's request. The internal user can set prices for quantity breaks or discounts. The quote is then made available to the business user online. The business user can accept the quote and place the order, continue the conversation, or reject the quote.",
+      "Authors": [
+        "Egidijus Mažeika"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/quote-module",
+      "IconUrl": "Modules/$(VirtoCommerce.Quote)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "b2b quotes",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.201.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-quote/releases/download/3.201.0/VirtoCommerce.Quote_3.201.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Tax",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.202.0",
+          "VersionTag": "alpha.286",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Quote_3.202.0-alpha.286.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Tax",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.DynamicAssociationsModule",
+      "Title": "Dynamic Associations",
+      "Description": "Dynamic rule based product associations module",
+      "Authors": [
+        "Andrey Kozlov",
+        "Alexandr Andreev",
+        "Dmitry Pushnitsa"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020-2021 Virto Commerce. All rights reserved",
+      "Tags": "dynamicAssociations",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-dynamic-associations/releases/download/3.200.0/VirtoCommerce.DynamicAssociationsModule_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.82",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.DynamicAssociationsModule_3.201.0-alpha.82.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ExperienceApi",
+      "Title": "Commerce experience API module",
+      "Description": "",
+      "Authors": [
+        "Eugeny Tatarincev",
+        "Yan Brovkin",
+        "Fillip Kuksov",
+        "Egidijus Mažeika",
+        "Andrei Kostyrin",
+        "Dmitri Pushnitsa",
+        "Alexandr Andreev",
+        "Andrey Kozlov",
+        "Konstantin Savosteev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com",
+      "IconUrl": "Modules/$(VirtoCommerce.ExperienceApi)/Content/logoVC.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "security core",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.211.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-experience-api/releases/download/3.211.0/VirtoCommerce.ExperienceApi_3.211.0.zip",
+          "Incompatibilities": [],
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.201.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.213.0",
+          "VersionTag": "alpha.957",
+          "PlatformVersion": "3.207.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ExperienceApi_3.213.0-alpha.957.zip",
+          "Incompatibilities": [],
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Shipping",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.201.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.213.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.GoogleEcommerceAnalytics",
+      "Title": "Ecommerce Google Analytics module",
+      "Description": "Provides integration between Ecommerce feature of Google Analytics and VirtoCommerce.",
+      "Authors": [
+        "Alexey Antonov",
+        "Egidijus Mažeika"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/google-ecommerce-analytics-module",
+      "IconUrl": "Modules/$(VirtoCommerce.GoogleEcommerceAnalytics)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "analytics",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-google-ecommerce-analytics/releases/download/3.200.0/VirtoCommerce.GoogleEcommerceAnalytics_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.8.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.2.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.118",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.GoogleEcommerceAnalytics_3.201.0-alpha.118.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.DemoSolutionFeaturesModule",
+      "Title": "VirtoCommerce.DemoSolutionFeaturesModule",
+      "Description": "Enter your module description here.",
+      "Authors": [
+        "Maksim Kopnov",
+        "Anton Veretennikov",
+        "Aleksandr Vishniakov"
+      ],
+      "Owners": [
+        ""
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "1.3.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.0.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.DemoSolutionFeaturesModule_1.3.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.9.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.11.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.2.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.7.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "1.3.0",
+          "VersionTag": "alpha.125",
+          "PlatformVersion": "3.0.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.DemoSolutionFeaturesModule_1.3.0-alpha.125.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.9.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.11.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.2.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.7.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.SaaS",
+      "Title": "SaaS Deployment",
+      "Description": "Allows managing multiple environments in cloud environment.",
+      "Authors": [
+        "Alexander Siniouguine"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2020 Virto Solutions LTD. All rights reserved",
+      "Tags": "saas",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "1.0.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.0.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-saas/releases/download/1.0.0/VirtoCommerce.SaaS_1.0.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "1.0.0",
+          "VersionTag": "alpha.59",
+          "PlatformVersion": "3.0.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.SaaS_1.0.0-alpha.59.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ChangesCollectorModule",
+      "Title": "Changes collector module",
+      "Description": "Scope-based change event watch and propagation",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/vc-module-changes-collector",
+      "IconUrl": "Modules/$(VirtoCommerce.ChangesCollectorModule)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2020 Virto Commerce. All rights reserved",
+      "Tags": "stores",
+      "Groups": [
+        ""
+      ],
+      "Versions": [
+        {
+          "Version": "0.0.3",
+          "VersionTag": "alpha.19",
+          "PlatformVersion": "3.26.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ChangesCollectorModule_0.0.3-alpha.19.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ChangesCollector",
+      "Title": "Changes collector module",
+      "Description": "Scope-based change event watch and propagation",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/vc-module-changes-collector",
+      "IconUrl": "Modules/$(VirtoCommerce.ChangesCollectorModule)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2020 Virto Commerce. All rights reserved",
+      "Tags": "stores",
+      "Groups": [
+        ""
+      ],
+      "Versions": [
+        {
+          "Version": "0.0.3",
+          "VersionTag": "alpha.23",
+          "PlatformVersion": "3.26.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ChangesCollector_0.0.3-alpha.23.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.WebHooks",
+      "Title": "Webhooks",
+      "Description": "Manage user defined webhooks",
+      "Authors": [
+        "Eugeny Tatarincev",
+        "Andrey Kozlov",
+        "Aleksandr Andreev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 Virto Commerce. All rights reserved",
+      "Tags": "webhooks module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.201.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-webhooks/releases/download/3.201.0/VirtoCommerce.WebHooks_3.201.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.202.0",
+          "VersionTag": "alpha.193",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.WebHooks_3.202.0-alpha.193.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.EventBus",
+      "Title": "Event Bus module",
+      "Description": "The module enables you to be notified of new messages or changes via a Message Queue of your choice",
+      "Authors": [
+        "Andrei Kostyrin",
+        "Konstantin Savosteev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": "Modules/$(VirtoCommerce.EventBus)/Content/logo.svg",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 Virto Commerce. All rights reserved",
+      "Tags": "eventbus azureveventgrid",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-event-bus/releases/download/3.200.0/VirtoCommerce.EventBus_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.202.0",
+          "VersionTag": "alpha.62",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.EventBus_3.202.0-alpha.62.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.CustomerSegments",
+      "Title": "Dynamic Customer Segments",
+      "Description": "Assign tags to Customers by dynamic rules",
+      "Authors": [
+        "Egidijus Mažeika",
+        "Konstantin Savosteev"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": "Modules/$(VirtoCommerce.CustomerSegments)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021-2021 Virto Commerce. All rights reserved",
+      "Tags": "dynamic customer segmentation tagging",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "1.4.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.66.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-customer-segments/releases/download/1.4.0/VirtoCommerce.CustomerSegments_1.4.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.23.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.2.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "1.5.0",
+          "VersionTag": "alpha.34",
+          "PlatformVersion": "3.66.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.CustomerSegments_1.5.0-alpha.34.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.23.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.2.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.FeatureManagement",
+      "Title": "Feature management module",
+      "Description": "Module provides feature management infrastructure",
+      "Authors": [
+        "Solution team"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-feature-flags",
+      "IconUrl": "Modules/$(VirtoCommerce.FeatureManagement)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "feature",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.0.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.49.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-feature-flags/releases/download/3.0.0/VirtoCommerce.FeatureManagement_3.0.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.0.0",
+          "VersionTag": "alpha.29",
+          "PlatformVersion": "3.49.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.FeatureManagement_3.0.0-alpha.29.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.CatalogCsvImportModule",
+      "Title": "Csv Catalog Import Module",
+      "Description": "Adds CSV import functionality to catalog",
+      "Authors": [
+        "ksa"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "catalog csv export import",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.202.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-catalog-csv-import/releases/download/3.202.0/VirtoCommerce.CatalogCsvImportModule_3.202.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Pricing",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "3.203.0",
+          "VersionTag": "alpha.241",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.CatalogCsvImportModule_3.203.0-alpha.241.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Inventory",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Pricing",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": null
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.PriceExportImport",
+      "Title": "Price Export Import",
+      "Description": "This module adds prices export and import functionality using it for price management.",
+      "Authors": [
+        "Solution team"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-price-export-import",
+      "IconUrl": "Modules/$(VirtoCommerce.PriceExportImport)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2022 Virto Commerce. All rights reserved",
+      "Tags": "price import export",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.205.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-price-export-import/releases/download/3.205.0/VirtoCommerce.PriceExportImport_3.205.0.zip",
+          "Incompatibilities": [],
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Pricing",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Export",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.206.0",
+          "VersionTag": "alpha.79",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.PriceExportImport_3.206.0-alpha.79.zip",
+          "Incompatibilities": [],
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Pricing",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Export",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.CustomerExportImport",
+      "Title": "Customer Export Import",
+      "Description": "This module adds customers export and import functionality. Use it for customer management.",
+      "Authors": [
+        "Solution team"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-customer-export-import",
+      "IconUrl": "Modules/$(VirtoCommerce.CustomerExportImport)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2011-2021 Virto Commerce. All rights reserved",
+      "Tags": "customer export import",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "1.1.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.65.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-customer-export-import/releases/download/1.1.0/VirtoCommerce.CustomerExportImport_1.1.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.28.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.17.0"
+            },
+            {
+              "Id": "VirtoCommerce.FeatureManagement",
+              "Version": "3.0.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "1.2.0",
+          "VersionTag": "alpha.78",
+          "PlatformVersion": "3.65.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.CustomerExportImport_1.2.0-alpha.78.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.28.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.17.0"
+            },
+            {
+              "Id": "VirtoCommerce.FeatureManagement",
+              "Version": "3.0.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.DemoSolutionFeatures",
+      "Title": "Demo solution features module",
+      "Description": "Module contains additions, extensions and customization for platform developed by Demo Solution Team.",
+      "Authors": [
+        "Maksim Kopnov",
+        "Anton Veretennikov",
+        "Aleksandr Vishniakov",
+        "Ilya Litvinenko"
+      ],
+      "Owners": [
+        ""
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "1.14.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.62.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-demo-features/releases/download/1.14.0/VirtoCommerce.DemoSolutionFeatures_1.14.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.14.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.9.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.36.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.2.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.21.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.19.0"
+            },
+            {
+              "Id": "VirtoCommerce.FeatureManagement",
+              "Version": "3.0.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "1.15.0",
+          "VersionTag": "alpha.260",
+          "PlatformVersion": "3.62.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.DemoSolutionFeatures_1.15.0-alpha.260.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Notifications",
+              "Version": "3.14.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.9.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.36.0"
+            },
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.2.0"
+            },
+            {
+              "Id": "VirtoCommerce.Cart",
+              "Version": "3.21.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.19.0"
+            },
+            {
+              "Id": "VirtoCommerce.FeatureManagement",
+              "Version": "3.0.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.CatalogExportImport",
+      "Title": "Catalog export import",
+      "Description": "This module adds catalog export and import functionality.",
+      "Authors": [
+        "Solution team"
+      ],
+      "Owners": [
+        ""
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-catalog-export-import",
+      "IconUrl": "Modules/$(VirtoCommerce.CatalogExportImport)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 Virto Commerce. All rights reserved",
+      "Tags": "catalog product description export import",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "1.0.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.57.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-catalog-export-import/releases/download/1.0.0/VirtoCommerce.CatalogExportImport_1.0.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.59.0"
+            }
+          ],
+          "ReleaseNotes": "First version"
+        },
+        {
+          "Version": "3.200.0",
+          "VersionTag": "alpha.71",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.CatalogExportImport_3.200.0-alpha.71.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Catalog",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version"
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.DemoCustomerSegments",
+      "Title": "Demo customer segments module",
+      "Description": "This module adds the customer segments functionality to VirtoCommerce platform.",
+      "Authors": [
+        "Aleksandr Vishniakov",
+        "Anton Veretennikov",
+        "Ilya Litvinenko"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-demo-customer-segments",
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2020 . All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "1.6.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.66.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-demo-customer-segments/releases/download/1.6.0/VirtoCommerce.DemoCustomerSegments_1.6.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.23.0"
+            },
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.7.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.2.0"
+            }
+          ],
+          "ReleaseNotes": null
+        },
+        {
+          "Version": "1.7.0",
+          "VersionTag": "alpha.45",
+          "PlatformVersion": "3.51.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.DemoCustomerSegments_1.7.0-alpha.45.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Core",
+              "Version": "3.7.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.17.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.10.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Assets",
+      "Title": "Assets module",
+      "Description": "",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/vc-module-assets",
+      "IconUrl": "Modules/$(VirtoCommerce.AssetsModule)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 Virto Commerce. All rights reserved",
+      "Tags": "assets",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-assets/releases/download/3.200.0/VirtoCommerce.Assets_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.44",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Assets_3.201.0-alpha.44.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.AzureBlobAssets",
+      "Title": "Azure blob assets module",
+      "Description": "",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/vc-module-azureblob-assets",
+      "IconUrl": "Modules/$(VirtoCommerce.AzureBlobAssetsModule)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 Virto Commerce. All rights reserved",
+      "Tags": "assets",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-azureblob-assets/releases/download/3.200.0/VirtoCommerce.AzureBlobAssets_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.31",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.AzureBlobAssets_3.201.0-alpha.31.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.FileSystemAssets",
+      "Title": "File system assets module",
+      "Description": "",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/vc-module-filesystem-assets",
+      "IconUrl": "Modules/$(VirtoCommerce.FileSystemAssetsModule)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 Virto Commerce. All rights reserved",
+      "Tags": "assets",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-filesystem-assets/releases/download/3.200.0/VirtoCommerce.FileSystemAssets_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.27",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.FileSystemAssets_3.201.0-alpha.27.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Assets",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.GDPR",
+      "Title": "GDPR module",
+      "Description": "GDPR module",
+      "Authors": [
+        "Leysan Nigmatullina"
+      ],
+      "Owners": [
+        "VirtoCommerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.201.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-gdpr/releases/download/3.201.0/VirtoCommerce.GDPR_3.201.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.202.0",
+          "VersionTag": "alpha.59",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.GDPR_3.202.0-alpha.59.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Metadata",
+      "Title": "Metadata module",
+      "Description": "",
+      "Authors": [
+        "Virto Commerce"
+      ],
+      "Owners": [
+        "Virto Commerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://virtocommerce.com/apps/extensions/vc-module-changes-collector",
+      "IconUrl": "Modules/$(VirtoCommerce.MetadataModule)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 Virto Commerce. All rights reserved",
+      "Tags": "stores",
+      "Groups": [
+        ""
+      ],
+      "Versions": [
+        {
+          "Version": "1.0.0",
+          "VersionTag": "alpha.17",
+          "PlatformVersion": "3.81.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Metadata_1.0.0-alpha.17.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ProfileExperienceApiModule",
+      "Title": "Commerce Profile Experience API module",
+      "Description": "",
+      "Authors": [
+        "Konstantin Savosteev"
+      ],
+      "Owners": [
+        "VirtoCommerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2021 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": [
+        "commerce"
+      ],
+      "Versions": [
+        {
+          "Version": "3.208.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-profile-experience-api/releases/download/3.208.0/VirtoCommerce.ProfileExperienceApiModule_3.208.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.ExperienceApi",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        },
+        {
+          "Version": "3.209.0",
+          "VersionTag": "alpha.42",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ProfileExperienceApiModule_3.209.0-alpha.42.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.ExperienceApi",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Customer",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Store",
+              "Version": "3.200.0"
+            },
+            {
+              "Id": "VirtoCommerce.Marketing",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": ""
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ElasticAppSearch",
+      "Title": "Elastic App Search module",
+      "Description": "Indexing functionality with Elastic App Search service",
+      "Authors": [
+        "VirtoCommerce"
+      ],
+      "Owners": [
+        "VirtoCommerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-elastic-app-search",
+      "IconUrl": "Modules/$(VirtoCommerce.ElasticAppSearch)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 VirtoCommerce. All rights reserved",
+      "Tags": "elastic app search",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ElasticAppSearch_1.0.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.26",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ElasticAppSearch_3.201.0-alpha.26.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Search",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.Return",
+      "Title": "Return module",
+      "Description": "Return module",
+      "Authors": [
+        "Leysan Nigmatullina",
+        "Mikhail Getmansky"
+      ],
+      "Owners": [
+        "VirtoCommerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": null,
+      "IconUrl": null,
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.203.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-return/releases/download/3.203.0/VirtoCommerce.Return_3.203.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.204.0",
+          "VersionTag": "alpha.21",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.Return_3.204.0-alpha.21.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.200.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.NativePaymentMethods",
+      "Title": "Native Payment Methods",
+      "Description": "Non-integrative payment methods support",
+      "Authors": [
+        "Mikhail Getmanskiy"
+      ],
+      "Owners": [
+        "VirtoCommerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-NativePaymentMethods",
+      "IconUrl": "Modules/$(VirtoCommerce.NativePaymentMethods)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.13",
+          "PlatformVersion": "3.209.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.NativePaymentMethods_3.201.0-alpha.13.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Payment",
+              "Version": "3.202.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.AuthorizeNetPayment",
+      "Title": "VirtoCommerce AuthorizeNetPayment extension module",
+      "Description": "VirtoCommerce AuthorizeNetPayment extension module",
+      "Authors": [
+        "Konstantin Savosteev"
+      ],
+      "Owners": [
+        "VirtoCommerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-AuthorizeNetPayment",
+      "IconUrl": "Modules/$(VirtoCommerce.AuthorizeNetPayment)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-authorize-net/releases/download/3.200.0/VirtoCommerce.AuthorizeNetPayment_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.5",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.AuthorizeNetPayment_3.201.0-alpha.5.zip",
+          "Incompatibilities": null,
+          "Dependencies": [],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    },
+    {
+      "Id": "VirtoCommerce.ShipStation",
+      "Title": "ShipStation module",
+      "Description": "VirtoCommerce ShipStation integration",
+      "Authors": [
+        "Dmitry Pushnitsa"
+      ],
+      "Owners": [
+        "VirtoCommerce"
+      ],
+      "LicenseUrl": null,
+      "ProjectUrl": "https://github.com/VirtoCommerce/vc-module-ShipStation",
+      "IconUrl": "Modules/$(VirtoCommerce.ShipStation)/Content/logo.png",
+      "RequireLicenseAcceptance": false,
+      "Copyright": "Copyright © 2022 VirtoCommerce. All rights reserved",
+      "Tags": "extension module",
+      "Groups": null,
+      "Versions": [
+        {
+          "Version": "3.200.0",
+          "VersionTag": "",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://github.com/VirtoCommerce/vc-module-shipstation/releases/download/3.200.0/VirtoCommerce.ShipStation_3.200.0.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        },
+        {
+          "Version": "3.201.0",
+          "VersionTag": "alpha.58",
+          "PlatformVersion": "3.200.0",
+          "PackageUrl": "https://vc3prerelease.blob.core.windows.net/packages/VirtoCommerce.ShipStation_3.201.0-alpha.58.zip",
+          "Incompatibilities": null,
+          "Dependencies": [
+            {
+              "Id": "VirtoCommerce.Orders",
+              "Version": "3.204.0"
+            }
+          ],
+          "ReleaseNotes": "First version."
+        }
+      ]
+    }
+  ]
